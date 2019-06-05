@@ -6,10 +6,14 @@
 }
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="">
         <div class="row">
-            <img src="~/img/user-profile.png" alt="" class="col-md-2;" style="border:1px solid black;width:250px; height:270px">
-            <div class="ml-4">
+
+            <div class="col-md-4">
+                <img src='@Url.Action("getImgAsync", "Home") ' alt="" class="col-md-2;" style="border:1px solid black;width:250px; height:270px">
+            </div>
+            
+            <div class="col-md-6 ml-n3">
                 <div class="row ">
                     <h3>Nickname: @ViewData["UserName"]</h3>
                 </div>
@@ -28,7 +32,7 @@
                 @if (ViewData["Age"] != null)
                 {
                     <div class="row ">
-                        <h3>Phone: @ViewData["Age"]</h3>
+                        <h3>Age: @ViewData["Age"]</h3>
                     </div>
                 }
                 <div class="row mb-n1">
@@ -44,8 +48,8 @@
             <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFileAsync">
                 <div class="form-group">
                     <div class="col-md-10">
-                        <h4>Upload new avatar:</h4  >
-                        <input type="file" name="files">
+                        <p>Upload one or more files using this form:</p>
+                        <input type="file" name="files" multiple>
                     </div>
                 </div>
                 <div class="form-group">

@@ -36,7 +36,8 @@ namespace TWHelp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddIdentity<User, IdentityRole<long>>(options => {
+            services.AddIdentity<User, IdentityRole<long>>(options =>
+            {
                 // configure identity options
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
@@ -47,7 +48,13 @@ namespace TWHelp
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            ;
+
+            //services.AddAuthentication().AddTwitter(twitterOptions =>
+            //{
+            //    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerAPIKey"];
+            //    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+            //});
+
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

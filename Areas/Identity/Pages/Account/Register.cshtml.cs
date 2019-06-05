@@ -67,7 +67,7 @@ namespace TWHelp.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email, Nickname = Input.Email, Age=18};
+                var user = new User { UserName = Input.Email, Email = Input.Email, Nickname = Input.Email, Age = 18, AvatarImage = System.IO.File.ReadAllBytes("wwwroot/img/user-profile.png") };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

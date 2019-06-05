@@ -36,6 +36,7 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             ViewData["Email"] = user.Email;
             ViewData["Phone"] = user.PhoneNumber;
             ViewData["Age"] = user.Age;
+            ViewData["Avatar"] = user.AvatarImage;
             //using (var reader = new DatabaseReader("C:\\Users\\Sher\\source\\repos\\TWHelp\\TWHelp\\wwwroot\\GeoLite2-City.mmdb"))
             //{
             //    var ipAddress = HttpContext.Connection.RemoteIpAddress;
