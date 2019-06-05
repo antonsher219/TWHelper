@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TWHelp.Data;
 using TWHelp.Models;
 
@@ -36,21 +37,25 @@ namespace TWHelp.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.GetUserAsync(User);
-                topic.Creator = await _userManager.FindByIdAsync(user.Id + ""); ;
-                
+                topic.Creator = await _userManager.GetUserAsync(User);
+
                 topic.CreatingTime = DateTime.Now;
                 _db.Topics.Add(topic);
                 
                 _db.SaveChanges();
             }
-            ViewBag.Topics = _db.Topics.OrderByDescending(x => x.CreatingTime);
+
+            ViewBag.Topics = _db.Topics
+                .Include(top => top.Creator)
+                .OrderByDescending(x => x.CreatingTime);
             return View();
         }
 
         public IActionResult Forum()
         {
-            ViewBag.Topics = _db.Topics.OrderByDescending(x => x.CreatingTime);
+            ViewBag.Topics = _db.Topics
+                .Include(top => top.Creator)
+                .OrderByDescending(x => x.CreatingTime);
             return View();
         }
 
