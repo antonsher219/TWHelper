@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -70,6 +72,59 @@ namespace TWHelp.Controllers
                 return RedirectToAction("Error");
             }
         }
+
+        public IActionResult Tests()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        [HttpPost("UploadFiles")]
+        public async Task<IActionResult> UploadFileAsync(IFormFile file)
+        {
+
+            long size = file.Length;
+
+            var filePath = Path.GetTempFileName();
+
+            if (file.Length > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                var user = await _userManager.GetUserAsync(User);
+                await file.CopyToAsync(memoryStream);
+                user.AvatarImage = memoryStream.ToArray();
+                await _db.SaveChangesAsync();
+                await _userManager.UpdateAsync(user);
+            }
+
+            return Ok(new { count = 1, size, filePath });
+
+            //if (User.Identity.IsAuthenticated)
+            //{
+
+            //    return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Error");
+            //}
+
+
+        }
+
 
 
 

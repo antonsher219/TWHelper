@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Forum";
 }
-
 <style>
     .mybtn {
         border: solid 1px #777777;
@@ -53,10 +52,8 @@
     {
         <div style=" width: 100%; " class="row text-left border border-dark mb-4">
             <div class="col-1" style="padding-top: 1%; padding-left:1%;">
-                <p>
-                    <img src="~/img/sonya.png" alt="" style="border-radius: 100px; border:1px solid black; width:58px; height:58px">
+                <img src="~/img/user-profile.png" alt="" style="border-radius: 100px; border:1px solid black; width:58px; height:58px">
 
-                </p>
             </div>
 
             <div class="col-11">
@@ -64,7 +61,7 @@
                     @x.Creator.Nickname      @x.CreatingTime
                 </p>
                 <hr style="margin-top: -2%;margin-bottom: 0%" />
-                <h3>@x.Theme</h3>
+                <h3 id="@x.Id" onclick="">@x.Theme</h3>
                 
                     @if (x.Content.Length > 250){ <p class="" style="white-space: normal;">@x.Content.Substring(0, 250)...</p>}
                     else { @x.Content }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using TWHelp.Models;
 
 namespace TWHelp.Areas.Identity.Pages.Account.Manage
 {

@@ -11,12 +11,7 @@ namespace TWHelp.Models
     public class Topic
     {
         public int Id { get; set; }
-        
-        //[StringLength(100, MinimumLength = 3)]
-
-        public long CreatorId { get; set; }
-
-        [ForeignKey("CreatorId")]
+                
         public virtual User Creator{ get; set; }
         
 

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "9730342b7b575aaeb702fae13ca2a10b3cc123ef"
+    "signature": "7bd3fddad421b355340e1d1fe88b37bdc8cf22d9"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.2": {
       "TWHelp/1.0.0": {
         "dependencies": {
+          "MaxMind.GeoIP2": "3.0.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.Extensions.Identity.Stores": "2.2.0",
@@ -35,6 +36,33 @@
         },
         "compile": {
           "TWHelp.dll": {}
+        }
+      },
+      "MaxMind.Db/2.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/MaxMind.Db.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MaxMind.Db.dll": {}
+        }
+      },
+      "MaxMind.GeoIP2/3.0.0": {
+        "dependencies": {
+          "MaxMind.Db": "2.4.0",
+          "Microsoft.CSharp": "4.5.0",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MaxMind.GeoIP2.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MaxMind.GeoIP2.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
@@ -3544,6 +3572,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "MaxMind.Db/2.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3x7q8Wir8Jnrl0j4Pw00XeptEH+IpbjNS2FQJqRD/CKDPFhdkUxRNlCKd4pdpUXvYeVRr0Iy0fWkoXORJB0vCw==",
+      "path": "maxmind.db/2.4.0",
+      "hashPath": "maxmind.db.2.4.0.nupkg.sha512"
+    },
+    "MaxMind.GeoIP2/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O+4jtK2fA/vLXqsx7RxsaCCQfSUogYfmlFJeh3HocREXz6vs4CFjSg6m0/6CdtaUAO4dGMBjm4utlwmTI1b3jQ==",
+      "path": "maxmind.geoip2/3.0.0",
+      "hashPath": "maxmind.geoip2.3.0.0.nupkg.sha512"
     },
     "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
       "type": "package",

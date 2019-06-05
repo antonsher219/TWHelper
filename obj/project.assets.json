@@ -2,6 +2,29 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "MaxMind.Db/2.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MaxMind.Db.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MaxMind.Db.dll": {}
+        }
+      },
+      "MaxMind.GeoIP2/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "MaxMind.Db": "2.4.0",
+          "Microsoft.CSharp": "4.4.1",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/MaxMind.GeoIP2.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MaxMind.GeoIP2.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4724,6 +4747,40 @@
     }
   },
   "libraries": {
+    "MaxMind.Db/2.4.0": {
+      "sha512": "3x7q8Wir8Jnrl0j4Pw00XeptEH+IpbjNS2FQJqRD/CKDPFhdkUxRNlCKd4pdpUXvYeVRr0Iy0fWkoXORJB0vCw==",
+      "type": "package",
+      "path": "maxmind.db/2.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/MaxMind.Db.dll",
+        "lib/net45/MaxMind.Db.xml",
+        "lib/netstandard1.4/MaxMind.Db.dll",
+        "lib/netstandard1.4/MaxMind.Db.xml",
+        "lib/netstandard2.0/MaxMind.Db.dll",
+        "lib/netstandard2.0/MaxMind.Db.xml",
+        "maxmind.db.2.4.0.nupkg.sha512",
+        "maxmind.db.nuspec"
+      ]
+    },
+    "MaxMind.GeoIP2/3.0.0": {
+      "sha512": "O+4jtK2fA/vLXqsx7RxsaCCQfSUogYfmlFJeh3HocREXz6vs4CFjSg6m0/6CdtaUAO4dGMBjm4utlwmTI1b3jQ==",
+      "type": "package",
+      "path": "maxmind.geoip2/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/MaxMind.GeoIP2.dll",
+        "lib/net45/MaxMind.GeoIP2.xml",
+        "lib/netstandard1.4/MaxMind.GeoIP2.dll",
+        "lib/netstandard1.4/MaxMind.GeoIP2.xml",
+        "lib/netstandard2.0/MaxMind.GeoIP2.dll",
+        "lib/netstandard2.0/MaxMind.GeoIP2.xml",
+        "maxmind.geoip2.3.0.0.nupkg.sha512",
+        "maxmind.geoip2.nuspec"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
@@ -12929,6 +12986,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "MaxMind.GeoIP2 >= 3.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.Extensions.Identity.Stores >= 2.2.0",
@@ -12977,6 +13035,10 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "MaxMind.GeoIP2": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",

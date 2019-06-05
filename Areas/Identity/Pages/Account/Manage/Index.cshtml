@@ -18,6 +18,11 @@
                 <span asp-validation-for="Input.Nickname" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Input.Age"></label>
+                <input asp-for="Input.Age" class="form-control" />
+                <span asp-validation-for="Input.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 @if (Model.IsEmailConfirmed)
                 {
@@ -41,6 +46,7 @@
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
+    <img src='@Url.Action( "show", "image", new { id = ViewData["imageID"] })' />
 </div>
 
 @section Scripts {

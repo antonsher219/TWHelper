@@ -41,3 +41,6 @@ C:\Users\Sher\source\repos\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Views\Hom
 C:\Users\Sher\source\repos\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\Index.g.cshtml.cs
 C:\Users\Sher\source\repos\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.g.cshtml.cs
 C:\Users\Sher\source\repos\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.g.cshtml.cs
+C:\Users\Sher\source\repos\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Views\Home\TopicView.g.cshtml.cs
+C:\Users\Sher\source\repos\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Views\Home\Tests.g.cshtml.cs
+C:\Users\Sher\source\repos\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\PersonalData.g.cshtml.cs

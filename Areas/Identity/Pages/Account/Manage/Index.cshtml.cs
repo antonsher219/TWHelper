@@ -50,6 +50,10 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Age")]
+            [Range(18, 110, ErrorMessage = "Недопустимый возраст")]
+            public int Age { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -65,12 +69,13 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
-            
+
             Input = new InputModel
             {
                 Nickname = user.Nickname,
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Age = user.Age
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -100,12 +105,26 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
                 }
+                
+            }
+
+            if(Input.Email != Username)
+            {
+                var setUserNameResult = await _userManager.SetUserNameAsync(user, Input.Email);
+                if (!setUserNameResult.Succeeded)
+                {
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    throw new InvalidOperationException($"Unexpected error occurred setting username for user with ID '{userId}'.");
+                }
             }
             
             if (Input.Nickname != user.Nickname)
             {
                 user.Nickname = Input.Nickname;
-                
+            }
+            if (Input.Age != user.Age)
+            {
+                user.Age = Input.Age;
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
