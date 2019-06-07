@@ -1,0 +1,78 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<div class="row">
+    <div class="">
+        <div class="row">
+
+            <div class="col-md-4">
+                <img src='@Url.Action("getImgAsync", "Home") ' alt="" class="col-md-2;" style="border:1px solid black;width:300px; height:310px">
+            </div>
+            
+            <div class="col-md-6 ml-5">
+                <div class="row ">
+                    <h3>Nickname: @ViewData["UserName"]</h3>
+                </div>
+                @if (ViewData["Email"] != null)
+                {
+                    <div class="row ">
+                        <h3>Email: @ViewData["Email"]</h3>
+                    </div>
+                }
+                @if (ViewData["Phone"] != null)
+                {
+                    <div class="row ">
+                        <h3>Phone: @ViewData["Phone"]</h3>
+                    </div>
+                }
+                @if (ViewData["Age"] != null)
+                {
+                    <div class="row ">
+                        <h3>Age: @ViewData["Age"]</h3>
+                    </div>
+                }
+                <div class="row mb-n1">
+                    <p><h3>Location: Ukraine, Kharkiv</h3></p>
+                </div>
+                <div class="row mb-n1">
+                    <p><h3>Status: patient</h3></p>
+                </div>
+                <div class="row mb-n1">
+                    <p><h3>Reputation: 32</h3></p>
+                </div>
+            </div>
+            <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFileAsync">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <p>Upload your avatar:</p>
+                        <input type="file" name="files" multiple>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Upload">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+        <p>
+            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+        </p>
+            <form id="download-data" asp-page="DownloadPersonalData" method="post" class="form-group">
+                <button class="btn btn-primary" type="submit">Download</button>
+            </form>
+        <p>
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-primary">Delete</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

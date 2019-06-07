@@ -55,9 +55,6 @@ namespace TWHelp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-
-            //[Display(Name = "Nickname")]
-            //public string NickName { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -70,7 +67,7 @@ namespace TWHelp.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email, Nickname = Input.Email};
+                var user = new User { UserName = Input.Email, Email = Input.Email, Nickname = Input.Email, Age = 18, AvatarImage = System.IO.File.ReadAllBytes("wwwroot/img/user-profile.png") };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -86,6 +83,7 @@ namespace TWHelp.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                    await _userManager.AddToRoleAsync(user, "user");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
