@@ -2,20 +2,21 @@
 
 namespace TWHelp.Migrations
 {
-    public partial class Initial2 : Migration
+    public partial class Profile : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Nickname",
+            migrationBuilder.AddColumn<int>(
+                name: "Age",
                 table: "AspNetUsers",
-                nullable: true);
+                nullable: false,
+                defaultValue: 0);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Nickname",
+                name: "Age",
                 table: "AspNetUsers");
         }
     }

@@ -10,8 +10,8 @@ using TWHelp.Data;
 namespace TWHelp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190605112622_Initial2")]
-    partial class Initial2
+    [Migration("20190605130759_Nicknames")]
+    partial class Nicknames
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -141,7 +141,7 @@ namespace TWHelp.Migrations
 
                     b.Property<DateTime>("CreatingTime");
 
-                    b.Property<long>("CreatorId");
+                    b.Property<long?>("CreatorId");
 
                     b.Property<string>("Theme")
                         .IsRequired()
@@ -256,9 +256,8 @@ namespace TWHelp.Migrations
             modelBuilder.Entity("TWHelp.Models.Topic", b =>
                 {
                     b.HasOne("TWHelp.Models.User", "Creator")
-                        .WithMany("Topics")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
                 });
 #pragma warning restore 612, 618
         }

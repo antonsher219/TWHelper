@@ -127,6 +127,88 @@ namespace TWHelp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("TWHelp.Models.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Note");
+
+                    b.Property<string>("_Answer");
+
+                    b.Property<int?>("_QuestionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_QuestionId");
+
+                    b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<long?>("CreatorId");
+
+                    b.Property<int?>("TopId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("TopId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("_Question");
+
+                    b.Property<int?>("_TestId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_TestId");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatorId");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(5000);
+
+                    b.Property<string>("Theme")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Tests");
+                });
+
             modelBuilder.Entity("TWHelp.Models.Topic", b =>
                 {
                     b.Property<int>("Id")
@@ -139,7 +221,7 @@ namespace TWHelp.Migrations
 
                     b.Property<DateTime>("CreatingTime");
 
-                    b.Property<long>("CreatorId");
+                    b.Property<long?>("CreatorId");
 
                     b.Property<string>("Theme")
                         .IsRequired()
@@ -159,6 +241,10 @@ namespace TWHelp.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<int>("Age");
+
+                    b.Property<byte[]>("AvatarImage");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -251,12 +337,43 @@ namespace TWHelp.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("TWHelp.Models.Answer", b =>
+                {
+                    b.HasOne("TWHelp.Models.Question", "_Question")
+                        .WithMany()
+                        .HasForeignKey("_QuestionId");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Comment", b =>
+                {
+                    b.HasOne("TWHelp.Models.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
+
+                    b.HasOne("TWHelp.Models.Topic", "Top")
+                        .WithMany()
+                        .HasForeignKey("TopId");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Question", b =>
+                {
+                    b.HasOne("TWHelp.Models.Test", "_Test")
+                        .WithMany()
+                        .HasForeignKey("_TestId");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Test", b =>
+                {
+                    b.HasOne("TWHelp.Models.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
+                });
+
             modelBuilder.Entity("TWHelp.Models.Topic", b =>
                 {
                     b.HasOne("TWHelp.Models.User", "Creator")
-                        .WithMany("Topics")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
                 });
 #pragma warning restore 612, 618
         }

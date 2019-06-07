@@ -1,13 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TWHelp.Migrations
 {
-    public partial class Initial2 : Migration
+    public partial class ProfilePhoto : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Nickname",
+            migrationBuilder.AddColumn<byte[]>(
+                name: "AvatarImage",
                 table: "AspNetUsers",
                 nullable: true);
         }
@@ -15,7 +16,7 @@ namespace TWHelp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Nickname",
+                name: "AvatarImage",
                 table: "AspNetUsers");
         }
     }

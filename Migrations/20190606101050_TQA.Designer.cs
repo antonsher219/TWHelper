@@ -10,8 +10,8 @@ using TWHelp.Data;
 namespace TWHelp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190605112622_Initial2")]
-    partial class Initial2
+    [Migration("20190606101050_TQA")]
+    partial class TQA
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,6 +129,46 @@ namespace TWHelp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("TWHelp.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("_Question");
+
+                    b.Property<int?>("_TestId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_TestId");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatorId");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Theme")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Tests");
+                });
+
             modelBuilder.Entity("TWHelp.Models.Topic", b =>
                 {
                     b.Property<int>("Id")
@@ -141,7 +181,7 @@ namespace TWHelp.Migrations
 
                     b.Property<DateTime>("CreatingTime");
 
-                    b.Property<long>("CreatorId");
+                    b.Property<long?>("CreatorId");
 
                     b.Property<string>("Theme")
                         .IsRequired()
@@ -161,6 +201,10 @@ namespace TWHelp.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<int>("Age");
+
+                    b.Property<byte[]>("AvatarImage");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -253,12 +297,25 @@ namespace TWHelp.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("TWHelp.Models.Question", b =>
+                {
+                    b.HasOne("TWHelp.Models.Test", "_Test")
+                        .WithMany()
+                        .HasForeignKey("_TestId");
+                });
+
+            modelBuilder.Entity("TWHelp.Models.Test", b =>
+                {
+                    b.HasOne("TWHelp.Models.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
+                });
+
             modelBuilder.Entity("TWHelp.Models.Topic", b =>
                 {
                     b.HasOne("TWHelp.Models.User", "Creator")
-                        .WithMany("Topics")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
                 });
 #pragma warning restore 612, 618
         }
