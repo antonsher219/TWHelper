@@ -3,75 +3,43 @@
     ViewData["Title"] = "Forum";
 }
 
-<style>
-    .mybtn {
-        border: solid 1px #777777;
-        color: #FFFFFF;
-        background: #408AB9;
-        -webkit-transition: all .3s linear;
-        -moz-transition: all .3s linear;
-        text-transform: uppercase;
-    }
 
-        .mybtn:hover {
-            color: #000000;
-            background: #2b73a0;
-            -webkit-transition: all .3s linear;
-            -moz-transition: all .3s linear;
-        }
-
-    .word {
-        width: 160px;
-        background: #f0f0f0;
-        border: 1px solid #333;
-        padding: 10px;
-        font-size: 18px;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
-        -ms-hyphens: auto;
-    }
-
-</style>
-
-
-<div style="width:70%; height:100%; top:-40px;background: #f2f2f2; z-index:-1;" class="position-absolute"></div>
-@if (User.Identity.Name != null)
+@if (User.Identity.IsAuthenticated)
 {
-<form method="get" action="CreateTopic">
-
-    <button type="submit" style="margin-left:72%; top:70px; width:120px;
-        height:34px; z-index:1;" class="position-absolute   mybtn text-center">
-        Create post
-    </button>
-</form>
+    <form method="get" action="CreateTopic">
+        <button type="submit" style="left:88%; margin-top:11px; width:120px; 
+            z-index:1;" class="position-absolute btn btn-primary text-center">Create post</button>
+    </form>
 }
 
 
+<div style="width:100%; height:100%; background: #f2f2f2; z-index:-1;" class="mx-auto">
 
-<div style="width:90%; margin-left:auto; margin-right:auto; padding:2% ;" class="">
-    @foreach (var x in ViewBag.Topics)
-    {
-        <div style=" width: 100%; " class="row text-left border border-dark mb-4">
-            <div class="col-1" style="padding-top: 1%; padding-left:1%;">
-                <p>
-                    <img src="~/img/sonya.png" alt="" style="border-radius: 100px; border:1px solid black; width:58px; height:58px">
+    <div style="width:90%; padding-top:10px ;" class="mx-auto">
+        @foreach (var x in ViewBag.Topics)
+        {
+            <div style=" width: 100%; " class="row text-left border border-dark mb-4">
+                <div class="col-1" style="padding-top: 1%; padding-bottom: 4%;padding-left:1%;">
+                    <img src='@Url.Action("getImgByIdAsync", "Home", new { id = x.Creator.Id }) ' alt="" style="border-radius: 100px; border:1px solid black; width:58px; height:58px">
 
-                </p>
+                </div>
+
+                <div class="col-11">
+                    <p>
+                        @x.Creator.Nickname      @x.CreatingTime
+                    </p>
+                    <hr style="margin-top: -2%;margin-bottom: 0%" />
+                    <h3><a asp-action="TopicView" asp-controller="home" asp-route-id="@x.Id" style="color:black">@x.Theme</a></h3>
+
+                    @if (x.Content.Length > 250)
+                    {<p class="" style="white-space: normal;">@x.Content.Substring(0, 250)...</p>}
+                else
+                { @x.Content}
+
+
+                </div>
+
             </div>
-
-            <div class="col-11">
-                <p>
-                    @x.Creator.Nickname      @x.CreatingTime
-                </p>
-                <hr style="margin-top: -2%;margin-bottom: 0%" />
-                <h3>@x.Theme</h3>
-                
-                    @if (x.Content.Length > 250){ <p class="" style="white-space: normal;">@x.Content.Substring(0, 250)...</p>}
-                    else { @x.Content }
-
-                
-            </div>
-
-        </div>
-    }
+        }
+    </div>
 </div>
