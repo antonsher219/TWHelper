@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,13 @@ namespace TWHelp.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole<long>> _roleManager;
 
-        public HomeController(ApplicationDbContext db, UserManager<User> userManager)
+        public HomeController(ApplicationDbContext db, UserManager<User> userManager, RoleManager<IdentityRole<long>> roleManager)
         {
             _db = db;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Index()
@@ -54,6 +57,25 @@ namespace TWHelp.Controllers
         }
 
 
+        public async Task<IActionResult> Specialists(string roleName)
+        {
+
+            var role = await _roleManager.Roles.SingleAsync(r => r.Name == roleName);
+            ViewBag.Spec = _db.Users.Where(u => _db.UserRoles.Where(ur => ur.RoleId == role.Id && u.Id == ur.UserId).Select(ur => ur.UserId).Contains(u.Id));
+            
+            return View();
+        }
+
+        public async Task<IActionResult> UpdateAbout( string about)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            user.About = about;
+            _db.Users.Update(user);
+            _db.SaveChanges();
+            return Redirect("~/Identity/Account/Manage/PersonalData");
+        }
+        
+
         public IActionResult Forum()
         {
             ViewBag.Topics = _db.Topics
@@ -72,6 +94,28 @@ namespace TWHelp.Controllers
             {
                 return RedirectToAction("Error");
             }
+        }
+
+        public async Task<IActionResult> Waiting(string role)
+        {
+            User user = await _userManager.GetUserAsync(User);
+            List<string> roles = new List<string> { role };
+
+            if (user != null)
+            {
+                // получем список ролей пользователя
+                var userRoles = await _userManager.GetRolesAsync(user);
+                // получаем все роли
+                var allRoles = _roleManager.Roles.ToList();
+                // получаем список ролей, которые были добавлены
+                var addedRoles = roles.Except(userRoles);
+                await _userManager.AddToRolesAsync(user, roles);
+                await _db.SaveChangesAsync();
+
+                return View();
+            }
+
+            return NotFound();
         }
 
         public async Task<IActionResult> DeleteTopicAsync(string id)
@@ -105,9 +149,9 @@ namespace TWHelp.Controllers
                 return RedirectToAction("Error");
             }
         }
-        
 
 
+        [Authorize(Roles = "admin,specialist")]
         public async Task<IActionResult> CreateTestAsync(Test test)
         {
             if (User.Identity.IsAuthenticated)
@@ -123,6 +167,7 @@ namespace TWHelp.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,specialist")]
         public IActionResult CreateTest()
         {
             if (User.Identity.IsAuthenticated)
@@ -146,7 +191,7 @@ namespace TWHelp.Controllers
             }
             else
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Login");
             }
         }
 

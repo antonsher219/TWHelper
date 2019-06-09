@@ -52,7 +52,7 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             public string PhoneNumber { get; set; }
 
             [Display(Name = "Age")]
-            [Range(18, 110, ErrorMessage = "Недопустимый возраст")]
+            [Range(18, 110, ErrorMessage = "Invalid age")]
             public int Age { get; set; }
         }
 
