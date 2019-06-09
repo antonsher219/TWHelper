@@ -108,6 +108,21 @@ namespace TWHelp.Controllers
         
 
 
+        public async Task<IActionResult> CreateTestAsync(Test test)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                test.Creator = await _userManager.GetUserAsync(User);
+                _db.Tests.Add(test);
+                await _db.SaveChangesAsync();
+                return RedirectToAction("Tests");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
         public IActionResult CreateTest()
         {
             if (User.Identity.IsAuthenticated)
@@ -119,12 +134,14 @@ namespace TWHelp.Controllers
                 return RedirectToAction("Error");
             }
         }
-        
+
+
 
         public IActionResult Tests()
         {
             if (User.Identity.IsAuthenticated)
             {
+                ViewBag.Tests = _db.Tests.Include(test => test.Creator);
                 return View();
             }
             else
@@ -152,6 +169,22 @@ namespace TWHelp.Controllers
                 return RedirectToAction("Error");
             }
         }
+
+        public IActionResult TestView(string id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var test = _db.Tests.Include(_test => _test.Creator).First(t_id => t_id.Id.ToString().Equals(id));
+                ViewBag.Test = test.TestUrl;
+                
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
 
         public async Task<IActionResult> AddCommentAsync(string id, string content)
         {
