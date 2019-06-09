@@ -14,6 +14,8 @@ namespace TWHelp.Models
         public int Age { get; set; }
 
         public byte[] AvatarImage { get; set; }
+
+        public string About { get; set; }
     }
 }
     

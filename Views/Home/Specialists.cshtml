@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Specialists";
+}
+
+<h1>Specialists</h1>
+
+<div style="width:100%; height:100%; background: #f2f2f2; z-index:-1;" class="mx-auto">
+
+    <div style="width:90%; padding-top:10px ;" class="mx-auto">
+        @foreach (var x in ViewBag.Spec)
+        {
+            <div style=" width: 100%; " class="row text-left border border-dark mb-4 mr-n4">
+                <div class="col-2" style="padding-top: 1%; padding-bottom: 1%;padding-left:1%;">
+                    <img src='@Url.Action("getImgByIdAsync", "Home", new { id = x.Id }) ' alt="" style="border:1px solid black; width:100px; height:100px">
+                    
+                </div>
+
+                <div class="col-10 ml-n5">
+                    
+                        <p>
+                            <h3>
+                                @x.Nickname
+                            </h3>
+                    </p>
+                    <hr style="margin-top: -2%;margin-bottom: 0%" />
+                    @if (x.About == null)
+                    {
+                        <p> Hi, I am a professional psychologist and I will be happy to help you solve all your life problems. You can call the number: @x.PhoneNumber or email me: @x.Email</p>
+                    }
+                    else
+                    {
+                        <p>@x.About</p>
+                    }
+                </div>
+          </div>
+        }
+    </div>
+</div>

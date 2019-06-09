@@ -18,12 +18,12 @@ namespace TWHelp.Models
         public DateTime CreatingTime { get; set; }
 
         [Required(ErrorMessage = "{0} is required.")]
-        [StringLength(50, ErrorMessage = "{0} is too long.")]
+        [StringLength(150, ErrorMessage = "{0} is too long.")]
         [Display(Name = "Theme")]
         public string Theme { get; set; }
 
         [Required(ErrorMessage = "{0} is required.")]
-        [StringLength(1000, ErrorMessage = "{0} is too long.")]
+        [StringLength(2000, ErrorMessage = "{0} is too long.")]
         [Display(Name = "Content")]
         public string Content { get; set; }
 

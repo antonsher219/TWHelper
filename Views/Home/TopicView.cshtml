@@ -69,7 +69,7 @@
             </p>
 
             <hr style="margin-top: -2%;margin-bottom: 0%" />
-            @if (@User.Identity.Name == ViewBag.Topic.Creator.UserName)
+            @if (@User.Identity.Name == ViewBag.Topic.Creator.UserName || User.IsInRole("admin"))
             {
 
                 <form>
@@ -144,7 +144,7 @@
                             <span class="bar">@x.Content</span>
                         </div>
                     </div>
-                    @if (User.Identity.Name == x.Creator.UserName)
+                    @if (User.Identity.Name == x.Creator.UserName || User.IsInRole("admin"))
                     {
                         <button asp-action="DelCommentAsync" asp-controller="Home"
                                 asp-route-id="@x.Id" type="submit" class="float-lg-right btn btn-danger mr-1 my-2" style="width:100px;">
