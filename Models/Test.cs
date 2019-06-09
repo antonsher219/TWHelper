@@ -21,6 +21,7 @@ namespace TWHelp.Models
         [StringLength(5000, ErrorMessage = "{0} is too long.")]
         [Display(Name = "Content")]
         public string Description { get; set; }
+        public string TestUrl { get; set; }
 
     }
 }
