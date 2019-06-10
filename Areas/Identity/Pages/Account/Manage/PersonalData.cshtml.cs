@@ -46,5 +46,29 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             //}
             return Page();
         }
+
+        public async Task<IActionResult> OnGet2(string name)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+            ViewData["UserName"] = user.Nickname;
+            ViewData["Email"] = user.Email;
+            ViewData["Phone"] = user.PhoneNumber;
+            ViewData["Age"] = user.Age;
+            ViewData["Avatar"] = user.AvatarImage;
+            ViewData["About"] = user.About;
+            ViewData["Chart"] = name + "piechart.png";
+            ViewData["Activity"] = name + "activity.png";
+            //using (var reader = new DatabaseReader("C:\\Users\\Sher\\source\\repos\\TWHelp\\TWHelp\\wwwroot\\GeoLite2-City.mmdb"))
+            //{
+            //    var ipAddress = HttpContext.Connection.RemoteIpAddress;
+            //    // Get the city from the IP Address
+            //    var city = reader.City(ipAddress);
+            //}
+            return Page();
+        }
     }
 }
