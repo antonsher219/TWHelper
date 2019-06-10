@@ -118,6 +118,25 @@ namespace TWHelp.Controllers
             return NotFound();
         }
 
+
+        public async Task<IActionResult> Analyze(string name)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+            ViewData["UserName"] = user.Nickname;
+            ViewData["Email"] = user.Email;
+            ViewData["Phone"] = user.PhoneNumber;
+            ViewData["Age"] = user.Age;
+            ViewData["Avatar"] = user.AvatarImage;
+            ViewData["About"] = user.About;
+            ViewData["Chart"] = name + "piechart.png";
+            ViewData["Activity"] = name + "activity.png";
+            return View();
+        }
+
         public async Task<IActionResult> DeleteTopicAsync(string id)
         {
             if (User.Identity.IsAuthenticated)
