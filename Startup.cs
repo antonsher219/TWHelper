@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using TWHelp.Data;
+using TWHelp.Models;
+
+using System;
+using System.Text;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TWHelp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TWHelp.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TWHelp
 {
@@ -26,35 +26,65 @@ namespace TWHelp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddIdentity<User, IdentityRole<long>>(options =>
-            {
-                // configure identity options
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequiredLength = 6;
-            })
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddDbContext<ApplicationDbContext>(options =>
+                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddAuthentication().AddTwitter(twitterOptions =>
+            services
+                .AddIdentity<User, IdentityRole<long>>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 6;
+                })
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //.AddDefaultTokenProviders();
+
+            //note: it's not a default AuthenticationSchemes
+            services
+                .AddAuthentication()
+                .AddJwtBearer("JwtBearer", jwtBearerOptions =>
+                {
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = "WishlistApp",
+                        ValidateIssuer = true,
+
+                        ValidAudience = "WishlistAppClient",
+                        ValidateAudience = true,
+
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Security:Tokens:Jwt:JwtToken"])),
+                        ValidateIssuerSigningKey = true,
+
+                        ClockSkew = TimeSpan.FromSeconds(5),
+                        ValidateLifetime = true,
+                    };
+                });
+            //.AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientSecret = Configuration["Security:Tokens:GoogleLocal:ClientSecret"];
+            //    googleOptions.ClientId = Configuration["Security:Tokens:GoogleLocal:ClientId"];
+            //})
+            //.AddFacebook(facebookOptions =>
+            //{
+            //    facebookOptions.AppSecret = Configuration["Security:Tokens:FacebookLocal:AppSecret"];
+            //    facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
+            //});
+            //.AddTwitter(twitterOptions =>
             //{
             //    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerAPIKey"];
             //    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
             //});
-
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -74,7 +104,6 @@ namespace TWHelp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -91,7 +120,12 @@ namespace TWHelp
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-
+            //seed database
+            ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }
+
+//  recreate database
+//services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.EnsureDeleted();
+//services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
