@@ -1,0 +1,7 @@
+D:\Projects\проект по авпз\Core\bin\Debug\netstandard2.0\Domain.deps.json
+D:\Projects\проект по авпз\Core\bin\Debug\netstandard2.0\Domain.dll
+D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+D:\Projects\проект по авпз\Core\bin\Debug\netstandard2.0\Domain.pdb
+D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.dll
+D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.pdb

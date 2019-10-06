@@ -1,0 +1,161 @@
+﻿@model Topic
+@{
+    ViewData["Title"] = "TopicView";
+}
+
+<style>
+
+    input:focus {
+        outline: none;
+    }
+
+    .bar {
+        position: relative;
+        display: block;
+    }
+    /* active state */
+    input:focus ~ label, input:valid ~ label {
+        top: -15px;
+        font-size: 14px;
+        color: #5264AE;
+    }
+
+
+    /* BOTTOM BARS ================================= */
+    .bar {
+        position: relative;
+        display: block;
+    }
+
+        .bar:before, .bar:after {
+            content: "";
+            height: 2px;
+            width: 0;
+            bottom: 0;
+            position: absolute;
+            background: #5264AE;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .bar:before {
+            left: 50%;
+        }
+
+        .bar:after {
+            right: 50%;
+        }
+
+    /* active state */
+    input:focus ~ .bar:before,
+    input:focus ~ .bar:after {
+        width: 50%;
+    }
+</style>
+
+<div style="width:70%; height:100%; top:-40px;background: #f2f2f2; z-index:-1;" class="position-absolute"></div>
+<div style="width:90%; padding:2% ;" class="mx-auto">
+
+    <div style=" width: 100%; " class="row text-left border border-dark mb-4">
+        <div class="col-1" style="padding-top: 1%; padding-left:1%;">
+            <img src='@Url.Action("getImgByIdAsync", "Home", new { id = ViewBag.Topic.Creator.Id }) ' alt="" style="border-radius: 100px; border:1px solid black; width:58px; height:58px">
+
+        </div>
+
+        <div class="col-11">
+            <p>
+                @ViewBag.Topic.Creator.Nickname      @ViewBag.Topic.CreatingTime
+            </p>
+
+            <hr style="margin-top: -2%;margin-bottom: 0%" />
+            @if (@User.Identity.Name == ViewBag.Topic.Creator.UserName || User.IsInRole("admin"))
+            {
+
+                <form>
+                    <h4>Theme:</h4>
+                    <input asp-for="Theme" style="width:96%" value="@ViewBag.Topic.Theme" placeholder="Theme" autocomplete="off">
+                    <h4>Description:</h4>
+                    <textarea class="col-11," style="width:96%; height:180px; resize:none" data-val="true"
+                              data-val-length="Content is too long." data-val-length-max="1000"
+                              data-val-required="Content is required." id="Content" maxlength="1000"
+                              name="Content" placeholder="Description">@ViewBag.Topic.Content</textarea>
+
+                    <button asp-action="SaveChangesAsync" asp-controller="Home" asp-route-id="@ViewBag.Topic.Id" type="submit" class="float-lg-right mb-2 btn btn-primary" style="margin-right:4%; width:100px">
+                        Save
+                    </button>
+                    <button asp-action="DeleteTopicAsync" asp-controller="Home" asp-route-id="@ViewBag.Topic.Id" type="submit" class="float-lg-right mb-2 btn btn-danger mr-2 " style="width:100px">
+                        Delete
+                    </button>
+                </form>
+            }
+            else
+            {
+                <h3><a style="color:black">@ViewBag.Topic.Theme</a></h3>
+                <p class="" style="white-space: normal;">@ViewBag.Topic.Content</p>
+            }
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div style="width:90%; padding:2% ;" class="mx-auto">
+        <form>
+            <div class="row-2 mr-3">
+                <div class="row">
+                    <div class="col-1">
+                        <img src='@Url.Action("getImgAsync", "Home") ' alt="" style="border-radius: 100px; border:1px solid black; width:58px; height:58px">
+
+                    </div>
+                    <div class="col-11">
+                        <label>Comment</label>
+                        <input name="Content" type="text" required style="width:100%; border:none; border-bottom:1px solid #ccc; background: #f2f2f2; outline:none;" class="bar" placeholder="Comment...">
+                        <span class="bar"></span>
+                    </div>
+                </div>
+                <button asp-action="AddCommentAsync" asp-controller="Home"
+                        asp-route-id="@ViewBag.Topic.Id" type="submit" class="float-lg-right my-2 btn btn-success mr-1" style="width:100px">
+                    Send
+                </button>
+            </div>
+        </form>
+    </div>
+}
+@if (ViewBag.Comments != null)
+{
+    <form>
+        @foreach (var x in ViewBag.Comments)
+        {
+            <div style="width:90%; padding:2%;" class="mx-auto">
+                <div class="row-2 mr-3 mt-4">
+                    <div class="row">
+                        <div class="col-1">
+                            <img src='@Url.Action("getImgByIdAsync", "Home", new { id = x.Creator.Id }) ' alt="" style="border-radius: 100px; border:1px solid black; width:58px; height:58px">
+
+                        </div>
+                        <div class="col-11">
+                            <b>@x.Creator.Nickname @x.CreateTime</b>
+                            <hr class="mt-n1" />
+                            <span class="bar">@x.Content</span>
+                        </div>
+                    </div>
+                    @if (User.Identity.Name == x.Creator.UserName || User.IsInRole("admin"))
+                    {
+                        <button asp-action="DelCommentAsync" asp-controller="Home"
+                                asp-route-id="@x.Id" type="submit" class="float-lg-right btn btn-danger mr-1 my-2" style="width:100px;">
+                            Delete
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+    </form>
+    <div class="my-5"></div>
+}
+
+

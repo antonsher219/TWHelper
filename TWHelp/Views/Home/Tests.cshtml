@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Tests";
+}
+
+
+@if (User.Identity.IsAuthenticated && (User.IsInRole("admin") || User.IsInRole("specialist")))
+{
+    <form method="get" action="CreateTest">
+
+        <button type="submit" style="margin-left:75%; top:82px; width:120px;
+         z-index:1;" class="position-absolute btn btn-primary text-center">
+            Create test
+        </button>
+    </form>
+}
+
+    <div style="background: #f2f2f2; z-index:-1;" class="mx-auto">
+
+        @foreach (var test in ViewBag.Tests)
+        {
+
+            <div style="width:90%; padding:2% ;" class="mx-auto">
+
+
+                <div style=" width: 100%; " class="row text-left border border-dark mb-1 bg-white">
+
+                    <div class="col-10 text-justify mt-1">
+
+                        <h3 id="" onclick="">@test.Theme</h3>
+
+
+                        <p class="" style="white-space: normal;">@test.Description</p>
+
+
+                    </div>
+                    <div class="col-2 text-center my-auto" style="">
+                        <form>
+
+                            <button type="submit" asp-action="TestView" asp-controller="Home" asp-route-id="@test.Id" class="btn btn-dark rounded-circle my-2" style="width:130px; height:130px"><h3><i>Start</i></h3></button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
