@@ -184,3 +184,4 @@ D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\Domain.pdb
 D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\Infrastructure.pdb
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.Views.pdb
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.csproj.CopyComplete
+D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\libman.json

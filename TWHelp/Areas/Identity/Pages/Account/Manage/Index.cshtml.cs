@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Domain.Models.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +36,8 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
 
         [TempData]
         public string StatusMessage { get; set; }
+
+        public string ConvertedPhoto { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -70,6 +74,9 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+
+            string photo = Convert.ToBase64String(user.AvatarImage);
+            ConvertedPhoto = $"data:image/gif;base64,{photo}";
 
             return Page();
         }
@@ -114,6 +121,40 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
 
+        public async Task<IActionResult> OnPostPhotoUpdateAsync(IFormFile photo)
+        {
+            if(photo == null)
+            {
+                throw new ArgumentNullException();
+                return BadRequest();
+            }
+
+            string extension = Path.GetExtension(photo.FileName);
+
+            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                if(user == null)
+                {
+                    return NotFound("user not found. server error");
+                }
+
+                if(photo.Length > 0)
+                {
+                    using(var stream = new MemoryStream())
+                    {
+                        await photo.CopyToAsync(stream);
+                        user.AvatarImage = stream.ToArray();
+
+                        await _userManager.UpdateAsync(user);
+                    }
+                }
+            }
+
+            return await OnGetAsync();
+        }
+
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
             if (!ModelState.IsValid)
@@ -122,6 +163,7 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             }
 
             var user = await _userManager.GetUserAsync(User);
+
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
