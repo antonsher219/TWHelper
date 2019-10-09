@@ -10,16 +10,20 @@
 <div class="row d-flex flex-column">
     <div class="col-md-6">
         <form method="post" id="changePhotoForm" enctype="multipart/form-data">
-            @*<img src="@Url.Action("GetPhoto", "AccountAPI", new { userId = ViewData["userId"]})" , width="300" height="300" />*@
             <img src="@Model.ConvertedPhoto" width="300" height="300" />
 
             <h4>Profile picture</h4>
+
             <div class="form-group">
-                <p>Upload one or more files using this form:</p>
-                <input id="inputFile" type="file" name="photo" multiple >
+                <p>Upload a profile picture using this form:</p>
+                <small>Allowed formats: .png, .jpg or .jpeg</small>
+                <input id="inputFile" type="file" name="photo" multiple>
             </div>
 
-            <button id="update-profile-button" type="submit" asp-page-handler="PhotoUpdate" class="btn btn-primary">Upload</button>
+            <div class="form-group d-flex justify-content-between">
+                <button id="update-profile-button" type="submit" asp-page-handler="PhotoUpdate" class="btn btn-primary">Upload</button>
+                <button id="update-profile-button" type="submit" asp-page-handler="PhotoDelete" class="btn btn-dark">Delete photo</button>
+            </div>
         </form>
     </div>
     <div class="col-md-6">

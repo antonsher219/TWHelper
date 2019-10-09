@@ -125,7 +125,6 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
         {
             if(photo == null)
             {
-                throw new ArgumentNullException();
                 return BadRequest();
             }
 
@@ -140,19 +139,37 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
                     return NotFound("user not found. server error");
                 }
 
-                if(photo.Length > 0)
+                using (var stream = new MemoryStream())
                 {
-                    using(var stream = new MemoryStream())
-                    {
-                        await photo.CopyToAsync(stream);
-                        user.AvatarImage = stream.ToArray();
+                    await photo.CopyToAsync(stream);
+                    user.AvatarImage = stream.ToArray();
 
-                        await _userManager.UpdateAsync(user);
-                    }
+                    await _userManager.UpdateAsync(user);
                 }
+
+                string convertedPhoto = Convert.ToBase64String(user.AvatarImage);
+                ConvertedPhoto = $"data:image/gif;base64,{convertedPhoto}";
+
+                return Page();
             }
 
-            return await OnGetAsync();
+            return BadRequest("format not supported");
+        }
+
+        public async Task<IActionResult> OnPostPhotoDeleteAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound("user not found. server error");
+            }
+
+            user.AvatarImage = null;
+            
+            await _userManager.UpdateAsync(user);
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
