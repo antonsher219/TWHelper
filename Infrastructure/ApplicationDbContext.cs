@@ -18,6 +18,14 @@ namespace Infrastructure
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Like>()
+                .HasKey(key => new { key.UserId, key.PsychologistId });
+
+            base.OnModelCreating(builder);
+        }
+
         //seed database
         public static async Task CreateAdminAccount(IServiceProvider serviceProvider, IConfiguration configuration)
         {
@@ -28,7 +36,7 @@ namespace Infrastructure
                 var roleManager = (RoleManager<IdentityRole<long>>)scope.ServiceProvider.GetService(typeof(RoleManager<IdentityRole<long>>));
 
                 //adding customs roles
-                string[] roleNames = { "admin", "manager", "user", "visitor", "ban" };
+                string[] roleNames = { "admin", "user", "psychologist", "visitor", "ban" };
 
                 foreach (var roleName in roleNames)
                 {
@@ -84,5 +92,7 @@ namespace Infrastructure
         public DbSet<Question> Questions { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<PsychologistProfile> Psychologists { get; set; }
+        public DbSet<Like> Likes { get; set; }
     }
 }

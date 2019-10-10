@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Domain.Models.Domain;
+
+using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Models.Identity
 {
@@ -11,5 +13,9 @@ namespace Domain.Models.Identity
         public byte[] AvatarImage { get; set; }
 
         public string About { get; set; }
+
+        public bool IsPsychologist { get; set; }
+
+        public PsychologistProfile PsychologistProfile { get; set; }
     }
 }

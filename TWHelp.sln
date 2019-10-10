@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonAPI", "PythonAPI\PythonAPI.pyproj", "{D8E3C533-FAD7-4E35-BB6A-21C30A338925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{CAD94EB9-30C2-4624-A0AA-412111732FFD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{24B1AF5F-E62C-482A-B6EB-3FC872828D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D8E3C533-FAD7-4E35-BB6A-21C30A338925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8E3C533-FAD7-4E35-BB6A-21C30A338925}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAD94EB9-30C2-4624-A0AA-412111732FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAD94EB9-30C2-4624-A0AA-412111732FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAD94EB9-30C2-4624-A0AA-412111732FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAD94EB9-30C2-4624-A0AA-412111732FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
