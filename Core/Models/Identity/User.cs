@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Models.Identity
 {
+    //Database normalization sucks
+
     public class User : IdentityUser<long>
     {
         public string Nickname { get; set; }
@@ -16,6 +18,10 @@ namespace Domain.Models.Identity
 
         public bool IsPsychologist { get; set; }
 
-        public PsychologistProfile PsychologistProfile { get; set; }
+        //PsychologistProfile account
+        public bool IsAccountActivated { get; set; }
+        public string Education { get; set; }
+        public string AreaOfExpertise { get; set; }
+        public string WorkExperience { get; set; }
     }
 }

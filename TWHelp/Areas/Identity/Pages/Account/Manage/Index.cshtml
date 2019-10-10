@@ -12,6 +12,11 @@
         <form method="post" id="changePhotoForm" enctype="multipart/form-data">
             <img src="@Model.ConvertedPhoto" width="300" height="300" />
 
+            @if(Model.IsPsychologist)
+            {
+                <h3>You are psychologist</h3>
+            }
+
             <h4>Profile picture</h4>
 
             <div class="form-group">

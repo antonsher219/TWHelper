@@ -33,11 +33,15 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
+        
+        public string ConvertedPhoto { get; set; }
+
+        public bool IsPsychologist { get; set; }
+
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public string ConvertedPhoto { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -56,6 +60,7 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+            
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -65,17 +70,19 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
-
             Input = new InputModel
             {
                 Email = email,
                 PhoneNumber = phoneNumber
             };
 
+            Username = userName;
+
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
-            string photo = Convert.ToBase64String(user.AvatarImage);
+            IsPsychologist = user.IsPsychologist;
+
+            string photo = Convert.ToBase64String(user.AvatarImage ?? new byte[] {  });
             ConvertedPhoto = $"data:image/gif;base64,{photo}";
 
             return Page();

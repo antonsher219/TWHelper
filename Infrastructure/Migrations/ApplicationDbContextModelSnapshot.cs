@@ -65,38 +65,19 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("UserId");
 
-                    b.Property<int>("PsychologistId");
+                    b.Property<Guid>("PsychologistId");
+
+                    b.Property<long?>("PsychologistId1");
 
                     b.Property<long?>("UserId1");
 
                     b.HasKey("UserId", "PsychologistId");
 
-                    b.HasIndex("PsychologistId");
+                    b.HasIndex("PsychologistId1");
 
                     b.HasIndex("UserId1");
 
                     b.ToTable("Likes");
-                });
-
-            modelBuilder.Entity("Domain.Models.Domain.PsychologistProfile", b =>
-                {
-                    b.Property<int>("PsychologistId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AreaOfExpertise");
-
-                    b.Property<string>("Education");
-
-                    b.Property<bool>("HasMasterDegree");
-
-                    b.Property<bool>("IsAccountActivated");
-
-                    b.Property<string>("WorkExperience");
-
-                    b.HasKey("PsychologistId");
-
-                    b.ToTable("Psychologists");
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.Question", b =>
@@ -177,15 +158,21 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("Age");
 
+                    b.Property<string>("AreaOfExpertise");
+
                     b.Property<byte[]>("AvatarImage");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Education");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("IsAccountActivated");
 
                     b.Property<bool>("IsPsychologist");
 
@@ -207,14 +194,14 @@ namespace Infrastructure.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<int?>("PsychologistProfilePsychologistId");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<string>("WorkExperience");
 
                     b.HasKey("Id");
 
@@ -225,8 +212,6 @@ namespace Infrastructure.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("PsychologistProfilePsychologistId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -359,10 +344,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Domain.Like", b =>
                 {
-                    b.HasOne("Domain.Models.Domain.PsychologistProfile", "Psychologist")
+                    b.HasOne("Domain.Models.Identity.User", "Psychologist")
                         .WithMany()
-                        .HasForeignKey("PsychologistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PsychologistId1");
 
                     b.HasOne("Domain.Models.Identity.User", "User")
                         .WithMany()
@@ -388,13 +372,6 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.Identity.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");
-                });
-
-            modelBuilder.Entity("Domain.Models.Identity.User", b =>
-                {
-                    b.HasOne("Domain.Models.Domain.PsychologistProfile", "PsychologistProfile")
-                        .WithMany()
-                        .HasForeignKey("PsychologistProfilePsychologistId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>

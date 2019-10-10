@@ -21,7 +21,7 @@ namespace Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Like>()
-                .HasKey(key => new { key.UserId, key.PsychologistId });
+                .HasKey(key =>  new { key.UserId, key.PsychologistId });
 
             base.OnModelCreating(builder);
         }
@@ -92,7 +92,6 @@ namespace Infrastructure
         public DbSet<Question> Questions { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<PsychologistProfile> Psychologists { get; set; }
         public DbSet<Like> Likes { get; set; }
     }
 }

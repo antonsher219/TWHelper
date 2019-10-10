@@ -6,9 +6,9 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+<div class="row" style="transition: width 2s, height 2s, background-color 2s, transform 2s;">
+    <div class="col-md-4" style="transition: width 2s, height 2s, background-color 2s, transform 2s;">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" style="transition: width 2s, height 2s, background-color 2s, transform 2s;">
             <h4>Create a new account.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
@@ -27,11 +27,56 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="form-check">
+                <input asp-for="Input.IsPsychologist" type="checkbox" class="form-check-input" onchange="ChangePsychologistsFormVisibility();">
+                <label asp-for="Input.IsPsychologist" class="form-check-label">I am a psychologist</label>
+                <p class="small">As a psychologist you will have to provide additional information about your degree and prove your knowledges</p>
+            </div>
+
+            @*form for psychologists*@
+            <div class="d-none" id="psycho_form">
+                <div class="form-group">
+                    <label asp-for="Input.Education"></label>
+                    <input asp-for="Input.Education" class="form-control" />
+                    <span asp-validation-for="Input.Education" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.AreaOfExpertise"></label>
+                    <input asp-for="Input.AreaOfExpertise" class="form-control" />
+                    <span asp-validation-for="Input.AreaOfExpertise" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.WorkExperience"></label>
+                    <input asp-for="Input.WorkExperience" class="form-control" />
+                    <span asp-validation-for="Input.WorkExperience" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary box">Register</button>
         </form>
-    </div>
+    </div>  
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function ChangePsychologistsFormVisibility() {
+            console.log("asd");
+
+            var form = document.getElementById("psycho_form");
+
+            if (form == null) {
+                console.log("can't find psycho form");
+            }
+            else {
+                if (form.classList.contains('d-none')) {
+                    form.classList.replace('d-none', 'd-block');
+                }
+                else {
+                    form.classList.replace('d-block', 'd-none');
+                }
+            }
+        }
+    </script>
 }
