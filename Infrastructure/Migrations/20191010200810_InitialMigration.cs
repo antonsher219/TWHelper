@@ -46,7 +46,12 @@ namespace Infrastructure.Migrations
                     Nickname = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
                     AvatarImage = table.Column<byte[]>(nullable: true),
-                    About = table.Column<string>(nullable: true)
+                    About = table.Column<string>(nullable: true),
+                    IsPsychologist = table.Column<bool>(nullable: false),
+                    IsAccountActivated = table.Column<bool>(nullable: false),
+                    Education = table.Column<string>(nullable: true),
+                    AreaOfExpertise = table.Column<string>(nullable: true),
+                    WorkExperience = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -157,6 +162,32 @@ namespace Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Likes",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    PsychologistId = table.Column<Guid>(nullable: false),
+                    UserId1 = table.Column<long>(nullable: true),
+                    PsychologistId1 = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Likes", x => new { x.UserId, x.PsychologistId });
+                    table.ForeignKey(
+                        name: "FK_Likes_AspNetUsers_PsychologistId1",
+                        column: x => x.PsychologistId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Likes_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -327,6 +358,16 @@ namespace Infrastructure.Migrations
                 column: "TopId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Likes_PsychologistId1",
+                table: "Likes",
+                column: "PsychologistId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Likes_UserId1",
+                table: "Likes",
+                column: "UserId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questions_TestId",
                 table: "Questions",
                 column: "TestId");
@@ -364,6 +405,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Likes");
 
             migrationBuilder.DropTable(
                 name: "Questions");

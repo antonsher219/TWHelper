@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Domain.Models.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -31,9 +33,15 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
+        
+        public string ConvertedPhoto { get; set; }
+
+        public bool IsPsychologist { get; set; }
+
 
         [TempData]
         public string StatusMessage { get; set; }
+
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -52,6 +60,7 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+            
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -61,15 +70,20 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
-
             Input = new InputModel
             {
                 Email = email,
                 PhoneNumber = phoneNumber
             };
 
+            Username = userName;
+
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+
+            IsPsychologist = user.IsPsychologist;
+
+            string photo = Convert.ToBase64String(user.AvatarImage ?? new byte[] {  });
+            ConvertedPhoto = $"data:image/gif;base64,{photo}";
 
             return Page();
         }
@@ -114,6 +128,57 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
 
+        public async Task<IActionResult> OnPostPhotoUpdateAsync(IFormFile photo)
+        {
+            if(photo == null)
+            {
+                return BadRequest();
+            }
+
+            string extension = Path.GetExtension(photo.FileName);
+
+            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                if(user == null)
+                {
+                    return NotFound("user not found. server error");
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    await photo.CopyToAsync(stream);
+                    user.AvatarImage = stream.ToArray();
+
+                    await _userManager.UpdateAsync(user);
+                }
+
+                string convertedPhoto = Convert.ToBase64String(user.AvatarImage);
+                ConvertedPhoto = $"data:image/gif;base64,{convertedPhoto}";
+
+                return Page();
+            }
+
+            return BadRequest("format not supported");
+        }
+
+        public async Task<IActionResult> OnPostPhotoDeleteAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound("user not found. server error");
+            }
+
+            user.AvatarImage = null;
+            
+            await _userManager.UpdateAsync(user);
+
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
             if (!ModelState.IsValid)
@@ -122,6 +187,7 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             }
 
             var user = await _userManager.GetUserAsync(User);
+
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");

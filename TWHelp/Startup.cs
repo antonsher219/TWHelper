@@ -69,17 +69,17 @@ namespace TWHelp
                         ClockSkew = TimeSpan.FromSeconds(5),
                         ValidateLifetime = true,
                     };
+                })
+                .AddGoogle(googleOptions =>
+                {
+                    googleOptions.ClientSecret = Configuration["Security:Tokens:GoogleLocal:ClientSecret"];
+                    googleOptions.ClientId = Configuration["Security:Tokens:GoogleLocal:ClientId"];
+                })
+                .AddFacebook(facebookOptions =>
+                {
+                    facebookOptions.AppSecret = Configuration["Security:Tokens:FacebookLocal:AppSecret"];
+                    facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
                 });
-            //.AddGoogle(googleOptions =>
-            //{
-            //    googleOptions.ClientSecret = Configuration["Security:Tokens:GoogleLocal:ClientSecret"];
-            //    googleOptions.ClientId = Configuration["Security:Tokens:GoogleLocal:ClientId"];
-            //})
-            //.AddFacebook(facebookOptions =>
-            //{
-            //    facebookOptions.AppSecret = Configuration["Security:Tokens:FacebookLocal:AppSecret"];
-            //    facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
-            //});
             //.AddTwitter(twitterOptions =>
             //{
             //    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerAPIKey"];

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191002202506_InitialMigration")]
+    [Migration("20191010200810_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,25 @@ namespace Infrastructure.Migrations
                     b.HasIndex("TopId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.Like", b =>
+                {
+                    b.Property<Guid>("UserId");
+
+                    b.Property<Guid>("PsychologistId");
+
+                    b.Property<long?>("PsychologistId1");
+
+                    b.Property<long?>("UserId1");
+
+                    b.HasKey("UserId", "PsychologistId");
+
+                    b.HasIndex("PsychologistId1");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.Question", b =>
@@ -141,15 +160,23 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("Age");
 
+                    b.Property<string>("AreaOfExpertise");
+
                     b.Property<byte[]>("AvatarImage");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Education");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("IsAccountActivated");
+
+                    b.Property<bool>("IsPsychologist");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -175,6 +202,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<string>("WorkExperience");
 
                     b.HasKey("Id");
 
@@ -313,6 +342,17 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.Domain.Topic", "Top")
                         .WithMany()
                         .HasForeignKey("TopId");
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.Like", b =>
+                {
+                    b.HasOne("Domain.Models.Identity.User", "Psychologist")
+                        .WithMany()
+                        .HasForeignKey("PsychologistId1");
+
+                    b.HasOne("Domain.Models.Identity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.Question", b =>
