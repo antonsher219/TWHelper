@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace TWHelp
 {
@@ -69,6 +71,20 @@ namespace TWHelp
                         ClockSkew = TimeSpan.FromSeconds(5),
                         ValidateLifetime = true,
                     };
+
+                    //jwtBearerOptions.Events.OnTokenValidated = (context) =>
+                    //{
+                    //    if (context.Request.Path.StartsWithSegments("/api"))
+                    //    {
+                    //        context.Response.StatusCode = (int) HttpStatusCode.Unauthorized;
+                    //    }
+                    //    else
+                    //    {
+                    //        context.Response.Redirect("/login");
+                    //    }
+
+                    //    return Task.FromResult(0);
+                    //};
                 })
                 .AddGoogle(googleOptions =>
                 {

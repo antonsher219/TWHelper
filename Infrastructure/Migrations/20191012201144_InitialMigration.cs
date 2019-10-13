@@ -168,26 +168,24 @@ namespace Infrastructure.Migrations
                 name: "Likes",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
-                    PsychologistId = table.Column<Guid>(nullable: false),
-                    UserId1 = table.Column<long>(nullable: true),
-                    PsychologistId1 = table.Column<long>(nullable: true)
+                    UserId = table.Column<long>(nullable: false),
+                    PsychologistId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Likes", x => new { x.UserId, x.PsychologistId });
                     table.ForeignKey(
-                        name: "FK_Likes_AspNetUsers_PsychologistId1",
-                        column: x => x.PsychologistId1,
+                        name: "FK_Likes_AspNetUsers_PsychologistId",
+                        column: x => x.PsychologistId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Likes_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Likes_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -358,14 +356,9 @@ namespace Infrastructure.Migrations
                 column: "TopId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Likes_PsychologistId1",
+                name: "IX_Likes_PsychologistId",
                 table: "Likes",
-                column: "PsychologistId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Likes_UserId1",
-                table: "Likes",
-                column: "UserId1");
+                column: "PsychologistId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Questions_TestId",
