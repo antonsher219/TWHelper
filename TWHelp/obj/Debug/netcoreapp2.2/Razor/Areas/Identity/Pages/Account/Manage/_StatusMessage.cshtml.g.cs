@@ -13,12 +13,17 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using TWHelp.Models;
+
+#line default
+#line hidden
+#line 1 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
-#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
 using TWHelp.Areas.Identity;
 
 #line default
@@ -44,7 +49,8 @@ using TWHelp.Areas.Identity.Pages.Account.Manage;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"caf0ba0e017fe2d5d40e06cba52017213983ba34", @"/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"485f876f4b3e271afde0d2b840ceb534da89ddc0", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc150fb1bd4fac81dc98d762603619d51eae9c", @"/Areas/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"45e640bac9ea4816ecabb8f3d50875a22efa631e", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4e414881183ebd12b4a9899042c5e51f03b78271", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"297f31fae4ee8fe35f78602caf7e7e8ef157be1a", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Manage__StatusMessage : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<string>

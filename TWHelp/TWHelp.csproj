@@ -18,12 +18,8 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\Home\Pages\" />
     <Folder Include="Areas\Profiles\Pages\Users\" />
-    <Folder Include="Areas\Tests\Controllers\" />
-    <Folder Include="Areas\Tests\Data\" />
-    <Folder Include="Areas\Tests\Models\" />
-    <Folder Include="Areas\Tests\Views\" />
+    <Folder Include="Areas\Tests\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\img\" />

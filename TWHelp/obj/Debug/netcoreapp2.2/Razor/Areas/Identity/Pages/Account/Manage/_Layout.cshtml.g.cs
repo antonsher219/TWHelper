@@ -13,12 +13,17 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using TWHelp.Models;
+
+#line default
+#line hidden
+#line 1 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
-#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
 using TWHelp.Areas.Identity;
 
 #line default
@@ -44,7 +49,8 @@ using TWHelp.Areas.Identity.Pages.Account.Manage;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"578a9b0ea3c866d2b642ddd98e04dd307ae46a32", @"/Areas/Identity/Pages/Account/Manage/_Layout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"485f876f4b3e271afde0d2b840ceb534da89ddc0", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc150fb1bd4fac81dc98d762603619d51eae9c", @"/Areas/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"45e640bac9ea4816ecabb8f3d50875a22efa631e", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4e414881183ebd12b4a9899042c5e51f03b78271", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"297f31fae4ee8fe35f78602caf7e7e8ef157be1a", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Manage__Layout : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
@@ -82,7 +88,7 @@ using TWHelp.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("\r\n<h1>Manage your account</h1>\r\n\r\n<div>\r\n    <h4>Change your account settings</h4>\r\n    <hr />\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            ");
             EndContext();
             BeginContext(224, 29, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "578a9b0ea3c866d2b642ddd98e04dd307ae46a325177", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "578a9b0ea3c866d2b642ddd98e04dd307ae46a325465", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

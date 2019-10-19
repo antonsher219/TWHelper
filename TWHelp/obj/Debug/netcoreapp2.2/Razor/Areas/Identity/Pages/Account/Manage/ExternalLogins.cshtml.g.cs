@@ -13,12 +13,17 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using TWHelp.Models;
+
+#line default
+#line hidden
+#line 1 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
-#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\_ViewImports.cshtml"
 using TWHelp.Areas.Identity;
 
 #line default
@@ -44,7 +49,8 @@ using TWHelp.Areas.Identity.Pages.Account.Manage;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ef04df933cb2e0efeefd8c8660c89aaac19e50f5", @"/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"485f876f4b3e271afde0d2b840ceb534da89ddc0", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc150fb1bd4fac81dc98d762603619d51eae9c", @"/Areas/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"45e640bac9ea4816ecabb8f3d50875a22efa631e", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4e414881183ebd12b4a9899042c5e51f03b78271", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"297f31fae4ee8fe35f78602caf7e7e8ef157be1a", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Manage_ExternalLogins : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
@@ -95,7 +101,7 @@ using TWHelp.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(161, 53, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ef04df933cb2e0efeefd8c8660c89aaac19e50f58413", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ef04df933cb2e0efeefd8c8660c89aaac19e50f58701", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -157,12 +163,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper.For = ModelExpressionProv
             WriteLiteral("                            ");
             EndContext();
             BeginContext(619, 577, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef04df933cb2e0efeefd8c8660c89aaac19e50f511624", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef04df933cb2e0efeefd8c8660c89aaac19e50f511912", async() => {
                 BeginContext(688, 77, true);
                 WriteLiteral("\r\n                                <div>\r\n                                    ");
                 EndContext();
                 BeginContext(765, 75, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ef04df933cb2e0efeefd8c8660c89aaac19e50f512084", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ef04df933cb2e0efeefd8c8660c89aaac19e50f512372", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -189,7 +195,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                                    ");
                 EndContext();
                 BeginContext(878, 71, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ef04df933cb2e0efeefd8c8660c89aaac19e50f514163", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ef04df933cb2e0efeefd8c8660c89aaac19e50f514451", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -297,7 +303,7 @@ WriteAttributeValue(" ", 1051, login.ProviderDisplayName, 1052, 26, false);
             WriteLiteral("    <h4>Add another service to log in.</h4>\r\n    <hr />\r\n    ");
             EndContext();
             BeginContext(1548, 510, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef04df933cb2e0efeefd8c8660c89aaac19e50f520356", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef04df933cb2e0efeefd8c8660c89aaac19e50f520644", async() => {
                 BeginContext(1642, 55, true);
                 WriteLiteral("\r\n        <div id=\"socialLoginList\">\r\n            <p>\r\n");
                 EndContext();

@@ -13,7 +13,23 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#line 1 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using Domain.Models.Identity;
+
+#line default
+#line hidden
+#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using Domain.Models.Domain;
+
+#line default
+#line hidden
+#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using TWHelp.Models;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c753ab3060b073f72b4aad6d82bfcbcae670747a", @"/Areas/Roles/Pages/Index.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc150fb1bd4fac81dc98d762603619d51eae9c", @"/Areas/_ViewImports.cshtml")]
     public class Areas_Roles_Pages_Index : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         #pragma warning disable 1998
