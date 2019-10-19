@@ -101,7 +101,6 @@ D:\Projects\проект по авпз\obj\Debug\netcoreapp2.2\TWHelp.csproj.Cop
 D:\Projects\проект по авпз\obj\Debug\netcoreapp2.2\TWHelp.csprojAssemblyReference.cache
 D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\appsettings.Development.json
 D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\appsettings.json
-D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\libman.json
 D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\TWHelp.deps.json
 D:\Projects\проект по авпз\TWHelp\bin\Debug\netcoreapp2.2\TWHelp.runtimeconfig.json
@@ -185,3 +184,7 @@ D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.Vie
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.csproj.CopyComplete
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.dll
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.pdb
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\_Layout.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\_ViewImports.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Psychologists\Index.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Index.cshtml.g.cs

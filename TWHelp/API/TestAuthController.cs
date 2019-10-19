@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace TWHelp.API
 {
     [Authorize]
-    [Route("api/auth/[controller]")]
+    [Route("api/auth/test")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class TestAuthController : ControllerBase
     {
         // GET: api/auth/test/anonymous
         [AllowAnonymous]

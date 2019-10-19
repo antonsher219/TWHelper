@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace TWHelp.Extensions
 {
-    public static class IdentityExtensions
-    {
-        public static string GetNickname(this IIdentity identity)
-        {
-            var claim = ((ClaimsIdentity)identity).FindFirst("Nickname");
-            // Test for null to avoid issues during local testing
-            return (claim != null) ? claim.Value : string.Empty;
-        }
-    }
+    //public static class IdentityExtensions
+    //{
+    //    public static string GetNickname(this IIdentity identity)
+    //    {
+    //        var claim = ((ClaimsIdentity)identity).FindFirst("Nickname");
+    //        // Test for null to avoid issues during local testing
+    //        return (claim != null) ? claim.Value : string.Empty;
+    //    }
+    //}
 }
