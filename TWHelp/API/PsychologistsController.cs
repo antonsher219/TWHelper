@@ -73,7 +73,7 @@ namespace TWHelp.API
             //check if current user like for psycho
             bool isCurrentUserSetLike = _context
                 .Likes
-                .Where(l => l.UserId == user.Id)
+                .Where(l => l.UserId == user.Id && l.PsychologistId == psychoUser.Id)
                 .Any();
 
             //number of all likes
@@ -85,6 +85,8 @@ namespace TWHelp.API
             //prepare DTO
             PsychologistDTO psychoDTO = new PsychologistDTO()
             {
+                Id = psychoUser.Id,
+
                 NickName = psychoUser.Nickname,
                 Age = psychoUser.Age,
                 AvatarImage = psychoUser.AvatarImage,

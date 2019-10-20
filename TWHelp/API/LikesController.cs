@@ -56,9 +56,9 @@ namespace TWHelp.API
             return BadRequest("server error. user is null");
         }
 
-        // POST: api/likes/{id}
-        [HttpPost("{id}")]
-        public async Task<ActionResult<User>> AddLikeToProfile(long id)
+        // POST: api/likes/add/{id}
+        [HttpPost("add/{id}")]
+        public async Task<IActionResult> AddLikeToProfile(long id)
         {
             var user = await _userManager.GetUserAsync(User);
 
@@ -87,15 +87,17 @@ namespace TWHelp.API
 
                 await _context.Likes.AddAsync(like);
                 await _context.SaveChangesAsync();
+
+                return Ok();
             }
 
             return BadRequest("server error. user is null");
         }
 
 
-        // DELETE: api/likes/{id}
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(long id)
+        // DELETE: api/likes/remove/{id}
+        [HttpDelete("remove/{id}")]
+        public async Task<ActionResult> DeleteLikeFromProfile(long id)
         {
             var user = await _userManager.GetUserAsync(User);
 
@@ -123,6 +125,8 @@ namespace TWHelp.API
 
                 _context.Likes.Remove(like);
                 await _context.SaveChangesAsync();
+
+                return Ok();
             }
 
             return BadRequest("server error. user is null");

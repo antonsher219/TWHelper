@@ -1,53 +1,84 @@
 ﻿@page
 @model TWHelp.Areas.Profiles.Pages.Psychologists.IndexModel
-@{
+
+@if(Model.IsUserPsycho)
+{
+    <div class="row" style="background-color: lightcoral">
+        <p>Psychologists cannot add likes to other psychologists</p>
+    </div>
 }
 
-
-<h1>Psychos page</h1>
+<div class="mx-auto">
+    <h2 class="text-center">Psychologists page</h2>
+</div>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10 col-sm-8 col-md-6 mx-auto">
-            <p class="font-weight-bold">List of all psychologists</p>
+        <div class="col-12 col-sm-11 col-md-10 mx-auto">
+            <p class="font-weight-bold text-center">List of all psychologists</p>
             <div class="d-flex flex-column" id="psycho-container">
-
+                @* add here content from js *@
             </div>
         </div>
     </div>
 </div>
 
 <template id="template">
-    <div class="m-2 p-2" style="background-color: lightcyan">
-        <p>Name: <span id="psycho-name"></span></p>
-        <p>Age: <span id="psycho-age"></span></p>
-        <p>Is psycho confirm his degree: <span id="psycho-confirm"></span></p>
-        <div >
-            <img id="psycho-image" src="" alt="profile-image" class="rounded-circle" width="200" height="200">
+    <div id="psycho-div" class="m-2 p-2" style="background-color: #fafafa">
+        <div class="d-flex flex-column flex-md-row ">
+            <div>
+                <div>
+                    <img id="psycho-image" src="" alt="profile-image" class="m-3 rounded-circle" style="border: 1px solid black;" width="200" height="200">
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row flex-md-wrap flex-lg-nowrap">
+                <div class="m-3">
+                    <p>Name: <span id="psycho-name"></span></p>
+                    <p>Age: <span id="psycho-age"></span></p>
+                    <p>Is psycho confirm his degree: <span id="psycho-confirm"></span></p>
+                </div>
+                <div class="m-3">
+                    <div class="d-flex">
+                        <p class="m-1">Psycho degree:</p>
+                        <p class="m-1" id="psycho-degree"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="m-1">Area of experetise:</p>
+                        <p class="m-1" id="psycho-expertise-area"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="m-1">Psycho work experience:</p>
+                        <p class="m-1" id="psycho-experience"></p>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div>
-            <p>Psycho degree:</p>
-            <p id="psycho-degree"></p>
-        </div>
-        <div>
-            <p>Area of experetise:</p>
-            <p id="psycho-expertise-area"></p>
-        </div>
-        <div>
-            <p>Psycho work experience:</p>
-            <p id="psycho-experience"></p>
-        </div>
-        <div>
-            <p>Number of likes: <span id="psycho-likes"></span></p>
+            <div>
+                <p>Number of likes: <span id="psycho-likes"></span></p>
+            </div>
+            <div id="psycho-like">
+                <i id="psycho-like-like" class="far fa-heart" style="color: red; font-size: 20px;"></i>
+            </div>
         </div>
     </div>
 </template>
 
-@*//https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-3.0
-    //https://learn.javascript.ru/fetch*@
+<style>
+    #psycho-like-like {
+        transition: all 0.2s ease-in-out; 
+    }
+
+    #psycho-like-like:hover {
+        transform: scale(1.5, 1.5);
+        color: orange;
+    }
+</style>
 
 <script>
     const webRoot = 'http://' + '@Model.WebRoot';
+    const isPsycho = '@Model.IsUserPsycho';
 
     window.onload = function () {
         getPsychosProfiles();
@@ -60,22 +91,25 @@
             .catch(error => console.error('Unable to get items.', error));
     }
 
-    function addLikeToProfile() {
-        const psychoId = document.getElementById('psycho-id').value;
-
-        const data = {
-            psychoId: psychoId
-        }
-
-        fetch('api/psychologists/all', {
+    function addLikeToProfile(psychoId) {
+        fetch(webRoot + '/api/likes/add/' + psychoId, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            }
         })
-        .then(response => response.json())
+        .catch(error => console.error('Unable to add like.', error));
+    }
+
+    function removeLikeFromProfile(psychoId) {
+        fetch(webRoot + '/api/likes/remove/' + psychoId, {
+            method: 'DELETE',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        })
         .catch(error => console.error('Unable to add like.', error));
     }
 
@@ -84,7 +118,7 @@
         container.innerHTML = '';
 
         data.forEach(item => {
-            let newDiv = template.content.cloneNode(true);
+            let newDiv = document.importNode(template.content, true);
 
             newDiv.getElementById('psycho-name').textContent = item.nickName;
             newDiv.getElementById('psycho-image').src = "data:image/png;base64," + item.avatarImage;
@@ -100,6 +134,30 @@
             else {
                 newDiv.getElementById('psycho-confirm').textContent = 'no';
             }
+
+            if (item.isCurrentUserSetLike) {
+                newDiv.getElementById('psycho-like').innerHTML = '<i id="psycho-like-like" class="fas fa-heart" style="color: red; font-size: 20px;"></i>';
+            }
+
+            //add event listener for click on like
+            newDiv.getElementById('psycho-like-like').addEventListener('click', function (element) {
+                let container = document.getElementById('psycho-' + item.id);
+
+                //there is already like
+                if (element.target.classList.contains('fas')) {
+                    removeLikeFromProfile(item.id);
+                    container.querySelector('#psycho-like-like').classList.add('far');
+                    container.querySelector('#psycho-like-like').classList.remove('fas');
+                }
+                else {
+                    addLikeToProfile(item.id);
+                    container.querySelector('#psycho-like-like').classList.add('fas');
+                    container.querySelector('#psycho-like-like').classList.remove('far');
+                }
+            });
+
+            //to get access to element
+            newDiv.getElementById('psycho-div').setAttribute('id', 'psycho-' + item.id);
 
             container.append(newDiv);
         });

@@ -29,9 +29,47 @@ using TWHelp.Models;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2544665e2e0b7f426e96924f0eed13422ce340a1", @"/Areas/Home/Pages/Temp/TopicView.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc150fb1bd4fac81dc98d762603619d51eae9c", @"/Areas/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a20b261fee6531cbb6326723e79904e255f25699", @"/Areas/_ViewImports.cshtml")]
     public class Areas_Home_Pages_Temp_TopicView : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Topic>
     {
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:96%"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("Theme"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("autocomplete", new global::Microsoft.AspNetCore.Html.HtmlString("off"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "SaveChangesAsync", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_5 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", new global::Microsoft.AspNetCore.Html.HtmlString("submit"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("float-lg-right mb-2 btn btn-primary"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_7 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("margin-right:4%; width:100px"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_8 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "DeleteTopicAsync", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_9 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("float-lg-right mb-2 btn btn-danger mr-2 "), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_10 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:100px"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_11 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "AddCommentAsync", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_12 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("float-lg-right my-2 btn btn-success mr-1"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_13 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "DelCommentAsync", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_14 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("float-lg-right btn btn-danger mr-1 my-2"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_15 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:100px;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        #line hidden
+        #pragma warning disable 0169
+        private string __tagHelperStringValueBuffer;
+        #pragma warning restore 0169
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
+        {
+            get
+            {
+                if (__backed__tagHelperScopeManager == null)
+                {
+                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
+                }
+                return __backed__tagHelperScopeManager;
+            }
+        }
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
@@ -140,53 +178,160 @@ WriteAttributeValue("", 1423, Url.Action("getImgByIdAsync", "Home", new { id = V
 
 #line default
 #line hidden
-            BeginContext(1937, 121, true);
-            WriteLiteral("                <form>\r\n                    <h4>Theme:</h4>\r\n                    <input asp-for=\"Theme\" style=\"width:96%\"");
+            BeginContext(1937, 16, true);
+            WriteLiteral("                ");
             EndContext();
-            BeginWriteAttribute("value", " value=\"", 2058, "\"", 2086, 1);
+            BeginContext(1953, 1189, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2544665e2e0b7f426e96924f0eed13422ce340a112732", async() => {
+                BeginContext(1959, 59, true);
+                WriteLiteral("\r\n                    <h4>Theme:</h4>\r\n                    ");
+                EndContext();
+                BeginContext(2018, 109, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2544665e2e0b7f426e96924f0eed13422ce340a113177", async() => {
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #line 77 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
-WriteAttributeValue("", 2066, ViewBag.Topic.Theme, 2066, 20, false);
+__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Theme);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(2087, 463, true);
-            WriteLiteral(@" placeholder=""Theme"" autocomplete=""off"">
+                __tagHelperExecutionContext.AddTagHelperAttribute("asp-for", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_0);
+                BeginWriteTagHelperAttribute();
+#line 77 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
+                                                        WriteLiteral(ViewBag.Topic.Theme);
+
+#line default
+#line hidden
+                __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+                __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value = __tagHelperStringValueBuffer;
+                __tagHelperExecutionContext.AddTagHelperAttribute("value", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_2);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                EndContext();
+                BeginContext(2127, 423, true);
+                WriteLiteral(@"
                     <h4>Description:</h4>
                     <textarea class=""col-11,"" style=""width:96%; height:180px; resize:none"" data-val=""true""
                               data-val-length=""Content is too long."" data-val-length-max=""1000""
                               data-val-required=""Content is required."" id=""Content"" maxlength=""1000""
                               name=""Content"" placeholder=""Description"">");
-            EndContext();
-            BeginContext(2551, 21, false);
+                EndContext();
+                BeginContext(2551, 21, false);
 #line 82 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
                                                                   Write(ViewBag.Topic.Content);
 
 #line default
 #line hidden
-            EndContext();
-            BeginContext(2572, 94, true);
-            WriteLiteral("</textarea>\r\n\r\n                    <button asp-action=\"SaveChangesAsync\" asp-controller=\"Home\"");
-            EndContext();
-            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 2666, "\"", 2698, 1);
+                EndContext();
+                BeginContext(2572, 35, true);
+                WriteLiteral("</textarea>\r\n\r\n                    ");
+                EndContext();
+                BeginContext(2607, 249, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2544665e2e0b7f426e96924f0eed13422ce340a116586", async() => {
+                    BeginContext(2795, 52, true);
+                    WriteLiteral("\r\n                        Save\r\n                    ");
+                    EndContext();
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Action = (string)__tagHelperAttribute_3.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Controller = (string)__tagHelperAttribute_4.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_4);
+                if (__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues == null)
+                {
+                    throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper", "RouteValues"));
+                }
+                BeginWriteTagHelperAttribute();
 #line 84 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
-WriteAttributeValue("", 2681, ViewBag.Topic.Id, 2681, 17, false);
+                                                                                  WriteLiteral(ViewBag.Topic.Id);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(2699, 238, true);
-            WriteLiteral(" type=\"submit\" class=\"float-lg-right mb-2 btn btn-primary\" style=\"margin-right:4%; width:100px\">\r\n                        Save\r\n                    </button>\r\n                    <button asp-action=\"DeleteTopicAsync\" asp-controller=\"Home\"");
-            EndContext();
-            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 2937, "\"", 2969, 1);
+                __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
+                __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_5);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_7);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                EndContext();
+                BeginContext(2856, 22, true);
+                WriteLiteral("\r\n                    ");
+                EndContext();
+                BeginContext(2878, 239, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2544665e2e0b7f426e96924f0eed13422ce340a119669", async() => {
+                    BeginContext(3054, 54, true);
+                    WriteLiteral("\r\n                        Delete\r\n                    ");
+                    EndContext();
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Action = (string)__tagHelperAttribute_8.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_8);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Controller = (string)__tagHelperAttribute_4.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_4);
+                if (__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues == null)
+                {
+                    throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper", "RouteValues"));
+                }
+                BeginWriteTagHelperAttribute();
 #line 87 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
-WriteAttributeValue("", 2952, ViewBag.Topic.Id, 2952, 17, false);
+                                                                                  WriteLiteral(ViewBag.Topic.Id);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(2970, 174, true);
-            WriteLiteral(" type=\"submit\" class=\"float-lg-right mb-2 btn btn-danger mr-2 \" style=\"width:100px\">\r\n                        Delete\r\n                    </button>\r\n                </form>\r\n");
+                __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
+                __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_5);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_9);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_10);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                EndContext();
+                BeginContext(3117, 18, true);
+                WriteLiteral("\r\n                ");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            EndContext();
+            BeginContext(3142, 2, true);
+            WriteLiteral("\r\n");
             EndContext();
 #line 91 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
             }
@@ -232,19 +377,24 @@ WriteAttributeValue("", 2952, ViewBag.Topic.Id, 2952, 17, false);
 
 #line default
 #line hidden
-            BeginContext(3452, 217, true);
-            WriteLiteral("    <div style=\"width:90%; padding:2% ;\" class=\"mx-auto\">\r\n        <form>\r\n            <div class=\"row-2 mr-3\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1\">\r\n                        <img");
+            BeginContext(3452, 67, true);
+            WriteLiteral("    <div style=\"width:90%; padding:2% ;\" class=\"mx-auto\">\r\n        ");
             EndContext();
-            BeginWriteAttribute("src", " src=\'", 3669, "\'", 3710, 2);
+            BeginContext(3519, 1013, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2544665e2e0b7f426e96924f0eed13422ce340a125559", async() => {
+                BeginContext(3525, 144, true);
+                WriteLiteral("\r\n            <div class=\"row-2 mr-3\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1\">\r\n                        <img");
+                EndContext();
+                BeginWriteAttribute("src", " src=\'", 3669, "\'", 3710, 2);
 #line 112 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
 WriteAttributeValue("", 3675, Url.Action("getImgAsync", "Home"), 3675, 34, false);
 
 #line default
 #line hidden
-            WriteAttributeValue(" ", 3709, "", 3710, 1, true);
-            EndWriteAttribute();
-            BeginContext(3711, 589, true);
-            WriteLiteral(@" alt="""" style=""border-radius: 100px; border:1px solid black; width:58px; height:58px"">
+                WriteAttributeValue(" ", 3709, "", 3710, 1, true);
+                EndWriteAttribute();
+                BeginContext(3711, 531, true);
+                WriteLiteral(@" alt="""" style=""border-radius: 100px; border:1px solid black; width:58px; height:58px"">
 
                     </div>
                     <div class=""col-11"">
@@ -253,17 +403,64 @@ WriteAttributeValue("", 3675, Url.Action("getImgAsync", "Home"), 3675, 34, false
                         <span class=""bar""></span>
                     </div>
                 </div>
-                <button asp-action=""AddCommentAsync"" asp-controller=""Home""");
-            EndContext();
-            BeginWriteAttribute("asp-route-id", "\r\n                        asp-route-id=\"", 4300, "\"", 4357, 1);
+                ");
+                EndContext();
+                BeginContext(4242, 253, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2544665e2e0b7f426e96924f0eed13422ce340a127148", async() => {
+                    BeginContext(4442, 44, true);
+                    WriteLiteral("\r\n                    Send\r\n                ");
+                    EndContext();
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Action = (string)__tagHelperAttribute_11.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_11);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Controller = (string)__tagHelperAttribute_4.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_4);
+                if (__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues == null)
+                {
+                    throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper", "RouteValues"));
+                }
+                BeginWriteTagHelperAttribute();
 #line 122 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
-WriteAttributeValue("", 4340, ViewBag.Topic.Id, 4340, 17, false);
+                          WriteLiteral(ViewBag.Topic.Id);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(4358, 188, true);
-            WriteLiteral(" type=\"submit\" class=\"float-lg-right my-2 btn btn-success mr-1\" style=\"width:100px\">\r\n                    Send\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n");
+                __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
+                __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_5);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_12);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_10);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                EndContext();
+                BeginContext(4495, 30, true);
+                WriteLiteral("\r\n            </div>\r\n        ");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            EndContext();
+            BeginContext(4532, 14, true);
+            WriteLiteral("\r\n    </div>\r\n");
             EndContext();
 #line 128 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
 }
@@ -276,93 +473,145 @@ WriteAttributeValue("", 4340, ViewBag.Topic.Id, 4340, 17, false);
 
 #line default
 #line hidden
-            BeginContext(4584, 12, true);
-            WriteLiteral("    <form>\r\n");
+            BeginContext(4584, 4, true);
+            WriteLiteral("    ");
             EndContext();
+            BeginContext(4588, 1279, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2544665e2e0b7f426e96924f0eed13422ce340a131639", async() => {
+                BeginContext(4594, 2, true);
+                WriteLiteral("\r\n");
+                EndContext();
 #line 132 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
          foreach (var x in ViewBag.Comments)
         {
 
 #line default
 #line hidden
-            BeginContext(4653, 229, true);
-            WriteLiteral("            <div style=\"width:90%; padding:2%;\" class=\"mx-auto\">\r\n                <div class=\"row-2 mr-3 mt-4\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-1\">\r\n                            <img");
-            EndContext();
-            BeginWriteAttribute("src", " src=\'", 4882, "\'", 4954, 2);
+                BeginContext(4653, 229, true);
+                WriteLiteral("            <div style=\"width:90%; padding:2%;\" class=\"mx-auto\">\r\n                <div class=\"row-2 mr-3 mt-4\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-1\">\r\n                            <img");
+                EndContext();
+                BeginWriteAttribute("src", " src=\'", 4882, "\'", 4954, 2);
 #line 138 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
 WriteAttributeValue("", 4888, Url.Action("getImgByIdAsync", "Home", new { id = x.Creator.Id }), 4888, 65, false);
 
 #line default
 #line hidden
-            WriteAttributeValue(" ", 4953, "", 4954, 1, true);
-            EndWriteAttribute();
-            BeginContext(4955, 199, true);
-            WriteLiteral(" alt=\"\" style=\"border-radius: 100px; border:1px solid black; width:58px; height:58px\">\r\n\r\n                        </div>\r\n                        <div class=\"col-11\">\r\n                            <b>");
-            EndContext();
-            BeginContext(5155, 18, false);
+                WriteAttributeValue(" ", 4953, "", 4954, 1, true);
+                EndWriteAttribute();
+                BeginContext(4955, 199, true);
+                WriteLiteral(" alt=\"\" style=\"border-radius: 100px; border:1px solid black; width:58px; height:58px\">\r\n\r\n                        </div>\r\n                        <div class=\"col-11\">\r\n                            <b>");
+                EndContext();
+                BeginContext(5155, 18, false);
 #line 142 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
                           Write(x.Creator.Nickname);
 
 #line default
 #line hidden
-            EndContext();
-            BeginContext(5173, 1, true);
-            WriteLiteral(" ");
-            EndContext();
-            BeginContext(5175, 12, false);
+                EndContext();
+                BeginContext(5173, 1, true);
+                WriteLiteral(" ");
+                EndContext();
+                BeginContext(5175, 12, false);
 #line 142 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
                                               Write(x.CreateTime);
 
 #line default
 #line hidden
-            EndContext();
-            BeginContext(5187, 102, true);
-            WriteLiteral("</b>\r\n                            <hr class=\"mt-n1\" />\r\n                            <span class=\"bar\">");
-            EndContext();
-            BeginContext(5290, 9, false);
+                EndContext();
+                BeginContext(5187, 102, true);
+                WriteLiteral("</b>\r\n                            <hr class=\"mt-n1\" />\r\n                            <span class=\"bar\">");
+                EndContext();
+                BeginContext(5290, 9, false);
 #line 144 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
                                          Write(x.Content);
 
 #line default
 #line hidden
-            EndContext();
-            BeginContext(5299, 69, true);
-            WriteLiteral("</span>\r\n                        </div>\r\n                    </div>\r\n");
-            EndContext();
+                EndContext();
+                BeginContext(5299, 69, true);
+                WriteLiteral("</span>\r\n                        </div>\r\n                    </div>\r\n");
+                EndContext();
 #line 147 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
                      if (User.Identity.Name == x.Creator.UserName || User.IsInRole("admin"))
                     {
 
 #line default
 #line hidden
-            BeginContext(5485, 82, true);
-            WriteLiteral("                        <button asp-action=\"DelCommentAsync\" asp-controller=\"Home\"");
-            EndContext();
-            BeginWriteAttribute("asp-route-id", "\r\n                                asp-route-id=\"", 5567, "\"", 5620, 1);
+                BeginContext(5485, 24, true);
+                WriteLiteral("                        ");
+                EndContext();
+                BeginContext(5509, 267, false);
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2544665e2e0b7f426e96924f0eed13422ce340a134966", async() => {
+                    BeginContext(5705, 62, true);
+                    WriteLiteral("\r\n                            Delete\r\n                        ");
+                    EndContext();
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Action = (string)__tagHelperAttribute_13.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_13);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.Controller = (string)__tagHelperAttribute_4.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_4);
+                if (__Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues == null)
+                {
+                    throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.FormActionTagHelper", "RouteValues"));
+                }
+                BeginWriteTagHelperAttribute();
 #line 150 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
-WriteAttributeValue("", 5615, x.Id, 5615, 5, false);
+                                  WriteLiteral(x.Id);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(5621, 157, true);
-            WriteLiteral(" type=\"submit\" class=\"float-lg-right btn btn-danger mr-1 my-2\" style=\"width:100px;\">\r\n                            Delete\r\n                        </button>\r\n");
-            EndContext();
+                __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+                __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
+                __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_FormActionTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_5);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_14);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_15);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                EndContext();
+                BeginContext(5776, 2, true);
+                WriteLiteral("\r\n");
+                EndContext();
 #line 153 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
                     }
 
 #line default
 #line hidden
-            BeginContext(5801, 44, true);
-            WriteLiteral("                </div>\r\n            </div>\r\n");
-            EndContext();
+                BeginContext(5801, 44, true);
+                WriteLiteral("                </div>\r\n            </div>\r\n");
+                EndContext();
 #line 156 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
         }
 
 #line default
 #line hidden
-            BeginContext(5856, 43, true);
-            WriteLiteral("    </form>\r\n    <div class=\"my-5\"></div>\r\n");
+                BeginContext(5856, 4, true);
+                WriteLiteral("    ");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            EndContext();
+            BeginContext(5867, 32, true);
+            WriteLiteral("\r\n    <div class=\"my-5\"></div>\r\n");
             EndContext();
 #line 159 "D:\Projects\проект по авпз\TWHelp\Areas\Home\Pages\Temp\TopicView.cshtml"
 }
