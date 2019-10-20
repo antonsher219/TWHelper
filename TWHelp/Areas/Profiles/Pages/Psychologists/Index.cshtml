@@ -6,9 +6,45 @@
 
 <h1>Psychos page</h1>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10 col-sm-8 col-md-6 mx-auto">
+            <p class="font-weight-bold">List of all psychologists</p>
+            <div class="d-flex flex-column" id="psycho-container">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="template">
+    <div class="m-2 p-2" style="background-color: lightcyan">
+        <p>Name: <span id="psycho-name"></span></p>
+        <p>Age: <span id="psycho-age"></span></p>
+        <p>Is psycho confirm his degree: <span id="psycho-confirm"></span></p>
+        <div >
+            <img id="psycho-image" src="" alt="profile-image" class="rounded-circle" width="200" height="200">
+        </div>
+        <div>
+            <p>Psycho degree:</p>
+            <p id="psycho-degree"></p>
+        </div>
+        <div>
+            <p>Area of experetise:</p>
+            <p id="psycho-expertise-area"></p>
+        </div>
+        <div>
+            <p>Psycho work experience:</p>
+            <p id="psycho-experience"></p>
+        </div>
+        <div>
+            <p>Number of likes: <span id="psycho-likes"></span></p>
+        </div>
+    </div>
+</template>
 
 @*//https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-3.0
-//https://learn.javascript.ru/fetch*@
+    //https://learn.javascript.ru/fetch*@
 
 <script>
     const webRoot = 'http://' + '@Model.WebRoot';
@@ -43,45 +79,30 @@
         .catch(error => console.error('Unable to add like.', error));
     }
 
-    function _displayItems() {
-      const tBody = document.getElementById('todos');
-      tBody.innerHTML = '';
+    function _displayItems(data) {
+        const container = document.getElementById('psycho-container');
+        container.innerHTML = '';
 
-      _displayCount(data.length);
+        data.forEach(item => {
+            let newDiv = template.content.cloneNode(true);
 
-      const button = document.createElement('button');
+            newDiv.getElementById('psycho-name').textContent = item.nickName;
+            newDiv.getElementById('psycho-image').src = "data:image/png;base64," + item.avatarImage;
+            newDiv.getElementById('psycho-age').textContent = item.age;
+            newDiv.getElementById('psycho-degree').textContent = item.education;
+            newDiv.getElementById('psycho-expertise-area').textContent = item.areaOfExpertise;
+            newDiv.getElementById('psycho-experience').textContent = item.workExperience;
+            newDiv.getElementById('psycho-likes').textContent = item.likes;
 
-      data.forEach(item => {
-        let isCompleteCheckbox = document.createElement('input');
-        isCompleteCheckbox.type = 'checkbox';
-        isCompleteCheckbox.disabled = true;
-        isCompleteCheckbox.checked = item.isComplete;
+            if (item.isAccountActivated == 'true') {
+                newDiv.getElementById('psycho-confirm').textContent = 'yes';
+            }
+            else {
+                newDiv.getElementById('psycho-confirm').textContent = 'no';
+            }
 
-        let editButton = button.cloneNode(false);
-        editButton.innerText = 'Edit';
-        editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
-
-        let deleteButton = button.cloneNode(false);
-        deleteButton.innerText = 'Delete';
-        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
-
-        let tr = tBody.insertRow();
-
-        let td1 = tr.insertCell(0);
-        td1.appendChild(isCompleteCheckbox);
-
-        let td2 = tr.insertCell(1);
-        let textNode = document.createTextNode(item.name);
-        td2.appendChild(textNode);
-
-        let td3 = tr.insertCell(2);
-        td3.appendChild(editButton);
-
-        let td4 = tr.insertCell(3);
-        td4.appendChild(deleteButton);
-      });
-
-      todos = data;
+            container.append(newDiv);
+        });
     }
 
 </script>

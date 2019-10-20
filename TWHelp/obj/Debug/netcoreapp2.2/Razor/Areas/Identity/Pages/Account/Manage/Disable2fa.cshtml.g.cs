@@ -13,6 +13,16 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#line 1 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using Domain.Models.Identity;
+
+#line default
+#line hidden
+#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using Domain.Models.Domain;
+
+#line default
+#line hidden
 #line 3 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
 using TWHelp.Models;
 
@@ -28,22 +38,12 @@ using TWHelp.Areas.Identity;
 
 #line default
 #line hidden
-#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\_ViewImports.cshtml"
-using Domain.Models.Domain;
-
-#line default
-#line hidden
-#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\_ViewImports.cshtml"
+#line 1 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\_ViewImports.cshtml"
 using TWHelp.Areas.Identity.Pages.Account;
 
 #line default
 #line hidden
 #line 1 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml"
-using Domain.Models.Identity;
-
-#line default
-#line hidden
-#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml"
 using TWHelp.Areas.Identity.Pages.Account.Manage;
 
 #line default
@@ -51,8 +51,8 @@ using TWHelp.Areas.Identity.Pages.Account.Manage;
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"304c728635c0d34eb2091187514c7a3f711c53d8", @"/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc150fb1bd4fac81dc98d762603619d51eae9c", @"/Areas/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"45e640bac9ea4816ecabb8f3d50875a22efa631e", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4e414881183ebd12b4a9899042c5e51f03b78271", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"297f31fae4ee8fe35f78602caf7e7e8ef157be1a", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"326a05b76c3e20cc3b97821ad5dff39e0933483a", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f9533ad28efd22462612903797c3b277c3a52673", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Manage_Disable2fa : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "_StatusMessage", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -95,7 +95,7 @@ using TWHelp.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(178, 53, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "304c728635c0d34eb2091187514c7a3f711c53d86780", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "304c728635c0d34eb2091187514c7a3f711c53d86727", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -139,7 +139,7 @@ Write(ViewData["Title"]);
         used in an authenticator app you should ");
             EndContext();
             BeginContext(615, 69, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "304c728635c0d34eb2091187514c7a3f711c53d89231", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "304c728635c0d34eb2091187514c7a3f711c53d89178", async() => {
                 BeginContext(650, 30, true);
                 WriteLiteral("reset your authenticator keys.");
                 EndContext();
@@ -161,7 +161,7 @@ Write(ViewData["Title"]);
             WriteLiteral("\r\n    </p>\r\n</div>\r\n\r\n<div>\r\n    ");
             EndContext();
             BeginContext(717, 127, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "304c728635c0d34eb2091187514c7a3f711c53d810664", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "304c728635c0d34eb2091187514c7a3f711c53d810611", async() => {
                 BeginContext(756, 81, true);
                 WriteLiteral("\r\n        <button class=\"btn btn-danger\" type=\"submit\">Disable 2FA</button>\r\n    ");
                 EndContext();

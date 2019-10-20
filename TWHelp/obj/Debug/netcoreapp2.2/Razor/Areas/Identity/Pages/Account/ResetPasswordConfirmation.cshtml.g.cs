@@ -13,6 +13,16 @@ namespace TWHelp.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#line 1 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using Domain.Models.Identity;
+
+#line default
+#line hidden
+#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
+using Domain.Models.Domain;
+
+#line default
+#line hidden
 #line 3 "D:\Projects\проект по авпз\TWHelp\Areas\_ViewImports.cshtml"
 using TWHelp.Models;
 
@@ -29,16 +39,6 @@ using TWHelp.Areas.Identity;
 #line default
 #line hidden
 #line 1 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\_ViewImports.cshtml"
-using Domain.Models.Identity;
-
-#line default
-#line hidden
-#line 2 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\_ViewImports.cshtml"
-using Domain.Models.Domain;
-
-#line default
-#line hidden
-#line 3 "D:\Projects\проект по авпз\TWHelp\Areas\Identity\Pages\Account\_ViewImports.cshtml"
 using TWHelp.Areas.Identity.Pages.Account;
 
 #line default
@@ -46,7 +46,7 @@ using TWHelp.Areas.Identity.Pages.Account;
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9fa2ad01473fa832304d2166b6c6d5536eb62725", @"/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc150fb1bd4fac81dc98d762603619d51eae9c", @"/Areas/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"45e640bac9ea4816ecabb8f3d50875a22efa631e", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4e414881183ebd12b4a9899042c5e51f03b78271", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"326a05b76c3e20cc3b97821ad5dff39e0933483a", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_ResetPasswordConfirmation : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-page", "./Login", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -92,7 +92,7 @@ Write(ViewData["Title"]);
             WriteLiteral("</h1>\r\n<p>\r\n    Your password has been reset. Please ");
             EndContext();
             BeginContext(186, 46, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9fa2ad01473fa832304d2166b6c6d5536eb627255376", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9fa2ad01473fa832304d2166b6c6d5536eb627255330", async() => {
                 BeginContext(208, 20, true);
                 WriteLiteral("click here to log in");
                 EndContext();

@@ -20,25 +20,35 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
+
+    @*font awesome*@
+    <script src="https://kit.fontawesome.com/a1fd5ee0cf.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TWHelp</a>
+                <a class="navbar-brand" asp-area="Home" asp-page="Index">TWHelp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
+                    <partial name="_LoginPartial"  />
+                    
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="Home" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Profiles" asp-page="Psychologists/Index">Psychologists</a>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Profiles" asp-page="/Psychologists/Index">Psychologists</a>
+                            </li>
+                        }
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Roles" asp-page="/Index">Roles</a>
+                        </li>*@
                         @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
@@ -60,7 +70,6 @@
         </nav>
     </header>
     <div class="container" style="height:100%">
-        <h1>ы</h1>
         <partial name="_CookieConsentPartial" />
         <main role="main" >
             @RenderBody()

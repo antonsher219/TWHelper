@@ -20,13 +20,11 @@ namespace TWHelp.API
         private ApplicationDbContext _context;
         private UserManager<User> _userManager;
 
-
         public PsychologistsController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
-
 
         // GET: api/psychologists/all
         [HttpGet("all")]
@@ -43,29 +41,7 @@ namespace TWHelp.API
 
             foreach (var psychoUser in psychoUsers)
             {
-                //show on UI like from current user to specific psycho
-                bool isCurrentUserSetLike = _context
-                    .Likes
-                    .Where(l => l.UserId == user.Id)
-                    .Any();
-
-                int likes = _context
-                    .Likes
-                    .Where(l => l.PsychologistId == psychoUser.Id)
-                    .Count();
-
-                psychos.Add(new PsychologistDTO()
-                {
-                    Age = psychoUser.Age,
-                    AvatarImage = psychoUser.AvatarImage,
-                    IsAccountActivated = psychoUser.IsAccountActivated,
-                    Education = psychoUser.Education,
-                    AreaOfExpertise = psychoUser.AreaOfExpertise,
-                    WorkExperience = psychoUser.WorkExperience,
-
-                    IsCurrentUserSetLike = isCurrentUserSetLike,
-                    Likes = likes
-                });
+                psychos.Add(MakePsychologistDTO(user, psychoUser));
             }
 
             return Ok(psychos);
@@ -73,19 +49,55 @@ namespace TWHelp.API
 
         // GET: api/psychologists/{id}
         [HttpGet("{id}")]
-        public ActionResult<PsychologistDTO> GetPsychologist(long id)
+        public async Task<ActionResult<PsychologistDTO>> GetPsychologist(long id)
         {
-            User psycho = _context
+            User user = await _userManager.GetUserAsync(User);
+
+            User psychoUser = _context
                 .Users
                 .Where(u => u.Id == id)
                 .FirstOrDefault();
 
-            if(psycho == null)
+            if (user == null || psychoUser == null)
             {
                 return NotFound();
             }
 
-            return Ok(psycho);
+            PsychologistDTO psychoDTO = MakePsychologistDTO(user, psychoUser);
+
+            return Ok(psychoDTO);
+        }
+
+        private PsychologistDTO MakePsychologistDTO(User user, User psychoUser)
+        {
+            //check if current user like for psycho
+            bool isCurrentUserSetLike = _context
+                .Likes
+                .Where(l => l.UserId == user.Id)
+                .Any();
+
+            //number of all likes
+            int likes = _context
+                .Likes
+                .Where(l => l.PsychologistId == psychoUser.Id)
+                .Count();
+
+            //prepare DTO
+            PsychologistDTO psychoDTO = new PsychologistDTO()
+            {
+                NickName = psychoUser.Nickname,
+                Age = psychoUser.Age,
+                AvatarImage = psychoUser.AvatarImage,
+                IsAccountActivated = psychoUser.IsAccountActivated,
+                Education = psychoUser.Education,
+                AreaOfExpertise = psychoUser.AreaOfExpertise,
+                WorkExperience = psychoUser.WorkExperience,
+
+                IsCurrentUserSetLike = isCurrentUserSetLike,
+                Likes = likes
+            };
+
+            return psychoDTO;
         }
     }
 }
