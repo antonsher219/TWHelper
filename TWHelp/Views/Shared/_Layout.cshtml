@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Domain.Models.Identity
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 <!DOCTYPE html>
@@ -36,6 +37,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Profiles" asp-page="Psychologists/Index">Psychologists</a>
+                        </li>
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
@@ -49,13 +53,14 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Specialists" asp-route-roleName="specialist">Specialists</a>
                             </li>
-                        }
+                        }*@
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container" style="height:100%">
+        <h1>ы</h1>
         <partial name="_CookieConsentPartial" />
         <main role="main" >
             @RenderBody()

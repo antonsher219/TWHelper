@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace TWHelp
 {
@@ -26,6 +28,7 @@ namespace TWHelp
 
         public IConfiguration Configuration { get; }
 
+        //https://www.learnrazorpages.com/advanced/areas#targetText=The%20Areas%20feature%20in%20Razor,%2C%20production%2C%20and%20so%20on.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -80,20 +83,20 @@ namespace TWHelp
                     facebookOptions.AppSecret = Configuration["Security:Tokens:FacebookLocal:AppSecret"];
                     facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
                 });
-            //.AddTwitter(twitterOptions =>
-            //{
-            //    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerAPIKey"];
-            //    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
-            //});
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddRazorPagesOptions(options => 
+                {
+                    options.AllowAreas = true;
+                    options.Conventions.AddAreaPageRoute("Home", "/Index", "");
+                });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -113,12 +116,14 @@ namespace TWHelp
 
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
+
+            app.UseMvc();
 
             //seed database
             ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();

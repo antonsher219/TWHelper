@@ -21,7 +21,12 @@ namespace Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Like>()
-                .HasKey(key =>  new { key.UserId, key.PsychologistId });
+                .HasKey(key => new { key.UserId, key.PsychologistId });
+
+            builder.Entity<Like>()
+                .HasOne(l => l.Psychologist)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

@@ -63,19 +63,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Domain.Like", b =>
                 {
-                    b.Property<Guid>("UserId");
+                    b.Property<long>("UserId");
 
-                    b.Property<Guid>("PsychologistId");
-
-                    b.Property<long?>("PsychologistId1");
-
-                    b.Property<long?>("UserId1");
+                    b.Property<long>("PsychologistId");
 
                     b.HasKey("UserId", "PsychologistId");
 
-                    b.HasIndex("PsychologistId1");
-
-                    b.HasIndex("UserId1");
+                    b.HasIndex("PsychologistId");
 
                     b.ToTable("Likes");
                 });
@@ -346,11 +340,13 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Models.Identity.User", "Psychologist")
                         .WithMany()
-                        .HasForeignKey("PsychologistId1");
+                        .HasForeignKey("PsychologistId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Domain.Models.Identity.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.Question", b =>
