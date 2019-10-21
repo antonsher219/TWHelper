@@ -66,4 +66,19 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.getElementById('update-profile-button').onclick = function () {
+            let fname = document.getElementById('inputFile').value; 
+            let re = /(\.jpg|\.jpeg|\.bmp|\.png)$/i;
+
+            if (!re.exec(fname))
+            {
+                alert("File extension not supported!");
+
+                return false;
+            }
+        }
+    </script>
+
 }

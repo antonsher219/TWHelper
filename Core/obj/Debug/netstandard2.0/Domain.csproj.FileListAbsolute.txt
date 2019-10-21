@@ -5,3 +5,4 @@ D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.Asse
 D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
 D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.dll
 D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.pdb
+D:\Projects\проект по авпз\Core\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache

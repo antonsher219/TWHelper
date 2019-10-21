@@ -7,6 +7,7 @@ namespace TWHelp.Models.DTOs
 {
     public class UserDTO
     {
+        public long Id { get; set; }
         public string Nickname { get; set; }
         public int Age { get; set; }
         public byte[] AvatarImage { get; set; }

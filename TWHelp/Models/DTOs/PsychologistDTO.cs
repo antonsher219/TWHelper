@@ -7,6 +7,7 @@ namespace TWHelp.Models.DTOs
 {
     public class PsychologistDTO
     {
+        public long Id { get; set; }
         public string NickName { get; set; }
         public int Age { get; set; }
         public byte[] AvatarImage { get; set; }
