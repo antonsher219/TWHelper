@@ -1,21 +1,28 @@
 ﻿@page
 @model TWHelp.Areas.Profiles.Pages.Psychologists.IndexModel
 
-@if(Model.IsUserPsycho)
-{
-    <div class="row" style="background-color: lightcoral">
-        <p>Psychologists cannot add likes to other psychologists</p>
-    </div>
-}
-
-<div class="mx-auto">
-    <h2 class="text-center">Psychologists page</h2>
-</div>
-
 <div class="container-fluid">
-    <div class="row">
+    <div class="row d-flex flex-column">
+        <div class="mx-auto">
+            <h2 class="text-center">Psychologists page</h2>
+        </div>
+
+        <div class="col-12 col-sm-11 col-md-10 mx-auto my-3">
+            <div class="mx-3">
+                <label for="search">Psychologist name and surname</label>
+            </div>
+            <form class="d-flex justify-content-between" onsubmit="searchForPsycoProfiles(event)" id="search-form">
+                <div class="col-9">
+                    <input type="text" class="form-control" id="search-text" placeholder="John Johnson">
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                </div>
+            </form>
+        </div>
+
         <div class="col-12 col-sm-11 col-md-10 mx-auto">
-            <p class="font-weight-bold text-center">List of all psychologists</p>
+            <p class="font-weight-bold text-center">List of psychologists</p>
             <div class="d-flex flex-column" id="psycho-container">
                 @* add here content from js *@
             </div>
@@ -84,7 +91,36 @@
         getPsychosProfiles();
     }
 
+    //send to elastic search
+    async function searchForPsycoProfiles(event) {
+        event.preventDefault();
+
+        let text = document.getElementById('search-text').value;
+
+        if (text == '' || text == null || text == undefined) {
+            document.getElementById('search-text').placeholder = 'field is empty';
+
+            document.getElementById('search-text').classList.remove('gray-placeholder');
+            document.getElementById('search-text').classList.add('red-placeholder');
+
+            getPsychosProfiles();
+
+            return;
+        }
+
+        document.getElementById('search-text').classList.remove('red-placeholder');
+        document.getElementById('search-text').classList.add('gray-placeholder');
+
+        await fetch(webRoot + '/api/search/psychologist/' + text, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => _displayItems(data))
+            .catch(error => console.error('Unable to get items.', error));
+    }
+
     async function getPsychosProfiles() {
+
         await fetch(webRoot + '/api/psychologists/all')
             .then(response => response.json())
             .then(data => _displayItems(data))
