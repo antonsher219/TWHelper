@@ -1,0 +1,40 @@
+﻿{
+  "settings": {
+    "index": {
+      "number_of_shards": "1",
+      "number_of_replicas": "1"
+    },
+    "analysis": {
+      "analyzer": {
+        "lowercase": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "filter": [ "lowercase", "trim" ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "psychologists": {
+      "dynamic": "strict",
+      "properties": {
+        "userId": {
+          "type": "keyword",
+          "index": false
+        },
+        "userName": {
+          "type": "text"
+        },
+        "education": {
+          "type": "text"
+        },
+        "expertiseArea": {
+          "type": "text"
+        },
+        "customerId": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

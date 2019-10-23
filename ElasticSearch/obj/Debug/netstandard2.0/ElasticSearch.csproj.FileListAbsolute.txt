@@ -1,8 +1,0 @@
-D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netstandard2.0\ElasticSearch.deps.json
-D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netstandard2.0\ElasticSearch.dll
-D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netstandard2.0\ElasticSearch.pdb
-D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netstandard2.0\ElasticSearch.csprojAssemblyReference.cache
-D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netstandard2.0\ElasticSearch.AssemblyInfoInputs.cache
-D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netstandard2.0\ElasticSearch.AssemblyInfo.cs
-D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netstandard2.0\ElasticSearch.dll
-D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netstandard2.0\ElasticSearch.pdb
