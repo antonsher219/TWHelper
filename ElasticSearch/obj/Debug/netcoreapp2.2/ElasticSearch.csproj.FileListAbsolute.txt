@@ -1,0 +1,12 @@
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.dll.config
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.deps.json
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.runtimeconfig.json
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.runtimeconfig.dev.json
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.dll
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.pdb
+D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.AssemblyInfoInputs.cache
+D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.AssemblyInfo.cs
+D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.dll
+D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.pdb
+D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.csprojAssemblyReference.cache

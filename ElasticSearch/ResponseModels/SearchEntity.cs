@@ -6,19 +6,19 @@ namespace ElasticSearch.ResponseModels
     //to know how this entity maps in elastic see Index_setting.json
     class SearchEntity
     {
-        [JsonProperty("userId")]
-        public long UserId { get; set; }
+        [JsonProperty("id")]
+        public long Id { get; set; }
 
-        [JsonProperty("userName")]
-        public string UserName { get; set; }
+        [JsonProperty("nicnName")]
+        public string NickName { get; set; }
 
         [JsonProperty("education")]
         public string Education { get; set; }
 
-        [JsonProperty("expertiseArea")]
-        public string ExpertiseArea { get; set; }
+        [JsonProperty("areaOfExpertise")]
+        public string AreaOfExpertise { get; set; }
 
-        [JsonProperty("activate")]
-        public bool IsActivated { get; set; }
+        [JsonProperty("isAccountActivated")]
+        public bool IsAccountActivated { get; set; }
     }
 }

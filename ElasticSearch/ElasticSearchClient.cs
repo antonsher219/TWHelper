@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ElasticSearch
 {
-    class ElasticSearchClient
+    public class ElasticSearchClient
     {
         private string _indexName;
         private string _elasticURL;
@@ -19,7 +19,7 @@ namespace ElasticSearch
         public string SearchUserNames(string userSearch, int numberOfResult)
         {
             string requestUrl = string.Format("{0}/{1}/_search/?size={2}", _elasticURL, _indexName, numberOfResult);
-            string requestBody = "{\"query\":{\"match\":{\"userName\": \" " + userSearch + " \"}}}";
+            string requestBody = "{\"query\":{\"match\":{\"nickName\": \" " + userSearch + " \"}}}";
 
             try
             {

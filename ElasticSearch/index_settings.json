@@ -18,20 +18,20 @@
     "psychologists": {
       "dynamic": "strict",
       "properties": {
-        "userId": {
+        "id": {
           "type": "keyword",
           "index": false
         },
-        "userName": {
+        "nickName": {
           "type": "text"
         },
         "education": {
           "type": "text"
         },
-        "expertiseArea": {
+        "areaOfExpertise": {
           "type": "text"
         },
-        "customerId": {
+        "isAccountActivated": {
           "type": "boolean"
         }
       }

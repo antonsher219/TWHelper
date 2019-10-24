@@ -57,7 +57,8 @@ namespace ElasticSearch
 
         public void UploadDataToElastic(List<SearchEntity> entities)
         {
-            string bulkUpload = string.Empty;
+            List<string> bulkUploads = new List<string>();
+            StringBuilder bulk = new StringBuilder(100000);
 
             /*
              * Should look like this (for animal):
@@ -68,29 +69,44 @@ namespace ElasticSearch
 
             for(int i = 0; i < entities.Count; i += 1)
             {
-                bulkUpload += "{\"create\":{\"_index\":\"psychologists\",\"_type\":\"psychologist\",\"_id\":\"" + i + "\"}}\n";
-                bulkUpload += $"{{\"userId\":\"{entities[i].UserId}\",\"userName\":\"{entities[i].UserName}\",\"education\":\"{entities[i].Education}\",\"expertiseArea\":\"{entities[i].ExpertiseArea}\",\"activate\": \"{entities[i].IsActivated}\"}}\n";
+                bulk.Append("{\"create\":{\"_index\":\"psychologists\",\"_type\":\"psychologist\",\"_id\":\"" + i + "\"}}\n");
+                bulk.Append($"{{\"id\":\"{entities[i].Id}\",\"nickName\":\"{entities[i].NickName}\",\"education\":\"{entities[i].Education}\",\"areaOfExpertise\":\"{entities[i].AreaOfExpertise}\",\"isAccountActivated\": \"{entities[i].IsAccountActivated}\"}}\n");
+                
+                if(i % 1000 == 0)
+                {
+                    bulkUploads.Add(bulk.ToString());
+                    bulk.Clear();
+                }
+            }
+
+            if(bulk.Length != 0)
+            {
+                bulkUploads.Add(bulk.ToString());
+                bulk.Clear();
             }
 
             var uri = new Uri(_elasticURL + "/_bulk");
-            
-            try
-            {
 
-                string response = CustomHttpSender.SendHttpRequest(uri, "POST", bulkUpload);
-
-                if (response.Contains("\"errors\":true"))
-                {
-                    Console.WriteLine("data upload warning");
-                }
-                else
-                {
-                    Console.WriteLine("data uploaded");
-                }
-            }
-            catch (Exception ex)
+            for(int i = 0; i < bulkUploads.Count; i++) 
             {
-                Console.WriteLine(ex.ToString());
+                try
+                {
+
+                    string response = CustomHttpSender.SendHttpRequest(uri, "POST", bulkUploads[i]);
+
+                    if (response.Contains("\"errors\":true"))
+                    {
+                        Console.WriteLine("data upload warning");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"data uploaded {i + 1} out of {bulkUploads.Count}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
     }

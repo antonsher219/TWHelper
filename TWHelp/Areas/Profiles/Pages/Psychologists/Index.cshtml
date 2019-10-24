@@ -111,11 +111,11 @@
         document.getElementById('search-text').classList.remove('red-placeholder');
         document.getElementById('search-text').classList.add('gray-placeholder');
 
-        await fetch(webRoot + '/api/search/psychologist/' + text, {
+        await fetch(webRoot + '/api/search/full/psychologist/' + text, {
                 method: 'GET'
             })
             .then(response => response.json())
-            .then(data => _displayItems(data))
+            .then(data => _displayElasticItems(data))
             .catch(error => console.error('Unable to get items.', error));
     }
 
@@ -147,6 +147,21 @@
             }
         })
         .catch(error => console.error('Unable to add like.', error));
+    }
+
+    function _displayElasticItems(data) {
+        let items = [];
+        data.hits.hits.forEach(item => {
+            items.push({
+                id: item._source.id,
+                nickName: item._source.nickName,
+                education: item._source.education,
+                areaOfExpertise: item._source.areaOfExpertise,
+                isAccountActivated: item._source.isAccountActivated
+            })
+        })
+
+        _displayItems(items);
     }
 
     function _displayItems(data) {
