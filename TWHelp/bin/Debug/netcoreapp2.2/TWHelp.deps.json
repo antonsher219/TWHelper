@@ -813,6 +813,8 @@
       },
       "ElasticSearch/1.0.0": {
         "dependencies": {
+          "Domain": "1.0.0",
+          "Infrastructure": "1.0.0",
           "Newtonsoft.Json": "12.0.2",
           "System.Configuration.ConfigurationManager": "4.6.0",
           "System.Data.SqlClient": "4.7.0"

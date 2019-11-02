@@ -7,6 +7,8 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
     {
         public static string Index => "Index";
 
+        public static string Picture => "Picture";
+
         public static string ChangePassword => "ChangePassword";
 
         public static string ExternalLogins => "ExternalLogins";
@@ -16,6 +18,8 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
+        
+        public static string PictureNavClass(ViewContext viewContext) => PageNavClass(viewContext, Picture);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
 

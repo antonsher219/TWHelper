@@ -13,7 +13,10 @@
             </div>
             <form class="d-flex justify-content-between" onsubmit="searchForPsycoProfiles(event)" id="search-form">
                 <div class="col-9">
-                    <input type="text" class="form-control" id="search-text" placeholder="John Johnson">
+                    <input type="text" class="form-control" id="search-text" placeholder="John Johnson" list="psychoResults" oninput="autocompleteForPsychoProfiles()">
+                    @*content for autocomplete*@
+                    <datalist id="psychoResults">
+                    </datalist>
                 </div>
                 <div class="col-3">
                     <button type="submit" class="btn btn-primary mb-2">Search</button>
@@ -25,6 +28,18 @@
             <p class="font-weight-bold text-center">List of psychologists</p>
             <div class="d-flex flex-column" id="psycho-container">
                 @* add here content from js *@
+            </div>
+
+            <div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('previous')">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('1')">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('2')">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('3')">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('next')">Next</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
@@ -119,9 +134,49 @@
             .catch(error => console.error('Unable to get items.', error));
     }
 
+    async function autocompleteForPsychoProfiles() {
+        let text = document.getElementById('search-text').value;
+
+        if (text == '' || text == null || text == undefined) {
+            return;
+        }
+
+        await fetch(webRoot + '/api/search/autocomplete/psychologist/' + text, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => _displayAutocomplete(data))
+            .catch(error => console.error('Unable to get items.', error));
+    }
+
+    function changeCurrentPsychoPage(button) {
+        if (button == 'previous') {
+            currentPsychoPage -= 10;
+
+            if (currentPsychoPage < 0) {
+                currentPsychoPage = 0;
+            }
+        }
+        else if (button == '1') {
+            currentPsychoPage = 0;
+        }
+        else if (button == '2') {
+            currentPsychoPage = 11;
+        }
+        else if (button == '3') {
+            currentPsychoPage = 21;
+        }
+        else if (button == 'next') {
+            currentPsychoPage += 10;
+        }
+
+        getPsychosProfiles();
+    }
+
+    let currentPsychoPage = 0;
     async function getPsychosProfiles() {
 
-        await fetch(webRoot + '/api/psychologists/all')
+        await fetch(webRoot + '/api/psychologists/part/' + currentPsychoPage + '/' + (currentPsychoPage + 10))
             .then(response => response.json())
             .then(data => _displayItems(data))
             .catch(error => console.error('Unable to get items.', error));
@@ -157,11 +212,23 @@
                 nickName: item._source.nickName,
                 education: item._source.education,
                 areaOfExpertise: item._source.areaOfExpertise,
-                isAccountActivated: item._source.isAccountActivated
+                isAccountActivated: item._source.isAccountActivated,
+                avatarImage: null,
             })
         })
 
         _displayItems(items);
+    }
+
+    function _displayAutocomplete(data) {
+        let input = document.getElementById('psychoResults');
+        input.innerHTML = "";
+
+        data.hits.hits.forEach(item => {
+            let option = document.createElement('option');
+            option.value = item._source.nickName;
+            input.append(option);
+        })
     }
 
     function _displayItems(data) {
@@ -172,7 +239,7 @@
             let newDiv = document.importNode(template.content, true);
 
             newDiv.getElementById('psycho-name').textContent = item.nickName;
-            newDiv.getElementById('psycho-image').src = "data:image/png;base64," + item.avatarImage;
+            newDiv.getElementById('psycho-image').src = item.avatarImage == null ? "/img/user-profile.png" : "data:image/png;base64," + item.avatarImage;
             newDiv.getElementById('psycho-age').textContent = item.age;
             newDiv.getElementById('psycho-degree').textContent = item.education;
             newDiv.getElementById('psycho-expertise-area').textContent = item.areaOfExpertise;
@@ -197,13 +264,21 @@
                 //there is already like
                 if (element.target.classList.contains('fas')) {
                     removeLikeFromProfile(item.id);
+
                     container.querySelector('#psycho-like-like').classList.add('far');
                     container.querySelector('#psycho-like-like').classList.remove('fas');
+
+                    //let likes = parseInt(container.querySelector('#psycho-likes').value);
+                    //container.querySelector('#psycho-likes').value = likes - 1;
                 }
                 else {
                     addLikeToProfile(item.id);
+
                     container.querySelector('#psycho-like-like').classList.add('fas');
                     container.querySelector('#psycho-like-like').classList.remove('far');
+
+                    //let likes = parseInt(container.querySelector('#psycho-likes').value);
+                    //container.querySelector('#psycho-likes').value = likes + 1;
                 }
             });
 

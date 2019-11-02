@@ -30,18 +30,13 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
         }
 
-        public string Username { get; set; }
-
         public bool IsEmailConfirmed { get; set; }
         
-        public string ConvertedPhoto { get; set; }
-
         public bool IsPsychologist { get; set; }
 
 
         [TempData]
         public string StatusMessage { get; set; }
-
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -49,12 +44,28 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required]
+            [Display(Name = "Your name on the website")]
+            public string NickName { get; set; }
+
+            [Required]
             [EmailAddress]
             public string Email { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required]
+            [Display(Name = "Describe your education (e.g. degree)")]
+            public string Education { get; set; }
+
+            [Required]
+            [Display(Name = "Describe your area of expertise (e.g. mental disorder)")]
+            public string AreaOfExpertise { get; set; }
+
+            [Required]
+            [Display(Name = "Describe your work eperience (e.g. 5 years as professional psychologists in ...)")]
+            public string WorkExperience { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -66,117 +77,60 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var userName = await _userManager.GetUserNameAsync(user);
-            var email = await _userManager.GetEmailAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
             Input = new InputModel
             {
-                Email = email,
-                PhoneNumber = phoneNumber
+                NickName = user.Nickname,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Education = user.Education,
+                AreaOfExpertise = user.AreaOfExpertise,
+                WorkExperience = user.WorkExperience,
             };
 
-            Username = userName;
-
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
-
             IsPsychologist = user.IsPsychologist;
 
-            string photo = Convert.ToBase64String(user.AvatarImage ?? new byte[] {  });
-            ConvertedPhoto = $"data:image/gif;base64,{photo}";
+            ViewData["IsPsychologist"] = user.IsPsychologist.ToString();
+            ViewData["IsAccountActivated"] = user.IsAccountActivated.ToString();
 
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             var user = await _userManager.GetUserAsync(User);
+
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var email = await _userManager.GetEmailAsync(user);
-            if (Input.Email != email)
+            if (!ModelState.IsValid || (!user.IsPsychologist && ModelState.Keys.Contains("Input.")))
             {
-                var setEmailResult = await _userManager.SetEmailAsync(user, Input.Email);
-                if (!setEmailResult.Succeeded)
-                {
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
-                }
-            }
-
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
-                }
-            }
-
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
-            return RedirectToPage();
-        }
-
-        public async Task<IActionResult> OnPostPhotoUpdateAsync(IFormFile photo)
-        {
-            if(photo == null)
-            {
-                return BadRequest();
-            }
-
-            string extension = Path.GetExtension(photo.FileName);
-
-            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
-            {
-                var user = await _userManager.GetUserAsync(User);
-
-                if(user == null)
-                {
-                    return NotFound("user not found. server error");
-                }
-
-                using (var stream = new MemoryStream())
-                {
-                    await photo.CopyToAsync(stream);
-                    user.AvatarImage = stream.ToArray();
-
-                    await _userManager.UpdateAsync(user);
-                }
-
-                string convertedPhoto = Convert.ToBase64String(user.AvatarImage);
-                ConvertedPhoto = $"data:image/gif;base64,{convertedPhoto}";
-
                 return Page();
             }
 
-            return BadRequest("format not supported");
-        }
+            user.Nickname = Input.NickName;
+            user.Email = Input.Email;
+            user.PhoneNumber = Input.PhoneNumber;
+            user.Education = Input.Education;
+            user.AreaOfExpertise = Input.AreaOfExpertise;
+            user.WorkExperience = Input.WorkExperience;
 
-        public async Task<IActionResult> OnPostPhotoDeleteAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
+            IdentityResult result = await _userManager.UpdateAsync(user);
 
-            if (user == null)
+            if(result.Succeeded)
             {
-                return NotFound("user not found. server error");
+                StatusMessage = "Your profile has been updated";
+
+                await _signInManager.RefreshSignInAsync(user);
+            }
+            else
+            {
+                StatusMessage = "Error! Something went wrong";
             }
 
-            user.AvatarImage = null;
-            
-            await _userManager.UpdateAsync(user);
-
-            return Page();
+            return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()

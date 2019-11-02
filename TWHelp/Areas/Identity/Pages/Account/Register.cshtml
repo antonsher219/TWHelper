@@ -1,14 +1,20 @@
 ﻿@page
 @model RegisterModel
-@{
-    ViewData["Title"] = "Register";
-}
 
-<h1>@ViewData["Title"]</h1>
+@*<style>
+    body {
+        background-image: url('/img/register-page-preview-2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center 60%;
+    }
+</style>*@
 
-<div class="row" style="transition: width 2s, height 2s, background-color 2s, transform 2s;">
-    <div class="col-md-4" style="transition: width 2s, height 2s, background-color 2s, transform 2s;">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" style="transition: width 2s, height 2s, background-color 2s, transform 2s;">
+<h1>Register</h1>
+
+<div class="row">
+    <div class="col-md-4 p-3">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Create a new account.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
@@ -54,7 +60,26 @@
 
             <button type="submit" class="btn btn-primary box">Register</button>
         </form>
-    </div>  
+    </div>
+
+    @*<div class="col-md-6 mx-auto my-sm-4 my-md-0 p-3">
+        <div class="w-100 h-100">
+            <h3>Psycho-Help</h3>
+
+            <div>
+                <p>This is a website that gives psychological assistance.</p>
+
+                <h5>Main features:</h5>
+
+                <ul>
+                    <li>Testing system</li>
+                    <li>Social media analysis</li>
+                    <li>Personal recommendations from a specialist</li>
+                    <li>Question and answer platform</li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
 </div>
 
 @section Scripts {

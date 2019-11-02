@@ -19,7 +19,7 @@
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="/css/site.css" />
 
     @*font awesome*@
     <script src="https://kit.fontawesome.com/a1fd5ee0cf.js" crossorigin="anonymous"></script>
@@ -44,6 +44,12 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Profiles" asp-page="/Psychologists/Index">Psychologists</a>
+                            </li>
+                        }
+                        @if(User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Roles" asp-page="/Index">Roles</a>
                             </li>
                         }
                         @*<li class="nav-item">

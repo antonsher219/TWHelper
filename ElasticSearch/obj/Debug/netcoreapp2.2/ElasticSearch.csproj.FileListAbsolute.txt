@@ -5,8 +5,13 @@ D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\Ela
 D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.runtimeconfig.dev.json
 D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.dll
 D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.pdb
+D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.csprojAssemblyReference.cache
 D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.AssemblyInfoInputs.cache
 D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.AssemblyInfo.cs
 D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.dll
 D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.pdb
-D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.csprojAssemblyReference.cache
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\Domain.dll
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\Infrastructure.dll
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\Domain.pdb
+D:\Projects\проект по авпз\ElasticSearch\bin\Debug\netcoreapp2.2\Infrastructure.pdb
+D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\ElasticSearch.csproj.CopyComplete

@@ -2,10 +2,30 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Manage your account</h1>
+<div class="my-2">
+    <h1>Manage your account</h1>
+</div>
 
 <div>
-    <h4>Change your account settings</h4>
+    <div class="d-flex flex-column flex-sm-row justify-content-between">
+        <h4>Change your account settings</h4>
+        @if (string.Equals(ViewData["IsPsychologist"] as string, "True"))
+        {
+            @if (string.Equals(ViewData["IsAccountActivated"] as string, "True"))
+            {
+                <div class="my-3 my-sm-0">
+                    <p class="my-0 font-weight-bold">Your psychologist status is:  <span class="badge badge-success">approved</span></p>
+                </div>
+            }
+            else
+            {
+                <div class="my-3 my-sm-0">
+                    <p class="my-0 font-weight-bold">Your psychologist status is:  <span class="badge badge-warning">unapproved</span></p>
+                    <p>approve it <a href="#">here</a> rigth now</p>
+                </div>
+            }
+        }
+    </div>
     <hr />
     <div class="row">
         <div class="col-md-3">

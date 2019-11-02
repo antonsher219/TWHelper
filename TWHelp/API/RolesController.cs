@@ -30,7 +30,8 @@ namespace TWHelp.Controllers
         [HttpGet("all")]
         public IActionResult GetAllRoles()
         {
-            return Ok(_roleManager.Roles.ToList());
+            List<IdentityRole<long>> roles = _roleManager.Roles.ToList();
+            return Ok(roles);
         }
 
         // POST: api/roles/create/{name}

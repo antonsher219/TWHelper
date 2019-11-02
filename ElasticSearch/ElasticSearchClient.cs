@@ -36,8 +36,8 @@ namespace ElasticSearch
         //query data from whole elastic
         public string AutocompleteDataFromElastic(string userSearch)
         {
-            string requestUrl = string.Format("{0}/_msearch", _elasticURL);
-            string requestBody = "{\"index\": \"user_data\"}\n{\"size\":10,\"query\":{\"bool\":{\"filter\":[{\"terms\":{\"customerId\":[7]}}],\"must\":[{\"match_phrase_prefix\":{\"userName\":\""+ userSearch + "\"}}]}}}\n";
+            string requestUrl = string.Format("{0}/{1}/_search/?size=10", _elasticURL, _indexName);
+            string requestBody = "{\"query\":{\"match_phrase_prefix\":{\"nickName\": \" " + userSearch + " \"}}}";
 
             try
             {

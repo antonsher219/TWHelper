@@ -1,0 +1,48 @@
+﻿@page
+@model TWHelp.Areas.Identity.Pages.Account.Manage.PictureModel
+
+@{
+    ViewData["Title"] = "Picture";
+    ViewData["ActivePage"] = ManageNavPages.Picture;
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="row d-flex flex-column">
+    <div class="col-md-6">
+        <form method="post" id="changePhotoForm" enctype="multipart/form-data">
+            <img src="@Model.ConvertedPhoto" width="300" height="300" />
+
+            <h4>Profile picture</h4>
+            <p>Upload a profile picture using this form:</p>
+
+            <div class="form-group my-5">
+                <small style="color: orangered">Allowed formats: .png, .jpg or .jpeg</small>
+                <input id="inputFile" type="file" name="photo" multiple>
+
+                <div class="form-group d-flex justify-content-between my-3">
+                    <button id="update-profile-button" type="submit" asp-page-handler="PhotoUpdate" class="btn btn-primary">Upload</button>
+                    <button id="update-profile-button" type="submit" asp-page-handler="PhotoDelete" class="btn btn-dark">Delete photo</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.getElementById('update-profile-button').onclick = function () {
+            let fname = document.getElementById('inputFile').value;
+            let re = /(\.jpg|\.jpeg|\.bmp|\.png)$/i;
+
+            if (!re.exec(fname))
+            {
+                alert("File extension not supported!");
+
+                return false;
+            }
+        }
+    </script>
+}

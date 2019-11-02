@@ -1,6 +1,11 @@
-﻿using ElasticSearch.ResponseModels;
+﻿using Domain.Models.Identity;
+using ElasticSearch.ResponseModels;
+using Infrastructure;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace ElasticSearch
@@ -12,13 +17,15 @@ namespace ElasticSearch
 
         static void Main(string[] args)
         {
+            CreateRandomUsers();
+
             RebuildIndex();
         }
 
         private static void RebuildIndex()
         {
-            //List<SearchEntity> data = DonwloadData();
-            List<SearchEntity> data = GenerateRandomData();
+            List<SearchEntity> data = DonwloadData();
+            //List<SearchEntity> data = GenerateRandomData();
 
             ElasticIndexProvider indexProvider = new ElasticIndexProvider(_elasticURL, _indexName);
             indexProvider.DeleteElasticIndex();
@@ -57,6 +64,41 @@ namespace ElasticSearch
             }
 
             return entities;
+        }
+
+        private static void CreateRandomUsers()
+        {
+            List<User> users = new List<User>();
+            Random random = new Random();
+
+            for (int i = 0; i < 100_000; i++)
+            {
+                string name = FirstNames[random.Next(FirstNames.Length)] + " " + SecondNames[random.Next(SecondNames.Length)];
+                User searchEntity = new User()
+                {
+                    UserName = name,
+                    Nickname = name,
+                    Age = random.Next(16, 89),
+                    Education = "education " + random.Next(100, 200),
+                    AreaOfExpertise = "expertise area " + random.NextDouble() * 1000 + " area",
+                    IsAccountActivated = random.Next(0, 2) == 1 ? true : false,
+                    IsPsychologist = true,
+                    Email = $"test{i}@gmail.com",
+                    PasswordHash = "AQAAAAEAACcQAAAAENkuOTu+GSVqH6TzdgTfW8RTx25g/G7InjA6x4/x5P9L8QHQT8JnWIm36HHuIy9Uvw==",
+                    SecurityStamp = "63PM5LBJTZFZ7DCKFM7MUDVIPDITUANC",
+                    ConcurrencyStamp = "e4f45df5-f11f-41f3-bf87-53b4529d7b64",
+                };
+
+                users.Add(searchEntity);
+            }
+
+            string connection = "Server=(localdb)\\mssqllocaldb;Database=aspnet-TWHelp-198A0B6F-A6C5-4A0B-AE3E-A656C11BFDD5;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseSqlServer(connection);
+            var context = new ApplicationDbContext(optionsBuilder.Options);
+
+            context.Users.AddRange(users);
+            context.SaveChanges();
         }
 
         private static List<SearchEntity> GenerateRandomData()

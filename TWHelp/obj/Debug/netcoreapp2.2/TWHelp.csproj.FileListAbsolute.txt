@@ -157,7 +157,6 @@ D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Area
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
@@ -168,6 +167,7 @@ D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Area
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Error.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Psychologists\Index.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Index.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Temp\Create.cshtml.g.cs
@@ -189,3 +189,5 @@ D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.Vie
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.csproj.CopyComplete
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.dll
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.pdb
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\Picture.cshtml.g.cs

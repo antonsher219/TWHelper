@@ -47,6 +47,34 @@ namespace TWHelp.API
             return Ok(psychos);
         }
 
+        // GET: api/psychologists/part/{from}/{to}
+        [HttpGet("part/{from}/{to}")]
+        public async Task<ActionResult<List<PsychologistDTO>>> GetChucnkPsychologists(int from, int to)
+        {
+            if(to < 0 || from < 0 || to < from || to - from > 200)
+            {
+                return BadRequest();
+            }
+
+            User user = await _userManager.GetUserAsync(User);
+
+            List<User> psychoUsers = _context
+                .Users
+                .Where(u => u.IsPsychologist)
+                .Skip(from)
+                .Take(to - from)
+                .ToList();
+
+            var psychos = new List<PsychologistDTO>();
+
+            foreach (var psychoUser in psychoUsers)
+            {
+                psychos.Add(MakePsychologistDTO(user, psychoUser));
+            }
+
+            return Ok(psychos);
+        }
+
         // GET: api/psychologists/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<PsychologistDTO>> GetPsychologist(long id)
