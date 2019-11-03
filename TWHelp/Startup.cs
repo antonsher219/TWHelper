@@ -16,6 +16,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using TWHelp.Models.Infrastructure;
 
 namespace TWHelp
 {
@@ -50,8 +52,10 @@ namespace TWHelp
                     options.Password.RequiredLength = 6;
                 })
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            //.AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddTransient<IEmailSender, EmailSender>();
 
             //note: it's not a default AuthenticationSchemes
             services
