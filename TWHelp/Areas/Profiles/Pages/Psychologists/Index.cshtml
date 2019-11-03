@@ -183,6 +183,10 @@
     }
 
     function addLikeToProfile(psychoId) {
+        if (!isPsycho) {
+            return;
+        }
+
         fetch(webRoot + '/api/likes/add/' + psychoId, {
             method: 'POST',
             headers: {
@@ -194,6 +198,10 @@
     }
 
     function removeLikeFromProfile(psychoId) {
+        if (!isPsycho) {
+            return;
+        }
+
         fetch(webRoot + '/api/likes/remove/' + psychoId, {
             method: 'DELETE',
             headers: {
@@ -268,8 +276,8 @@
                     container.querySelector('#psycho-like-like').classList.add('far');
                     container.querySelector('#psycho-like-like').classList.remove('fas');
 
-                    //let likes = parseInt(container.querySelector('#psycho-likes').value);
-                    //container.querySelector('#psycho-likes').value = likes - 1;
+                    let likes = parseInt(container.querySelector('#psycho-likes').innerHTML);
+                    container.querySelector('#psycho-likes').innerHTML = likes - 1;
                 }
                 else {
                     addLikeToProfile(item.id);
@@ -277,8 +285,8 @@
                     container.querySelector('#psycho-like-like').classList.add('fas');
                     container.querySelector('#psycho-like-like').classList.remove('far');
 
-                    //let likes = parseInt(container.querySelector('#psycho-likes').value);
-                    //container.querySelector('#psycho-likes').value = likes + 1;
+                    let likes = parseInt(container.querySelector('#psycho-likes').innerHTML);
+                    container.querySelector('#psycho-likes').innerHTML = likes + 1;
                 }
             });
 
