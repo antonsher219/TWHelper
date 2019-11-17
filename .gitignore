@@ -1,1 +1,7 @@
 .config
+
+TWHelp/bin/Debug/netcoreapp2.2/appsettings.json
+
+PythonAPI/data/best.hdf5
+PythonAPI/data/twitter_keys.json
+PythonAPI/data/word2vec.pkl

@@ -140,6 +140,22 @@ namespace Infrastructure.Migrations
                     b.ToTable("Topics");
                 });
 
+            modelBuilder.Entity("Domain.Models.Domain.TwitterUserStatistic", b =>
+                {
+                    b.Property<string>("TwitterNick")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("BadEmotionRate");
+
+                    b.Property<double>("GoodEmotionRate");
+
+                    b.Property<DateTime>("LastUpdated");
+
+                    b.HasKey("TwitterNick");
+
+                    b.ToTable("TwitterUserStatistics");
+                });
+
             modelBuilder.Entity("Domain.Models.Identity.User", b =>
                 {
                     b.Property<long>("Id")

@@ -18,6 +18,7 @@ namespace Infrastructure
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
+        //add-migration name -Project Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Like>()
@@ -98,5 +99,6 @@ namespace Infrastructure
         public DbSet<Test> Tests { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<TwitterUserStatistic> TwitterUserStatistics { get; set; }
     }
 }
