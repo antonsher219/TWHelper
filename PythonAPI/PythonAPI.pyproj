@@ -22,9 +22,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
+    <Compile Include="tweet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="twitter_classifier.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="twitter_plots.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="twitter_prediction.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="data\" />
+    <Folder Include="output\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\best.hdf5" />
+    <Content Include="data\model.pkl" />
+    <Content Include="data\tokenizer.pkl" />
+    <Content Include="data\twitter_keys.json" />
+    <Content Include="data\word2vec.pkl" />
+    <Content Include="output\activity_realmenofilters.png" />
+    <Content Include="output\piechart_realmenofilters.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
