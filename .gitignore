@@ -1,4 +1,5 @@
-.config
+*.config
+*.png
 
 TWHelp/bin/Debug/netcoreapp2.2/appsettings.json
 

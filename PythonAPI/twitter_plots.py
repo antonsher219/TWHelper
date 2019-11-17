@@ -1,3 +1,4 @@
+from tweet import Tweetpy
 from twitter_prediction import TwitterPrediction
 
 import pandas as pd
@@ -70,7 +71,7 @@ class TwitterPlots:
         plt.plot(df.Happiness_Rate, color='red')
         plt.legend(['Happiness rate', *classes])
         plt.title('Activity diagram')
-        fig.savefig('output/activity_' + twitter_nick + '.png')
+        fig.savefig('../TWHelp/wwwroot/output/activity_' + twitter_nick + '.png')
 
         pie_df = pd.DataFrame(columns=['Text'])
         for class_ in classes:
@@ -84,14 +85,18 @@ class TwitterPlots:
             .set_title('Sentiment classes distribution')
 
         plt.ylabel('')
-        plt.savefig('output/piechart_' + twitter_nick + '.png')
+        plt.savefig('../TWHelp/wwwroot/output/piechart_' + twitter_nick + '.png')
 
+        happiness_rate = pd.DataFrame([happiness_rate[0], happiness_rate[1]], ["good", "bad"])
         return happiness_rate
 
 
 if __name__ == "__main__":
+    twitter_api = Tweetpy()
+    data = twitter_api.get_tweets("realmenofilters", 200) 
+
     prediction = TwitterPrediction()
-    data = prediction.get_predictions("realmenofilters", 200)
+    data = prediction.get_predictions(data)
 
     twitter_plots = TwitterPlots()
     twitter_plots.make_plots(data, "realmenofilters")

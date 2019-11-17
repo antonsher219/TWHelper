@@ -1,0 +1,107 @@
+﻿@page
+@model TWHelp.Areas.Analytics.Pages.IndexModel
+@{
+}
+
+
+<div class="container-fluid">
+    <div class="row d-flex flex-column">
+        <div class="col-12 mt-4 text-center">
+            <h3>Analytics</h3>
+        </div>
+
+        <div class="col-12 col-sm-11 col-md-9 mx-auto">
+            <div class="m-4 p-3" style="background-color: lightcyan; border-radius: 5px">
+                <h5>Twitter nick</h5>
+
+                <form onsubmit="createPredictionRequest(event);">
+                    <div class="d-flex flex-row flex-wrap justify-content-between">
+                        <div class="col-12 col-lg-9 p-0">
+                            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Jane_Doe">
+                        </div>
+                        <div class="col-12 col-lg-2 p-0">
+                            <button type="submit" class="btn btn-primary mb-2" id="submit-button">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                    
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-11 col-md-9 mx-auto">
+            <div class="mx-4 my-2 p-3" style="background-color: lightcyan; border-radius: 5px">
+                <h5>Result</h5>
+
+                <img src="#" id="analysis-activity-img" />
+                <img src="#" id="analysis-piechart-img" />
+                
+                <div id="analysis-statistic">
+                </div>
+
+                <div id="analysis-date">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //let socket = new WebSocket("ws://localhost:44392/Analytics/test");
+
+    //socket.onopen = function (e) {
+    //    console.log("opened");
+
+    //    //socket.send("Меня зовут Джон");
+    //};
+
+    //socket.onmessage = function (event) {
+    //    console.log("message");
+    //};
+
+    //socket.onclose = function(event) {
+    //   if (event.wasClean) {
+    //       console.log("closed");
+    //   } else {
+    //       console.log("error closed");
+    //   }
+    //};
+
+    //socket.onerror = function (error) {
+    //    console.log("error");
+    //};
+    async function createPredictionRequest() {
+        event.preventDefault();
+
+        let twitter_nick = document.getElementById('inlineFormInput').value;
+
+        if (twitter_nick == null || twitter_nick == '') {
+            return;
+        }
+
+        //block form to enter new data
+        document.getElementById('inlineFormInput').disabled = true;
+        document.getElementById('submit-button').disabled = true;
+
+        await fetch('http://localhost:44392/api/prediction/create/' + twitter_nick + '/200')
+            .then(response => response.json())
+            .then(data => _displayData(data))
+            .catch(error => console.error('Unable to get items.', error));
+
+        document.getElementById('inlineFormInput').disabled = false;
+        document.getElementById('submit-button').disabled = false;
+    }
+
+    function _displayData(data) {
+        console.log(data);
+
+        document.getElementById('analysis-activity-img').src = data.activityChartPath;
+        document.getElementById('analysis-piechart-img').src = data.pieChartPath;
+
+        document.getElementById('analysis-statistic').innerHTML =
+            '<div><p>Good emotional rate: ' + data.goodEmotionRate + '</p></div>'
+            + '<div><p>Bad emotional rate: ' + data.badEmotionRate + '</p></div>'
+
+        document.getElementById('analysis-date').innerHTML = '<p>' + data.lastModified + '</p>';
+    }
+</script>

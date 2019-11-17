@@ -1,14 +1,15 @@
 ﻿using Infrastructure;
 using TWHelp.Models.DTOs;
+using TWHelp.Models.Infrastructure;
 
 using System;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using Newtonsoft.Json;
 
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System.Net.WebSockets;
+using System.Net.Sockets;
 
 namespace TWHelp.API
 {
@@ -23,9 +24,10 @@ namespace TWHelp.API
             _context = context;
         }
 
-        // POST: api/prediction/create/{twitter_nick}/{count}
-        [HttpPost("create/{twitter_nick}/{count}")]
-        public ActionResult<PredictionDTO> CreateRequestForPrediction(string twitter_nick, int count)
+
+        // GET: api/prediction/create/{twitter_nick}/{count}
+        [HttpGet("create/{twitter_nick}/{count}")]
+        public ActionResult<PredictionDTO> GetUserPrediction(string twitter_nick, int count)
         {
             if(string.IsNullOrEmpty(twitter_nick) || count == 0)
             {
@@ -40,8 +42,8 @@ namespace TWHelp.API
 
                 var response = new PredictionDTO()
                 {
-                    ActivityChartPath = $"../../PythonAPI/output/activity_{twitter_nick}.png",
-                    PieChartPath = $"../../PythonAPI/output/activity_{twitter_nick}.png",
+                    ActivityChartPath = $"/output/activity_{twitter_nick}.png",
+                    PieChartPath = $"/output/piechart_{twitter_nick}.png",
                     LastModified = analytics.LastUpdated,
                     BadEmotionRate = analytics.BadEmotionRate,
                     GoodEmotionRate = analytics.GoodEmotionRate,
@@ -51,34 +53,41 @@ namespace TWHelp.API
             }
             else
             {
-                string link = $"http://localhost:5000/api/analytics?twitter_nick={twitter_nick}&count={count}";
-                string predictionResponse = SendHttpRequest(new Uri(link), "POST");
-                dynamic parsedResponse = JsonConvert.DeserializeObject(predictionResponse);
-
-                Domain.Models.Domain.TwitterUserStatistic userStatistic = new Domain.Models.Domain.TwitterUserStatistic()
+                try
                 {
-                    TwitterNick = twitter_nick,
-                    LastUpdated = DateTime.Now,
-                    GoodEmotionRate = double.Parse(parsedResponse.good),
-                    BadEmotionRate = double.Parse(parsedResponse.bad),
-                };
+                    string link = $"http://localhost:5000/api/analytics?twitter_nick={twitter_nick}&count={count}";
+                    string predictionResponse = HttpSender.SendHttpRequest(new Uri(link), "POST");
 
-                _context.TwitterUserStatistics.Add(userStatistic);
-                _context.SaveChanges();
+                    dynamic parsedResponse = JsonConvert.DeserializeObject(predictionResponse);
 
-                var response = new PredictionDTO()
+                    Domain.Models.Domain.TwitterUserStatistic userStatistic = new Domain.Models.Domain.TwitterUserStatistic()
+                    {
+                        TwitterNick = twitter_nick,
+                        LastUpdated = DateTime.Now,
+                        GoodEmotionRate = double.Parse(parsedResponse["good"].ToString()),
+                        BadEmotionRate = double.Parse(parsedResponse["bad"].ToString()),
+                    };
+
+                    _context.TwitterUserStatistics.Add(userStatistic);
+                    _context.SaveChanges();
+
+                    var response = new PredictionDTO()
+                    {
+                        ActivityChartPath = $"/output/activity_{twitter_nick}.png",
+                        PieChartPath = $"/output/activity_{twitter_nick}.png",
+                        LastModified = userStatistic.LastUpdated,
+                        BadEmotionRate = userStatistic.BadEmotionRate,
+                        GoodEmotionRate = userStatistic.GoodEmotionRate,
+                    };
+
+                    return Ok(response);
+                }
+                catch(Exception ex)
                 {
-                    ActivityChartPath = $"../../PythonAPI/output/activity_{twitter_nick}.png",
-                    PieChartPath = $"../../PythonAPI/output/activity_{twitter_nick}.png",
-                    LastModified = userStatistic.LastUpdated,
-                    BadEmotionRate = userStatistic.BadEmotionRate,
-                    GoodEmotionRate = userStatistic.GoodEmotionRate,
-                };
-
-                return Ok(response);
+                    return BadRequest(ex.Message);
+                }
             }
         }
-
 
         //if user has analytics this week
         private bool UserHasRecentAnalytics(string twitter_nick)
@@ -93,33 +102,6 @@ namespace TWHelp.API
             }
 
             return true;
-        }
-
-        public static string SendHttpRequest(Uri uri, string httpMethod, string requestJsonBody = null)
-        {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-            httpWebRequest.Method = httpMethod;
-            httpWebRequest.Timeout = 20000;
-
-            //for post/put methods etc.
-            if (requestJsonBody != null)
-            {
-                httpWebRequest.ContentType = "application/json";
-
-                using (var reqStream = httpWebRequest.GetRequestStream())
-                using (var sw = new StreamWriter(reqStream, Encoding.UTF8))
-                {
-                    sw.Write(requestJsonBody);
-                }
-            }
-
-            var webResponse = httpWebRequest.GetResponse();
-
-            using (var webStream = webResponse.GetResponseStream())
-            using (var responseReader = new StreamReader(webStream))
-            {
-                return responseReader.ReadToEnd();
-            }
         }
     }
 }

@@ -18,6 +18,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using TWHelp.Models.Infrastructure;
+using System.Net.WebSockets;
 
 namespace TWHelp
 {
@@ -119,14 +120,7 @@ namespace TWHelp
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
-
+            app.UseWebSockets();
             app.UseMvc();
 
             //seed database
