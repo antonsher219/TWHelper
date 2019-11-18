@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
+    <Compile Include="app_websocket.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tweet.py">
       <SubType>Code</SubType>
     </Compile>

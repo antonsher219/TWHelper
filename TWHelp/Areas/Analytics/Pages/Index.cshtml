@@ -45,32 +45,58 @@
     </div>
 </div>
 
+<script>
+    let socket = new WebSocket("ws://localhost:5000");
+
+    socket.onopen = function (e) {
+        console.log("opened");
+    };
+
+    socket.onmessage = function (event) {
+        console.log(event.data);
+    };
+
+    socket.onclose = function(event) {
+       if (event.wasClean) {
+           console.log("closed");
+       } else {
+           console.log("error closed");
+       }
+    };
+
+    socket.onerror = function (error) {
+        console.log("error");
+    };
+
+    function createPredictionRequest() {
+        event.preventDefault();
+
+        let twitter_nick = document.getElementById('inlineFormInput').value;
+        if (twitter_nick == null || twitter_nick == '') {
+            return;
+        }
+
+        let data = {
+            twitter_nick: twitter_nick,
+            count: 200
+        }
+
+        if (socket.readyState == socket.OPEN) {
+            socket.send(JSON.stringify(data))
+        }
+        else {
+            console.log("already closed");
+        }
+
+        return false;
+    }
+
+
+</script>
+
 
 <script>
-    //let socket = new WebSocket("ws://localhost:44392/Analytics/test");
-
-    //socket.onopen = function (e) {
-    //    console.log("opened");
-
-    //    //socket.send("Меня зовут Джон");
-    //};
-
-    //socket.onmessage = function (event) {
-    //    console.log("message");
-    //};
-
-    //socket.onclose = function(event) {
-    //   if (event.wasClean) {
-    //       console.log("closed");
-    //   } else {
-    //       console.log("error closed");
-    //   }
-    //};
-
-    //socket.onerror = function (error) {
-    //    console.log("error");
-    //};
-    async function createPredictionRequest() {
+    async function _createPredictionRequest() {
         event.preventDefault();
 
         let twitter_nick = document.getElementById('inlineFormInput').value;
