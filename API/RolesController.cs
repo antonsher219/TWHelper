@@ -30,7 +30,8 @@ namespace TWHelp.Controllers
         [HttpGet("all")]
         public IActionResult GetAllRoles()
         {
-            return Ok(_roleManager.Roles.ToList());
+            List<IdentityRole<long>> roles = _roleManager.Roles.ToList();
+            return Ok(roles);
         }
 
         // POST: api/roles/create/{name}
@@ -87,9 +88,9 @@ namespace TWHelp.Controllers
 
         // DELETE: api/roles/delete/{name}
         [HttpDelete("delete/{name}")]
-        public async Task<IActionResult> DeleteRole(string name)
+        public async Task<IActionResult> DeleteRole(long name)
         {
-            IdentityRole<long> role = await _roleManager.FindByIdAsync(name);
+            IdentityRole<long> role = await _roleManager.FindByIdAsync(name.ToString());
             
             if (role != null)
             {

@@ -3,32 +3,63 @@
 @model TWHelp.Areas.Roles.Pages.IndexModel
 @{
 }
-
 <h3>Roles</h3>
+<div>
+    <table class="col-12">
+        <thead class="col-12">
+            <tr class="row">
+                <td class="col-2">Role name</td>
+                <td class="col-2">Number of users with this role</td>
+            </tr>
+            @foreach (var roleCount in Model.RolesDict)
+            {
+                <tr class="row">
+                    <td class="col-2 size">
+                        @roleCount.Key
+                    </td>
+                    <td class="col-2">
+                        @roleCount.Value
+                    </td>
 
-<div class="row">
-    <div class="col-11 col-sm-10 col-md-8 col-xl-6">
-
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <td>Role name</td>
-                <td>Number of users with this role</td>
+                    <td class="col-2">
+                        <form method="post">
+                            <a class="btn btn-success" asp-area="Roles" asp-route-roleName="@roleCount.Key.Name" asp-page="/UserList">View users</a>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post">
+                            <button type="submit" asp-page-handler="delete" asp-route-roleId="@roleCount.Key.Id" class="btn btn-danger">Delete role</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            <tr class="row">
+                <td class="col-2">
+                    <form method="post">
+                        <a class="btn btn-success" asp-area="Roles" asp-page="/Create">New role</a>
+                    </form>
+                </td>
             </tr>
         </thead>
-        <tbody id="container">
-
-        </tbody>
+        <tbody id="container"></tbody>
     </table>
 </div>
-
 <template id="role-template">
-    <tr>
-        <td style="display: none"><input type="hidden" name="role-id" value="" /></td>
-        <td><p id="role-name"></p></td>
-        <td><p id="role-count"></p></td>
-        <td><button>Delete this role</button></td>
-        <td><button>Edit this role</button></td>
-    </tr>
+    <table>
+        <tr>
+            <td style="display: block"><input name="role-id" value="" /></td>
+            <td><p id="role-name"></p></td>
+            <td><p id="role-count"></p></td>
+            <td><button>Delete this role</button></td>
+            <td><button>Edit this role</button></td>
+        </tr>
+    </table>
 </template>
+
+<style>
+    .size {
+        white-space: nowrap; /* Отменяем перенос текста */
+        overflow: hidden; /* Обрезаем содержимое */
+        text-overflow: ellipsis; /* Многоточие */
+    }
+</style>
