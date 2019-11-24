@@ -38,7 +38,7 @@ namespace TWHelp.Areas.Roles.Pages
         public async Task<IActionResult> OnPostDeleteAsync(long roleId)
         {
             RolesController rolesController = new RolesController(_roleManager, _userManager);
-            IActionResult result = await rolesController.DeleteRole(roleId);
+            IActionResult result = await rolesController.DeleteRole(roleId.ToString()); //TODO: role name, not an id ?
             RolesDict.Clear();
 
             foreach (var role in _roleManager.Roles)
