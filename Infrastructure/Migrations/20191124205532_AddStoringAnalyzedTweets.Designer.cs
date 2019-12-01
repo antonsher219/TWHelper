@@ -4,14 +4,16 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191124205532_AddStoringAnalyzedTweets")]
+    partial class AddStoringAnalyzedTweets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,11 +127,11 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(2000);
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatingTime");
 
                     b.Property<long?>("CreatorId");
 
-                    b.Property<string>("Header")
+                    b.Property<string>("Theme")
                         .IsRequired()
                         .HasMaxLength(150);
 
@@ -138,42 +140,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Topics");
-                });
-
-            modelBuilder.Entity("Domain.Models.Domain.TopicAnswer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("AuthorId");
-
-                    b.Property<string>("Content");
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<int>("TopicId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("TopicId");
-
-                    b.ToTable("TopicAnswers");
-                });
-
-            modelBuilder.Entity("Domain.Models.Domain.TopicLike", b =>
-                {
-                    b.Property<long>("UserId");
-
-                    b.Property<int>("TopicId");
-
-                    b.HasKey("UserId", "TopicId");
-
-                    b.HasIndex("TopicId");
-
-                    b.ToTable("TopicLikes");
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.TwitterUserStatistic", b =>
@@ -196,8 +162,6 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<string>("TwitterNick")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Date");
 
                     b.Property<double>("Rate");
 
@@ -437,32 +401,6 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.Identity.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");
-                });
-
-            modelBuilder.Entity("Domain.Models.Domain.TopicAnswer", b =>
-                {
-                    b.HasOne("Domain.Models.Identity.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Domain.Models.Domain.Topic", "Topic")
-                        .WithMany()
-                        .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Domain.Models.Domain.TopicLike", b =>
-                {
-                    b.HasOne("Domain.Models.Domain.Topic", "Topic")
-                        .WithMany()
-                        .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Domain.Models.Identity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
