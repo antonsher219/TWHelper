@@ -1,0 +1,260 @@
+﻿@page
+@model TWHelp.Areas.Forum.Pages.IndexModel
+@{
+}
+
+
+@*https://dribbble.com/shots/4624267-Community-Page/attachments/1045333*@
+
+@*https://dribbble.com/shots/6103611-Forum-Thread*@
+
+@*https://stackoverflow.com/questions/24177572/add-slides-to-bootstrap-3-carousel-dynamically-using-jquery*@
+
+
+<div class="container-fluid" style="background-color: lightblue;">
+    <div class="m-3 p-3">
+        <div class="container" style="background-color: lightcoral;">
+            @*photos*@
+            @if (Model.IsHotNews)
+            {
+                <div class="" style="background-color: lightgoldenrodyellow;">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+
+                            @for (int i = 1; i < Model.HotNews.Count(); i++)
+                            {
+                                <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+                            }
+                        </ol>
+                        <div class="carousel-inner" style="background-color: lightgreen">
+
+                            @foreach (var hotNewsList in Model.HotNews)
+                            {
+                                <div class="carousel-item active">
+                                    <div style="background-color: lightgray;">
+                                        <div class="d-flex flex-row justify-content-around">
+                                            @foreach (var hotNews in hotNewsList.HotNewsList)
+                                            {
+                                                //TODO: add tags that using hotnews 
+                                                <div>
+                                                    <div>
+                                                        <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="background-color: aqua;">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="background-color: aqua; width: 20px;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div style="background-color: lightgreen">
+                    <div class="d-flex">
+                        <div class="m-3 p-3">
+                            <p>Unfortunately there's no &#x1F525 news</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="" style="background-color: lightgoldenrodyellow;">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    </ol>
+                    <div class="carousel-inner" style="background-color: lightgreen">
+                        <div class="carousel-item active">
+                            <div style="background-color: lightgray;">
+                                <div class="d-flex flex-row justify-content-around">
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div style="background-color: lightgray;">
+                                <div class="d-flex flex-row justify-content-around">
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <div>
+                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="background-color: aqua;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="background-color: aqua; width: 20px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="m-3 p-3">
+        <div class="container" style="background-color: lightgreen;">
+            <div class="d-flex">
+                <div class="col-12 col-sm-9" style="background-color: lightskyblue">
+                    <div>
+                        <div class="d-flex justify-content-between p-3" style="background-color: lightgray">
+                            <div>
+                                <h5>as;ldasd asd sa;dsa</h5>
+                                <p>ds;kfmmdsmf</p>
+                            </div>
+
+                            <div>
+                                <button class="btn btn-danger">butt</button>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <div class="m-2 p-2" style="background-color: lightseagreen">
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                    <div>
+                                        <h4>dksadml;askd;lsa</h4>
+                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
+                                    </div>
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                    <div>
+                                        <a asp-page="Topic" asp-route-id="1">Go to post -></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-2 p-2" style="background-color: lightseagreen">
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                    <div>
+                                        <h4>dksadml;askd;lsa</h4>
+                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
+                                    </div>
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-2 p-2" style="background-color: lightseagreen">
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                    <div>
+                                        <h4>dksadml;askd;lsa</h4>
+                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
+                                    </div>
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-2 p-2" style="background-color: lightseagreen">
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                    <div>
+                                        <h4>dksadml;askd;lsa</h4>
+                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
+                                    </div>
+                                    <div>
+                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 d-none d-sm-block" style="background-color: lightslategray">
+                    <div>
+                        <div class="d-flex flex-column">
+                            <div>
+                                <h4>s;ladoaskdopas</h4>
+                                <p>;aslmdasmdas dsa;dksaodkoasd sadasodokasod saodk</p>
+                            </div>
+                            <div>
+                                as;d,sad
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

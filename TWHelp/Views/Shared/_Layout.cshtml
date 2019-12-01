@@ -21,20 +21,23 @@
     </environment>
     <link rel="stylesheet" href="/css/site.css" />
     @*font awesome*@
-    <script src="https://kit.fontawesome.com/a1fd5ee0cf.js" crossorigin="anonymous"></script>
+    <link href="~/lib/fontawesome-free-5.11.2-web/css/all.css" rel="stylesheet">
+    @*<script src="https://kit.fontawesome.com/a1fd5ee0cf.js" crossorigin="anonymous"></script>*@
+
+    @RenderSection("Header", false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow">
             <div class="container">
                 <a class="navbar-brand" asp-area="Home" asp-page="/Index">TWHelp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial"  />
-                    
+                <div class="navbar-collapse collapse d-md-inline-flex flex-md-row-reverse">
+                    <partial name="_LoginPartial" />
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Home" asp-page="/Index">Home</a>
@@ -53,6 +56,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Analytics" asp-page="/Index">Analytics</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Forum" asp-page="/Index">Forum</a>
+                            </li>
                         }
                         @if (User.IsInRole("admin"))
                         {
@@ -61,31 +67,31 @@
                             </li>
                         }
                         @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Roles" asp-page="/Index">Roles</a>
-        </li>*@
+                                <a class="nav-link text-dark" asp-area="Roles" asp-page="/Index">Roles</a>
+                            </li>*@
                         @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Forum">Forum</a>
-        </li>
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Tests">Tests</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Specialists" asp-route-roleName="specialist">Specialists</a>
-            </li>
-        }*@
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Forum">Forum</a>
+                            </li>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Tests">Tests</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Specialists" asp-route-roleName="specialist">Specialists</a>
+                                </li>
+                            }*@
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container" style="height:100%">
+    <div class="container-fluid" style="height:100%">
         <partial name="_CookieConsentPartial" />
-        <main role="main" >
+        <main role="main">
             @RenderBody()
         </main>
     </div>
@@ -96,7 +102,7 @@
         </div>
     </footer>
 
-    <environment include="Development">
+    @*<environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </environment>
@@ -113,8 +119,12 @@
                 crossorigin="anonymous"
                 integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
         </script>
-    </environment>
+    </environment>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

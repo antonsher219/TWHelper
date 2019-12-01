@@ -125,15 +125,6 @@ D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.Tag
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.TagHelpers.output.cache
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.RazorCoreGenerate.cache
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Index.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\CreateTest.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\CreateTopic.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\Forum.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\Privacy.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\Specialists.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\Tests.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\TestView.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\TopicView.cshtml.g.cs
-D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Temp\Waiting.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\AccessDenied.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\ConfirmEmail.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\ExternalLogin.cshtml.g.cs
@@ -192,3 +183,10 @@ D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Area
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\Picture.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Analytics\Pages\Index.cshtml.g.cs
 D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Home\Pages\Error.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Users\Index.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Create.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Edit.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\UserList.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\Index.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\Topic.cshtml.g.cs
+D:\Projects\проект по авпз\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\Question.cshtml.g.cs
