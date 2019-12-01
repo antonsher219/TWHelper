@@ -9,7 +9,7 @@ namespace Domain.Models.Domain
         public string TwitterNick { get; set; }
         [Required]
         public DateTime LastUpdated { get; set; }
-        public double GoodEmotionRate { get; set; }
-        public double BadEmotionRate { get; set; }
+        public string TopPositiveWordsJson { get; set; }
+        public string TopNegativeWordsJson { get; set; }
     }
 }

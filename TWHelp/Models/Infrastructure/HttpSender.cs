@@ -11,7 +11,7 @@ namespace TWHelp.Models.Infrastructure
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
             httpWebRequest.Method = httpMethod;
-            httpWebRequest.Timeout = 120000;
+            httpWebRequest.Timeout = 5 * 60 * 1000;
 
             //for post/put methods etc.
             if (requestJsonBody != null)

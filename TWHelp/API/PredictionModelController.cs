@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
 using System.Net.Sockets;
+using Domain.Models.Domain;
+using System.Collections.Generic;
 
 namespace TWHelp.API
 {
@@ -21,32 +23,31 @@ namespace TWHelp.API
 
         public PredictionModelController(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context;     
         }
 
-
+        // for simple REST requests
+        #region REST
         // GET: api/prediction/create/{twitter_nick}/{count}
         [HttpGet("create/{twitter_nick}/{count}")]
         public ActionResult<PredictionDTO> GetUserPrediction(string twitter_nick, int count)
         {
-            if(string.IsNullOrEmpty(twitter_nick) || count == 0)
+            if (string.IsNullOrEmpty(twitter_nick) || count == 0)
             {
                 return BadRequest();
             }
 
-            if(UserHasRecentAnalytics(twitter_nick))
-            {
-                var analytics = _context.TwitterUserStatistics
-                    .Where(account => account.TwitterNick.Equals(twitter_nick))
-                    .FirstOrDefault();
+            var analytics = UserRecentAnalytics(twitter_nick);
 
+            if (analytics != null)
+            {
                 var response = new PredictionDTO()
                 {
                     ActivityChartPath = $"/output/activity_{twitter_nick}.png",
                     PieChartPath = $"/output/piechart_{twitter_nick}.png",
                     LastModified = analytics.LastUpdated,
-                    BadEmotionRate = analytics.BadEmotionRate,
-                    GoodEmotionRate = analytics.GoodEmotionRate,
+                    TopPositiveWordsJson = analytics.TopPositiveWordsJson,
+                    TopNegativeWordsJson = analytics.TopNegativeWordsJson
                 };
 
                 return Ok(response);
@@ -60,37 +61,90 @@ namespace TWHelp.API
 
                     dynamic parsedResponse = JsonConvert.DeserializeObject(predictionResponse);
 
-                    Domain.Models.Domain.TwitterUserStatistic userStatistic = new Domain.Models.Domain.TwitterUserStatistic()
-                    {
-                        TwitterNick = twitter_nick,
-                        LastUpdated = DateTime.Now,
-                        GoodEmotionRate = double.Parse(parsedResponse["good"].ToString()),
-                        BadEmotionRate = double.Parse(parsedResponse["bad"].ToString()),
-                    };
-
-                    _context.TwitterUserStatistics.Add(userStatistic);
-                    _context.SaveChanges();
+                    TwitterUserStatistic statistic = CreateOrUpdateUserStatistic(
+                        twitter_nick,
+                        double.Parse(parsedResponse["good"].ToString()),
+                        double.Parse(parsedResponse["bad"].ToString()));
 
                     var response = new PredictionDTO()
                     {
                         ActivityChartPath = $"/output/activity_{twitter_nick}.png",
                         PieChartPath = $"/output/activity_{twitter_nick}.png",
-                        LastModified = userStatistic.LastUpdated,
-                        BadEmotionRate = userStatistic.BadEmotionRate,
-                        GoodEmotionRate = userStatistic.GoodEmotionRate,
+                        LastModified = statistic.LastUpdated,
+                        TopPositiveWordsJson = analytics.TopPositiveWordsJson,
+                        TopNegativeWordsJson = analytics.TopNegativeWordsJson
                     };
 
                     return Ok(response);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
             }
         }
+        #endregion
 
-        //if user has analytics this week
-        private bool UserHasRecentAnalytics(string twitter_nick)
+
+        // GET: api/prediction/get/{twitter_nick}
+        [HttpGet("get/{twitter_nick}")]
+        public ActionResult<PredictionDTO> UserRecentPrediction(string twitter_nick)
+        {
+            if(twitter_nick == null)
+            {
+                return BadRequest();
+            }
+
+            var analytics = UserRecentAnalytics(twitter_nick);
+
+            if(analytics == null)
+            {
+                return NotFound();
+            }
+
+            var response = new PredictionDTO()
+            {
+                ActivityChartPath = $"/output/activity_{twitter_nick}.png",
+                PieChartPath = $"/output/piechart_{twitter_nick}.png",
+                LastModified = analytics.LastUpdated,
+                TopPositiveWordsJson = analytics.TopPositiveWordsJson,
+                TopNegativeWordsJson = analytics.TopNegativeWordsJson
+            };
+
+            return Ok(response);
+        }
+
+
+        //TODO: add updating statistic from frontend
+        #region TODO
+        // GET: api/prediction/tweets/get/{twitter_nick}
+        [HttpGet("tweets/get/{twitter_nick}")]
+        public ActionResult<List<TwitterUserTweet>> UserRecentTweets(string twitter_nick)
+        {
+            var tweets = _context.TwitterUserTweets
+                .Where(t => t.TwitterNick.Equals(twitter_nick))
+                .ToList();
+
+            if (tweets.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(tweets);
+        }
+
+        // POST: api/prediction/statistic/create
+        [HttpPost("api/prediction/statistic/create/{twitter_nick}/{good_rate}/{bad_rate}")]
+        public ActionResult CreateOrUpdateTwitterStatistic(string twitter_nick, string topPositiveWordsJson, string topNegativeWordsJson)
+        {
+            CreateOrUpdateUserStatistic(twitter_nick, topNegativeWordsJson, topNegativeWordsJson);
+
+            return Ok();
+        }
+        #endregion
+
+        //has user had analytics this week
+        private TwitterUserStatistic UserRecentAnalytics(string twitter_nick)
         {
             var analytics = _context.TwitterUserStatistics
                 .Where(account => account.TwitterNick.Equals(twitter_nick))
@@ -98,10 +152,40 @@ namespace TWHelp.API
 
             if(analytics == null || (DateTime.Now - analytics.LastUpdated).Days > 7)
             {
-                return false;
+                return null;
             }
 
-            return true;
+            return analytics;
+        }
+
+        private TwitterUserStatistic CreateOrUpdateUserStatistic(string twitter_nick, string topPositiveWordsJson, string topNegativeWordsJson)
+        {
+            var existedStatistic = _context.TwitterUserStatistics.FirstOrDefault(stat => stat.TwitterNick.Equals(twitter_nick));
+
+            if(existedStatistic == null)
+            {
+                existedStatistic = new TwitterUserStatistic()
+                {
+                    TwitterNick = twitter_nick,
+                    LastUpdated = DateTime.Now,
+                    TopPositiveWordsJson = topPositiveWordsJson,
+                    TopNegativeWordsJson = topNegativeWordsJson
+                };
+
+                _context.TwitterUserStatistics.Add(existedStatistic);
+            }
+            else
+            {
+                existedStatistic.LastUpdated = DateTime.Now;
+                existedStatistic.TopNegativeWordsJson = topPositiveWordsJson;
+                existedStatistic.TopNegativeWordsJson = topNegativeWordsJson;
+
+                _context.TwitterUserStatistics.Update(existedStatistic);
+            }
+
+            _context.SaveChanges();
+
+            return existedStatistic;
         }
     }
 }

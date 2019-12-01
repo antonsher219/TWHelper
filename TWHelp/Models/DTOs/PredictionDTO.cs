@@ -10,7 +10,7 @@ namespace TWHelp.Models.DTOs
         public string ActivityChartPath { get; set; }
         public string PieChartPath { get; set; }
         public DateTime LastModified { get; set; }
-        public double GoodEmotionRate { get; set; }
-        public double BadEmotionRate { get; set; }
+        public string TopPositiveWordsJson { get; set; }
+        public string TopNegativeWordsJson { get; set; }
     }
 }

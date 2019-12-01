@@ -29,6 +29,14 @@ namespace Infrastructure
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //builder.Entity<TopicLike>()
+            //    .HasKey(key => new { key.UserId, key.TopicId });
+
+            //builder.Entity<TopicLike>()
+            //    .HasOne(tl => tl.User)
+            //    .WithMany()
+            //    .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(builder);
         }
 
@@ -94,11 +102,15 @@ namespace Infrastructure
         }
 
         public DbSet<Topic> Topics { get; set; }
+        //public DbSet<TopicLike> TopicLikes { get; set; }
+        //public DbSet<TopicAnswer> TopicAnswers { get; set; }
+
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<TwitterUserStatistic> TwitterUserStatistics { get; set; }
+        public DbSet<TwitterUserTweet> TwitterUserTweets { get; set; } 
     }
 }

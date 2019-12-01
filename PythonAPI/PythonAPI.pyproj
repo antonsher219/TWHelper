@@ -25,6 +25,9 @@
     <Compile Include="app_websocket.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="response_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tweet.py">
       <SubType>Code</SubType>
     </Compile>

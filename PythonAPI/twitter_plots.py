@@ -64,7 +64,7 @@ class TwitterPlots:
         max_ = df.Count.max()
         div_ = (max_ - min_)
 
-        df.loc[:, classes] /= div_
+        #df.loc[:, classes] /= div_
 
         plot = df.loc[:, classes].plot.bar(stacked=True)
         fig = plot.get_figure()
@@ -87,7 +87,6 @@ class TwitterPlots:
         plt.ylabel('')
         plt.savefig('../TWHelp/wwwroot/output/piechart_' + twitter_nick + '.png')
 
-        happiness_rate = pd.DataFrame([happiness_rate[0], happiness_rate[1]], ["good", "bad"])
         return happiness_rate
 
 
