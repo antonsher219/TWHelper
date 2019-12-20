@@ -11,7 +11,7 @@ namespace TWHelp.Models.DTOs.Forum
         public string Header { get; set; }
         public string Author { get; set; }
         public string BackgroundImagePath { get; set; }
-        public string AuthorImagePath { get; set; }
+        public string AuthorImageBase64 { get; set; }
         public DateTime CreatedDate { get; set; }
         public int NumberOfReplies { get; set; }
     }

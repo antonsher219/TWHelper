@@ -9,3 +9,14 @@ D:\Projects\проект по авпз\Infrastructure\obj\Debug\netstandard2.0\I
 D:\Projects\проект по авпз\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
 D:\Projects\проект по авпз\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
 D:\Projects\проект по авпз\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb
+D:\Projects\TWHelp\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.deps.json
+D:\Projects\TWHelp\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.dll
+D:\Projects\TWHelp\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.pdb
+D:\Projects\TWHelp\Infrastructure\bin\Debug\netstandard2.0\Domain.dll
+D:\Projects\TWHelp\Infrastructure\bin\Debug\netstandard2.0\Domain.pdb
+D:\Projects\TWHelp\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csprojAssemblyReference.cache
+D:\Projects\TWHelp\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfoInputs.cache
+D:\Projects\TWHelp\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfo.cs
+D:\Projects\TWHelp\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
+D:\Projects\TWHelp\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
+D:\Projects\TWHelp\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb

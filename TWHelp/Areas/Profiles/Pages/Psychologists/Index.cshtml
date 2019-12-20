@@ -247,7 +247,7 @@
             let newDiv = document.importNode(template.content, true);
 
             newDiv.getElementById('psycho-name').textContent = item.nickName;
-            newDiv.getElementById('psycho-image').src = item.avatarImage == null ? "/img/user-profile.png" : "data:image/png;base64," + item.avatarImage;
+            newDiv.getElementById('psycho-image').src = item.avatarImage == null ? "/images/user-profile.png" : "data:image/png;base64," + item.avatarImage;
             newDiv.getElementById('psycho-age').textContent = item.age;
             newDiv.getElementById('psycho-degree').textContent = item.education;
             newDiv.getElementById('psycho-expertise-area').textContent = item.areaOfExpertise;

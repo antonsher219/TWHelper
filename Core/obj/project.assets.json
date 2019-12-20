@@ -3638,11 +3638,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\проект по авпз\\Core\\Domain.csproj",
+      "projectUniqueName": "D:\\Projects\\TWHelp\\Core\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "D:\\Projects\\проект по авпз\\Core\\Domain.csproj",
+      "projectPath": "D:\\Projects\\TWHelp\\Core\\Domain.csproj",
       "packagesPath": "C:\\Users\\Denys Vyskrebets\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\проект по авпз\\Core\\obj\\",
+      "outputPath": "D:\\Projects\\TWHelp\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

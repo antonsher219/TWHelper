@@ -4584,11 +4584,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\проект по авпз\\ElasticSearch\\ElasticSearch.csproj",
+      "projectUniqueName": "D:\\Projects\\TWHelp\\ElasticSearch\\ElasticSearch.csproj",
       "projectName": "ElasticSearch",
-      "projectPath": "D:\\Projects\\проект по авпз\\ElasticSearch\\ElasticSearch.csproj",
+      "projectPath": "D:\\Projects\\TWHelp\\ElasticSearch\\ElasticSearch.csproj",
       "packagesPath": "C:\\Users\\Denys Vyskrebets\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\проект по авпз\\ElasticSearch\\obj\\",
+      "outputPath": "D:\\Projects\\TWHelp\\ElasticSearch\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -4609,11 +4609,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\Projects\\проект по авпз\\Core\\Domain.csproj": {
-              "projectPath": "D:\\Projects\\проект по авпз\\Core\\Domain.csproj"
+            "D:\\Projects\\TWHelp\\Core\\Domain.csproj": {
+              "projectPath": "D:\\Projects\\TWHelp\\Core\\Domain.csproj"
             },
-            "D:\\Projects\\проект по авпз\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\Projects\\проект по авпз\\Infrastructure\\Infrastructure.csproj"
+            "D:\\Projects\\TWHelp\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "D:\\Projects\\TWHelp\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
