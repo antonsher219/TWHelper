@@ -1,18 +1,30 @@
-notifications:
-  slack: twhelp:MLxYcBP5Nd7mx9wqLhLeXBCK
-
 language: csharp
-mono: none
 sudo: required
+mono: none
 dist: xenial
 dotnet: 2.2
 
 services: 
     - docker
     
+env:
+  COMPOSE_VERSION: 3.4
+
+before_install:
+ - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+ - chmod +x docker-compose
+ - sudo mv docker-compose /usr/local/bin
+
 script:
-    - dotnet restore TWHelp/TWHelp.csproj
-    - dotnet build TWHelp/TWHelp.csproj
+    - docker-compose build
+
+deploy:
+  provider: heroku
+  api_key: 6e8f9658-6b3f-418e-bace-c4524ce1ad65
+
 global:
     - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
     - DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+notifications:
+  slack: twhelp:MLxYcBP5Nd7mx9wqLhLeXBCK
