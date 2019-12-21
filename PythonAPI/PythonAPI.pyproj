@@ -53,6 +53,7 @@
     <Content Include="data\word2vec.pkl" />
     <Content Include="output\activity_realmenofilters.png" />
     <Content Include="output\piechart_realmenofilters.png" />
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
