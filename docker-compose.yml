@@ -1,0 +1,35 @@
+version: '3.4'
+
+networks:
+  twhelp-dev:
+    driver: bridge
+
+services:
+  dotnet-test:
+    image: dotnet-test:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    networks:
+      - twhelp-dev
+  
+  postgres_image:
+    image: postgres:latest
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "sa"
+      POSTGRES_PASSWORD: "123"
+      POSTGRES_DB: "twhelpdb"
+    networks:
+      - twhelp-dev
+  
+volumes:
+  db_volume:
