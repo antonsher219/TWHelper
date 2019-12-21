@@ -36,7 +36,7 @@ async def prediction(websocket, path):
             await websocket.send(ResponseDTO("error", "message", "shit happens").to_json())
             
 
-start_server = websockets.serve(prediction, "localhost", 5000)
+start_server = websockets.serve(prediction, "0.0.0.0", 5000)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
