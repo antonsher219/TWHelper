@@ -90,10 +90,6 @@ namespace TWHelp
                     facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
                 });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-            
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options => 
@@ -113,10 +109,10 @@ namespace TWHelp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                //app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -125,7 +121,11 @@ namespace TWHelp
             app.UseMvc();
 
             //seed database
-            //ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (var context = scope.ServiceProvider.GetService<ApplicationDbContext>())
+                context.Database.EnsureCreated();
+
+            ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }
