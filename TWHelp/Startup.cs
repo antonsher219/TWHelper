@@ -41,7 +41,8 @@ namespace TWHelp
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                 //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration["ConnectionStrings:Docker:PostgreSQL"]));
 
             services
                 .AddIdentity<User, IdentityRole<long>>(options =>
@@ -89,9 +90,9 @@ namespace TWHelp
                     facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
                 });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -124,7 +125,7 @@ namespace TWHelp
             app.UseMvc();
 
             //seed database
-            ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
+            //ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }

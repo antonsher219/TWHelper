@@ -18,8 +18,6 @@ D:\Projects\проект по авпз\ElasticSearch\obj\Debug\netcoreapp2.2\Ela
 D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.dll.config
 D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.deps.json
-D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.runtimeconfig.json
-D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.runtimeconfig.dev.json
 D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.dll
 D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\ElasticSearch.pdb
 D:\Projects\TWHelp\ElasticSearch\bin\Debug\netcoreapp2.2\Domain.dll
