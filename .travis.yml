@@ -5,26 +5,30 @@ dist: xenial
 dotnet: 2.2
 
 services: 
-    - docker
+  - docker
     
 env:
-  COMPOSE_VERSION: 3.4
+  - COMPOSE_VERSION=1.25.0
 
-before_install:
- - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
- - chmod +x docker-compose
- - sudo mv docker-compose /usr/local/bin
+before_script:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 script:
-    - docker-compose build
+  - docker-compose build
 
 deploy:
   provider: heroku
-  api_key: 6e8f9658-6b3f-418e-bace-c4524ce1ad65
+  api_key: 
+    secure: 6e8f9658-6b3f-418e-bace-c4524ce1ad65
+  app: twhelp
 
 global:
-    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-    - DOTNET_CLI_TELEMETRY_OPTOUT=1
+  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+  - DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-notifications:
-  slack: twhelp:MLxYcBP5Nd7mx9wqLhLeXBCK
+notification:
+  email: false
+
