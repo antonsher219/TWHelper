@@ -100,13 +100,13 @@ namespace TWHelp.API
         {
             //check if current user like for psycho
             bool isCurrentUserSetLike = _context
-                .Likes
+                .ProfileLikes
                 .Where(l => l.UserId == user.Id && l.PsychologistId == psychoUser.Id)
                 .Any();
 
             //number of all likes
             int likes = _context
-                .Likes
+                .ProfileLikes
                 .Where(l => l.PsychologistId == psychoUser.Id)
                 .Count();
 

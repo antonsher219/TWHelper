@@ -48,7 +48,7 @@ namespace TWHelp.API
 
             foreach(var item in hotTopics)
             {
-                var topic = _context.Topics
+                var topic = _context.TopicQuestions
                     .Where(t => t.Id == item.TopicId)
                     .FirstOrDefault();
 
@@ -78,7 +78,7 @@ namespace TWHelp.API
                 return BadRequest();
             }
 
-            List<Topic> topics = _context.Topics
+            List<TopicQuestion> topics = _context.TopicQuestions
                 .Skip(from)
                 .Take(to - from)
                 .Include(t => t.Creator)

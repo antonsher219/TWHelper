@@ -46,7 +46,7 @@ namespace TWHelp.Areas.Forum.Pages
 
             foreach (var item in hotTopics)
             {
-                var topic = _context.Topics
+                var topic = _context.TopicQuestions
                     .Where(t => t.Id == item.TopicId)
                     .FirstOrDefault();
 

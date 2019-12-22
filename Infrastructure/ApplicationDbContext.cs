@@ -21,10 +21,10 @@ namespace Infrastructure
         //add-migration name -Project Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Like>()
+            builder.Entity<ProfileLike>()
                 .HasKey(key => new { key.UserId, key.PsychologistId });
 
-            builder.Entity<Like>()
+            builder.Entity<ProfileLike>()
                 .HasOne(l => l.Psychologist)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
@@ -34,6 +34,16 @@ namespace Infrastructure
 
             builder.Entity<TopicLike>()
                 .HasOne(tl => tl.User)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<TestResult>()
+                .HasOne(tl => tl.User)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<TopicAnswer>()
+                .HasOne(tl => tl.Author)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -101,16 +111,22 @@ namespace Infrastructure
             }
         }
 
-        public DbSet<Topic> Topics { get; set; }
-        public DbSet<TopicLike> TopicLikes { get; set; }
-        public DbSet<TopicAnswer> TopicAnswers { get; set; }
 
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Question> Questions { get; set; }
+        public DbSet<ProfileLike> ProfileLikes { get; set; }
+        public DbSet<PsychoApproveRequest> PsychoApproveRequests { get; set; }
+
         public DbSet<Test> Tests { get; set; }
-        public DbSet<Answer> Answers { get; set; }
-        public DbSet<Like> Likes { get; set; }
+        public DbSet<TestQuestion> TestQuestions { get; set; }
+        public DbSet<TestQuestionOption> TestQuestionOptions { get; set; }
+        public DbSet<TestResult> TestResults { get; set; }
+
+        public DbSet<TopicQuestion> TopicQuestions { get; set; }
+        public DbSet<TopicAnswer> TopicAnswers { get; set; }
+        public DbSet<TopicLike> TopicLikes { get; set; }
+
         public DbSet<TwitterUserStatistic> TwitterUserStatistics { get; set; }
-        public DbSet<TwitterUserTweet> TwitterUserTweets { get; set; } 
+        public DbSet<TwitterUserTweet> TwitterUserTweets { get; set; }
+
+        public DbSet<ForumVideo> ForumVideos { get; set; }
     }
 }
