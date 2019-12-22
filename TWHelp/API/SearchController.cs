@@ -18,8 +18,8 @@ namespace TWHelp.API
         public SearchController(IConfiguration configuration)
         {
             elasticClient = new ElasticSearchClient(
-                //configuration.GetSection("Settings:ElasticsearchHost").Value,
-                configuration["ConnectionStrings:Docker:Elasticsearch"],
+                configuration.GetSection("Settings:ElasticsearchHost").Value,
+                //configuration["ConnectionStrings:Docker:Elasticsearch"],
                 configuration.GetSection("Settings:ElasticsearchIndexName").Value);
         }
 

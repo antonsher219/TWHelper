@@ -27,8 +27,8 @@ namespace TWHelp.Areas.Profiles.Pages.Psychologists
 
         public async Task OnGet()
         {
-            //WebRoot = "http://" + HttpContext.Request.Host.ToUriComponent();
-            WebRoot = _configuration["ConnectionStrings:Docker:PythonModel"];
+            WebRoot = "http://" + HttpContext.Request.Host.ToUriComponent();
+            //WebRoot = _configuration["ConnectionStrings:Docker:PythonModel"];
 
             User user = await _userManager.GetUserAsync(User);
             IsUserPsycho = user.IsPsychologist;

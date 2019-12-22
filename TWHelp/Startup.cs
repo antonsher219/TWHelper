@@ -41,8 +41,8 @@ namespace TWHelp
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                 //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-                options.UseNpgsql(Configuration["ConnectionStrings:Docker:PostgreSQL"]));
+                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                //options.UseNpgsql(Configuration["ConnectionStrings:Docker:PostgreSQL"]));
 
             services
                 .AddIdentity<User, IdentityRole<long>>(options =>
