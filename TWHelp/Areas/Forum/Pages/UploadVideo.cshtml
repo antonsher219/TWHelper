@@ -1,0 +1,52 @@
+﻿@page
+@model TWHelp.Areas.Forum.Pages.UploadVideoModel
+@{
+}
+
+@section Styles {
+    <link href="~/lib/dropzone/dropzone.css" rel="stylesheet" />
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-11 col-sm-10 col-md-9 col-lg-7 mx-auto">
+            <div class="my-5" style="">
+                <div class="text-center">
+                    <h3>Upload new video</h3>
+                </div>
+                <div class="">
+                </div>
+                <div class="my-2 my-sm-4 my-md-5 custom-file">
+
+                    <form asp-page-handler="FileUpload" class="dropzone py-2 py-sm-4 py-md-5" id="my-awesome-dropzone" enctype="multipart/form-data">
+                    </form>
+
+                    <div class="text-center d-flex flex-column">
+                        <small class="m-1" style="color: #ff5252;">You can upload only .avi or .mp4 video format</small>
+                        <small class="m-1" style="color: #ff5252;">Video max size is <span style="font-weight: bold">700mb</span></small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @*https://www.dropzonejs.com/*@
+    <script src="~/lib/dropzone/dropzone.js"></script>
+    <script>
+        Dropzone.options.myAwesomeDropzone = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 700, // MB
+            accept: function (file, done) {
+                if (true || file.name.endsWith(".avi") || file.name.endsWith(".mp4")) {
+                    done();
+                }
+                else {
+                    done("Oops, wrong video format");
+                }
+            }
+        };
+    </script>
+}

@@ -281,3 +281,6 @@ D:\Projects\TWHelp\TWHelp\bin\Debug\netcoreapp2.2\ElasticSearch.dll.config
 D:\Projects\TWHelp\TWHelp\bin\Debug\netcoreapp2.2\Infrastructure.pdb
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.Views.pdb
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\TWHelp.csproj.CopyComplete
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\UploadVideo.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\VideoFeed.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\bin\Debug\netcoreapp2.2\web.config

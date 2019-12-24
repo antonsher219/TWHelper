@@ -21,12 +21,17 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Domain.ForumVideo", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created");
 
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("TagsString");
 
                     b.Property<long>("UploaderId");
 

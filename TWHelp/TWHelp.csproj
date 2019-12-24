@@ -25,7 +25,7 @@
     <Folder Include="Data\" />
     <Folder Include="Pages\" />
     <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\videos\" />
     <Folder Include="wwwroot\output\" />
   </ItemGroup>
 

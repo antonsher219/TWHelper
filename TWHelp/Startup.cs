@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using TWHelp.Models.Infrastructure;
 using System.Net.WebSockets;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace TWHelp
 {
@@ -57,7 +58,11 @@ namespace TWHelp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<FormOptions>(x =>
+            {
+                x.ValueLengthLimit = int.MaxValue;
+                x.MultipartBodyLengthLimit = int.MaxValue;
+            });
 
             //note: it's not a default AuthenticationSchemes
             services
@@ -89,6 +94,8 @@ namespace TWHelp
                     facebookOptions.AppSecret = Configuration["Security:Tokens:FacebookLocal:AppSecret"];
                     facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
                 });
+
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)

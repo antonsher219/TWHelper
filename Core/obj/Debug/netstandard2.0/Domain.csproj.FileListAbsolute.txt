@@ -13,4 +13,3 @@ D:\Projects\TWHelp\Core\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
 D:\Projects\TWHelp\Core\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
 D:\Projects\TWHelp\Core\obj\Debug\netstandard2.0\Domain.dll
 D:\Projects\TWHelp\Core\obj\Debug\netstandard2.0\Domain.pdb
-D:\Projects\TWHelp\Core\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
