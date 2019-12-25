@@ -286,3 +286,5 @@ D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\WatchV
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\CreateTopic.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\ViewTopic.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\Approve.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\PsychoTests.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\TakeTest.cshtml.g.cs

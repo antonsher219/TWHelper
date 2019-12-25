@@ -86,6 +86,25 @@ namespace Infrastructure.Migrations
                     b.ToTable("PsychoApproveRequests");
                 });
 
+            modelBuilder.Entity("Domain.Models.Domain.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountKey");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("SurveyJson");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Surveys");
+                });
+
             modelBuilder.Entity("Domain.Models.Domain.Test", b =>
                 {
                     b.Property<int>("Id")

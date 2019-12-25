@@ -115,6 +115,7 @@ namespace Infrastructure
         public DbSet<ProfileLike> ProfileLikes { get; set; }
         public DbSet<PsychoApproveRequest> PsychoApproveRequests { get; set; }
 
+        public DbSet<Survey> Surveys { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<TestQuestion> TestQuestions { get; set; }
         public DbSet<TestQuestionOption> TestQuestionOptions { get; set; }

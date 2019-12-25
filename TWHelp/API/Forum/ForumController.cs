@@ -150,5 +150,23 @@ namespace TWHelp.API.Forum
 
             return Ok(result);
         }
+
+
+        //GET: api/forum/surveys/last?from=10&to=20
+        [HttpGet("surveys/last")]
+        public ActionResult<List<Survey>> GetSurveys(int from, int to)
+        {
+            if (from < 0 || to < 0 || to < from)
+            {
+                return BadRequest();
+            }
+
+            var result = _context.Surveys
+                .Skip(from)
+                .Take(to - from)
+                .ToList();
+
+            return Ok(result);
+        }
     }
 }

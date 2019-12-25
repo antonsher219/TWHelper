@@ -1,0 +1,66 @@
+﻿@page
+@model TWHelp.Areas.Forum.Pages.TakeTestModel
+@{
+}
+
+@section Styles {
+    <link href="https://surveyjs.azureedge.net/1.1.26/survey.css" type="text/css" rel="stylesheet" />
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <div class="my-5 py-5">
+                @if (Model.Input == null)
+                {
+                    <div class="d-flex flex-column">
+                        <div class="text-center">
+                            <h5>Oops, unfortunately somethind went wrong</h5>
+                        </div>
+                        <div class="mx-auto">
+                            <img src="~/images/svg/not-found.svg" alt="Alternate Text" width="600" height="400" />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="my-3 d-flex flex-column">
+                        <div>
+                            <h3>@Model.Input.Name</h3>
+                        </div>
+                        <div>
+                            <p>@Model.Input.Description</p>
+                        </div>
+                    </div>
+
+                    <div class="my-3">
+                        <div id="surveyContainer"></div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://surveyjs.azureedge.net/1.1.26/survey.jquery.min.js"></script>
+
+    <script>
+        let accountKey = '@Model.Input?.AccountKey';
+        let json = '@Model.Input?.SurveyJson';
+        json = json.split('&quot;').join('"');
+        var surveyJSON = JSON.parse(json);
+
+        function sendDataToServer(survey) {
+            survey.sendResult(accountKey);
+        }
+
+        var survey = new Survey.Model(surveyJSON);
+        $("#surveyContainer").Survey({
+            model: survey,
+            onComplete: sendDataToServer
+        });
+    </script>
+}
