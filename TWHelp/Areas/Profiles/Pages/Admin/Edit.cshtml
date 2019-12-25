@@ -1,0 +1,27 @@
+﻿@page
+@model TWHelp.Areas.Roles.Pages.EditModel
+@{
+}
+@using Microsoft.AspNetCore.Identity
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <div class="my-5 py-5">
+                <h2>Changing roles for @Model.User.Email</h2>
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" name="userId" value="@Model.User.Id" />
+                    <div class="form-group">
+                        @foreach (IdentityRole<long> role in Model.ChangeRoleViewModel.AllRoles)
+                        {
+                            <input type="checkbox" name="roles" value="@role.Name"
+                                   @(Model.Roles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
+                            }
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

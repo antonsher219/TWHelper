@@ -1,0 +1,28 @@
+﻿@page
+@model TWHelp.Areas.Roles.Pages.UserListModel
+@{
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <div class="my-5 py-5">
+                <h2>User list</h2>
+                <table class="table">
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr class="row">
+                            <td class="col-3">@user.Email</td>
+                            <td class="col-2">
+                                <form method="post">
+                                    <a class="btn btn-sm btn-primary" asp-area="Profiles" asp-page="/Admin/Edit" asp-route-userId="@user.Id">Access rights</a>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

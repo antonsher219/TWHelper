@@ -239,15 +239,6 @@ D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_Vi
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Psychologists\Index.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Users\Index.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Create.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Edit.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Index.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Temp\Create.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Temp\DeleteUser.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Temp\Edit.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Temp\Index.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\Temp\UserList.cshtml.g.cs
-D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Roles\Pages\UserList.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\_ViewImports.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\_ViewStart.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.cshtml.g.cs
@@ -288,3 +279,8 @@ D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\ViewTo
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\Approve.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\PsychoTests.cshtml.g.cs
 D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Forum\Pages\TakeTest.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Admin\ApproveRequests.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Admin\Roles.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Admin\Create.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Admin\Edit.cshtml.g.cs
+D:\Projects\TWHelp\TWHelp\obj\Debug\netcoreapp2.2\Razor\Areas\Profiles\Pages\Admin\UserList.cshtml.g.cs
