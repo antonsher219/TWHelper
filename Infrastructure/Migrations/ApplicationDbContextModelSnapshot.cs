@@ -63,9 +63,21 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DiplomaPath");
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("DegreeDiplomaFilePath");
+
+                    b.Property<string>("FacebookLink");
+
+                    b.Property<string>("LinkedInLink");
+
+                    b.Property<string>("PhDDiplomaFilePath");
 
                     b.Property<long>("PsychoId");
+
+                    b.Property<string>("ResearchDiplomaFilePath");
+
+                    b.Property<string>("TwitterLink");
 
                     b.HasKey("Id");
 

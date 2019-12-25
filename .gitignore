@@ -1,5 +1,8 @@
 *.config
 *.png
+*.jpg
+*.pdf
+*.doc
 *.avi
 *.mp4
 

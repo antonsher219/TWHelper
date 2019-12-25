@@ -1,0 +1,109 @@
+﻿@page
+@model TWHelp.Areas.Identity.Pages.Account.Manage.ApproveModel
+@{
+}
+
+<div class="container-fluid">
+    <div class="row mb-5 pb-5">
+        <div class="col-12 col-sm-11 col-md-10 mx-auto">
+            <div>
+                <h4>Approve your psychological status</h4>
+            </div>
+
+            <div class="my-3 py-2">
+                <p>
+                    You have to approve your psychological status to work with real people.
+                </p>
+                <p>
+                    To do it fill the approve form below.
+                </p>
+            </div>
+
+            <div class="my-3">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="p-2 my-3">
+                        <label for="staticEmail" class="col-form-label p-0 my-3">Upload your degree diploma to confirm your educational status.</label>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-3 col-form-label" style="color: darkgray">Degree diploma</label>
+                            <div class="col-sm-9 custom-file">
+                                <input name="files" type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 my-3">
+                        <label for="staticEmail" class="col-form-label p-0 my-3">Upload your PhD. diploma to confirm your educational status (if you have one).</label>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-3 col-form-label" style="color: darkgray">PhD. diploma</label>
+                            <div class="col-sm-9 custom-file">
+                                <input name="files" type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 my-3">
+                        <label for="staticEmail" class="col-form-label p-0 my-3">Any additional scientific researches or academic labors will increase the chance that your status will be approved.</label>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-3 col-form-label" style="color: darkgray">Scentific researches</label>
+                            <div class="col-sm-9 custom-file">
+                                <input name="files" type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 my-3">
+                        <label for="staticEmail" class="col-form-label p-0 my-3">Any social or professional networks, that can confirm your real identity and job experience will be appreciate.</label>
+                        <div class="form-group row justify-content-between">
+                            <label for="staticEmail" class="col-sm-3 col-form-label" style="color: darkgray">Facebook profile</label>
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@@</div>
+                                    </div>
+                                    <input asp-for="Input.FacebookLink" type="text" class="form-control" id="inlineFormInputGroup" placeholder="myprofile.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row justify-content-between">
+                            <label for="staticEmail" class="col-sm-3 col-form-label" style="color: darkgray">Twitter profile</label>
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@@</div>
+                                    </div>
+                                    <input asp-for="Input.TwitterLink" type="text" class="form-control" id="inlineFormInputGroup" placeholder="myprofile.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row justify-content-between">
+                            <label for="staticEmail" class="col-sm-3 col-form-label" style="color: darkgray">LinkedIn profile</label>
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@@</div>
+                                    </div>
+                                    <input asp-for="Input.LinkedInLink" type="text" class="form-control" id="inlineFormInputGroup" placeholder="myprofile.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-5">
+                            <button class="btn btn-outline-success flex-grow-1">Send my information</button>
+                        </div>
+                        <div class="m-2 mb-5 text-center">
+                            <small style="color: gray; font-size: 15px;">We'll keep you private information safe</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

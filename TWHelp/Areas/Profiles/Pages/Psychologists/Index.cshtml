@@ -2,47 +2,51 @@
 @model TWHelp.Areas.Profiles.Pages.Psychologists.IndexModel
 
 <div class="container-fluid">
-    <div class="row d-flex flex-column">
-        <div class="mx-auto">
-            <h2 class="text-center">Psychologists page</h2>
-        </div>
-
-        <div class="col-12 col-sm-11 col-md-10 mx-auto my-3">
-            <div class="mx-3">
-                <label for="search">Psychologist name and surname</label>
-            </div>
-            <form class="d-flex justify-content-between" onsubmit="searchForPsycoProfiles(event)" id="search-form">
-                <div class="col-9">
-                    <input type="text" class="form-control" id="search-text" placeholder="John Johnson" list="psychoResults" oninput="autocompleteForPsychoProfiles()">
-                    @*content for autocomplete*@
-                    <datalist id="psychoResults">
-                    </datalist>
+    <div class="row">
+        <div class="col-12 col-sm-11 col-md-10 mx-auto" style="background-color: lightcyan">
+            <div class="my-3 py-3">
+                <div style="background-color: lightblue">
+                    <div class="text-center">
+                        <h2>Psychologists page</h2>
+                    </div>
+                    <div>
+                        <form class="d-flex justify-content-between"  onsubmit="searchForPsycoProfiles(event)" id="search-form">
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="search-text" placeholder="John Johnson" list="psychoResults" oninput="autocompleteForPsychoProfiles()">
+                                @*content for autocomplete*@
+                                <datalist id="psychoResults">
+                                </datalist>
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary mb-2">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                    
                 </div>
-                <div class="col-3">
-                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+
+                <div class="my-3 p-2">
+                    <p class="font-weight-bold text-center">List of psychologists</p>
+                    <div class="d-flex flex-column" id="psycho-container">
+                        @* add here content from js *@
+                    </div>
+                    <div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('previous')">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('1')">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('2')">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('3')">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('next')">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </form>
-        </div>
 
-        <div class="col-12 col-sm-11 col-md-10 mx-auto">
-            <p class="font-weight-bold text-center">List of psychologists</p>
-            <div class="d-flex flex-column" id="psycho-container">
-                @* add here content from js *@
-            </div>
-
-            <div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('previous')">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('1')">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('2')">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('3')">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('next')">Next</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
+
 </div>
 
 <template id="template">
