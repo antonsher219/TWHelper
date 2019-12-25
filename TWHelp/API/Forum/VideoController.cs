@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Identity;
 using Domain.Models.Identity;
 using TWHelp.Models.DTOs.Forum;
+using TWHelp.Models.DTOs.Forum.Preview;
 
 namespace TWHelp.API.Forum
 {
@@ -34,29 +35,6 @@ namespace TWHelp.API.Forum
 
             return Ok(videos);
         }
-
-        //https://stackoverflow.com/questions/49618810/net-core-2-0-web-api-for-video-streaming-from-filestream
-        //// GET: api/video/content?id=-1
-        //[HttpGet("content")]
-        //public IActionResult GetVideoContent(int id)
-        //{
-        //    var video = _context.ForumVideos.FirstOrDefault(v => v.Id == id);
-
-        //    if(video == null)
-        //    {
-        //        return NotFound("video not found");
-        //    }
-
-        //    if(System.IO.File.Exists(video.VideoFilePath))
-        //    {
-        //        FileStream fs = System.IO.File.Open(video.VideoFilePath, FileMode.Open, FileAccess.Read);
-
-        //        return new FileStreamResult(fs, new MediaTypeHeaderValue("video/mp4").MediaType);
-        //    }
-
-        //    return BadRequest();
-        //}
-
 
         // GET: api/video/last/id?from=10&to=20
         [HttpGet("last/{id}")]

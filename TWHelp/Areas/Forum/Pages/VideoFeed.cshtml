@@ -62,7 +62,7 @@
 
             </div>
         </div>
-        <div class="d-flex flex-wrap" id="video-tags">
+        <div class="d-flex flex-wrap m-1 p-1" id="video-tags">
             <h5><span class="badge badge-primary m-1 p-2">Primary</span></h5>
             <h5><span class="badge badge-secondary m-1 p-2">Primary</span></h5>
             <h5><span class="badge badge-secondary m-1 p-2">Primary</span></h5>
@@ -143,10 +143,13 @@
             newDiv.getElementById('video-link').href = "/Forum/WatchVideo?id=" + item.forumVideoId;
             newDiv.getElementById('video-image').src = '../images/video-preview/video-preview-' + getRandomInt(9) + ".svg";
 
-            newDiv.getElementById('video-tags').innerHTML = '';
-            item.tags.forEach(tag => {
-                newDiv.innerHTML += '<h5><span class="badge badge-'+ badges[getRandomInt(5)] +' m-1 p-2">' + tag + '</span></h5>'
-            })
+            let tagContainer = newDiv.getElementById('video-tags');
+            tagContainer.innerHTML = '<p class="m-1">tags: </p>';
+            tagContainer.innerHTML = '';
+
+            //item.tags.forEach(tag => {
+            //    tagContainer.innerHTML += '<h6><span class="badge badge-'+ badges[getRandomInt(5)] +' m-1 p-1">' + tag + '</span></h6>'
+            //})
 
             newDiv.getElementById('video-date').textContent = item.createdDateString;
             newDiv.getElementById('video-time').textContent = item.createdTimeString;
