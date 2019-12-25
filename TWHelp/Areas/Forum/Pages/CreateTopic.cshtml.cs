@@ -63,16 +63,6 @@ namespace TWHelp.Areas.Forum.Pages
 
                 return new RedirectToPageResult("ViewTopic", new { topicId = addedQuestion.Id });
             }
-            //else
-            //{
-            //    foreach (var error in ModelState.Values)
-            //    {
-            //        foreach(var modelError in error.Errors)
-            //        {
-            //            ModelState.AddModelError(string.Empty, modelError.ErrorMessage);
-            //        }
-            //    }
-            //}
 
             return Page();
         }

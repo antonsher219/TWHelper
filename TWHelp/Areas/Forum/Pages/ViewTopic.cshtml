@@ -42,96 +42,184 @@
     h1, h2, h3, h4, h5, h6, p {
         font-family: 'Varela Round', sans-serif;
     }
+
+    .feed-background-image {
+        background-image: url('../images/topic-answer.svg'); 
+        background-repeat: no-repeat; 
+        background-size: 50% 100%; 
+        background-position: right;
+        background-attachment: fixed;
+    }
+
+    .feed-comments > div {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
 </style>
 
-<h1>@Model.Topic?.Title</h1>
-
 <div class="container-fluid">
-    <div class="m-sm-3 p-sm-3">
-        <div class="row" style="">
-            <div class="col-lg-3 d-none d-lg-block" style="border: 1px solid red;">
-                <div class="d-flex flex-column">
-                    <div>
-                        <p class="topic-page-link-button"><i class="fas fa-cubes"></i> Ask question</p>
-                    </div>
-
-                    <div>
-                        <p class="topic-page-link-button"><i class="fas fa-cubes"></i> All topics</p>
-                    </div>
-
-                    <div>
-                        <p class="topic-page-link-button-active"><i class="fas fa-question-circle"></i> My questions</p>
-                    </div>
-
-                    <div>
-                        <p class="topic-page-link-button"><i class="fas fa-envelope-open-text"></i> My messages <span class="badge badge-primary">in development</span></p>
-                    </div>
-
-                    <div>
-                        <p class="topic-page-link-button"><i class="fas fa-users"></i> Psychologists</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-9" style="background-color: blanchedalmond">
-                <div class="col-sm-12 col-md-11 col-lg-10 mx-auto" style="background-color: aquamarine">
+    <div class="row feed-background-image">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 mx-auto">
+            <div class="m-2 p-2 my-5 py-2" style="background-color: rgba(255, 245, 200, 0);">
+                <div class="col-sm-12 col-md-11 col-lg-10 mx-auto" style="background-color: rgba(255, 255, 255, 0.8);">
                     <div class="py-2">
-                        <div class="my-2" style="background-color: lightyellow">
-                            <h4 style="font-weight: 600;">Best way to export data in xml format and csv format</h4>
-                        </div>
-                        <div class="my-4" style="background-color: lightgoldenrodyellow">
-                            <p>Im looking for the best way to let users export and download data in xml format</p>
+                        <div class="my-2">
+                            <h3 style="font-weight: 600;">Best way to export data in xml format and csv format</h3>
                         </div>
                         <div class="my-4">
-                            sds
+                            <div class="d-flex">
+                                <div class="m-2">
+                                    <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
+                                </div>
+                                <div class="m-2 mx-4">
+                                    <div class="d-flex flex-column flex-wrap">
+                                        <p class="font-weight-bold m-0">Denys Vyskrebets</p>
+                                        <p class="m-0">4 days ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-2">
+                            <p>Im looking for the best way to let users export and download data in xml format</p>
+                        </div>
+                        <div class="mt-4 mx-2">
+                            <button class="btn" style="width: 50px; height: 50px; border-radius: 60px; background-color: #4a2aeb;">
+                                <i class="far fa-heart" style="font-size: 24px; margin: 0px; padding: 0px; color: white;"></i>
+                            </button>
+                            <span class="mx-4" style="font-weight: bold;">4 likes</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-11 col-lg-10 mx-auto">
+                <div class="col-sm-12 col-md-11 col-lg-10 mx-auto" style="background-color: rgba(255, 255, 255, 0.8);">
                     <div class="py-2 mt-5 mb-3">
                         <h4>12 Answers</h4>
                     </div>
                     <hr />
                 </div>
 
-                @*@if (Model.Answers.Count == 0)
-                {
-                    <div class="col-sm-12 col-md-11 col-lg-10 mx-auto">
-                        <div class="py-2">
-                            <p>Unfortunately there're no answers for now</p>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="col-sm-12 col-md-11 col-lg-10 mx-auto">
-                        @foreach (var answer in Model.Answers)
-                        {
-                            <div class="py-2">
-                                <div class="my-4" style="background-color: lightgoldenrodyellow">
-                                    <p>Im looking for the best way to let users export and download data in xml format</p>
+                <div class="col-sm-12 col-md-11 col-lg-10 p-0 mx-auto feed-comments">
+                    <div class="p-2 my-2">
+                        <div class="my-2">
+                            <div class="d-flex">
+                                <div class="m-2">
+                                    <img src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" />
                                 </div>
-                                <div class="my-4">
-                                    sds
+                                <div class="m-2 mx-4">
+                                    <div class="d-flex flex-column flex-wrap">
+                                        <p class="font-weight-bold m-0">Denys Vyskrebets</p>
+                                        <p class="m-0">4 days ago</p>
+                                    </div>
+                                </div>
+                                <div class="m-2 ">
+                                    <span class="badge badge-pill badge-success p-2">Best answer</span>
                                 </div>
                             </div>
-                        }
-
-                    </div>
-                }*@
-
-                <div class="col-sm-12 col-md-11 col-lg-10 mx-auto">
-                    <div class="py-2">
-                        <div class="my-4" style="background-color: lightgoldenrodyellow">
-                            <p>Im looking for the best way to let users export and download data in xml format</p>
                         </div>
-                        <div class="my-4">
-                            sds
+                        <div class="my-2">
+                            <p>
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
+                                mollit anim id est laborum."
+                            </p>
+                        </div>
+                        <div class="my-2">
+                            <p>
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
+                                mollit anim id est laborum."
+                            </p>
                         </div>
                     </div>
+
+                    <div class="p-2 my-2">
+                        <div class="my-2">
+                            <div class="d-flex">
+                                <div class="m-2">
+                                    <img src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" />
+                                </div>
+                                <div class="m-2 mx-4">
+                                    <div class="d-flex flex-column flex-wrap">
+                                        <p class="font-weight-bold m-0">Denys Vyskrebets</p>
+                                        <p class="m-0">4 days ago</p>
+                                    </div>
+                                </div>
+                                <div class="m-2 ">
+                                    <span class="badge badge-pill badge-success p-2">Best answer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-2">
+                            <p>
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
+                                mollit anim id est laborum."
+                            </p>
+                        </div>
+                        <div class="my-2">
+                            <p>
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
+                                mollit anim id est laborum."
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
+
+<template id="answer-template">
+    <div class="p-2 my-2">
+        <div class="my-2">
+            <div class="d-flex">
+                <div class="m-2">
+                    <img src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" />
+                </div>
+                <div class="m-2 mx-4">
+                    <div class="d-flex flex-column flex-wrap">
+                        <p class="font-weight-bold m-0">Denys Vyskrebets</p>
+                        <p class="m-0">4 days ago</p>
+                    </div>
+                </div>
+                <div class="m-2 ">
+                    <span class="badge badge-pill badge-success p-2">Best answer</span>
+                </div>
+            </div>
+        </div>
+        <div class="my-2">
+            <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
+                mollit anim id est laborum."
+            </p>
+        </div>
+        <div class="my-2">
+            <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
+                mollit anim id est laborum."
+            </p>
+        </div>
+    </div>
+</template>
