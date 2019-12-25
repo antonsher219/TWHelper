@@ -108,35 +108,5 @@ namespace TWHelp.API
 
             return Ok(result);
         }
-
-        [HttpGet("topics/get/{from}/{to}")]
-        public ActionResult<List<ForumVideoPreviewDTO>> GetLastUploadedVideos(int count)
-        {
-            if(count < 1)
-            {
-                return BadRequest("count can be negative or zero");
-            }
-
-            var videos = _context.ForumVideos
-                .OrderBy(v => v.Created)
-                .Take(count);
-
-            var result = new List<ForumVideoPreviewDTO>();
-
-            foreach(ForumVideo video in videos)
-            {
-                result.Add(new ForumVideoPreviewDTO()
-                {
-                    User = video.Uploader,
-                    Created = video.Created,
-                    Description = video.Description,
-                    Name = video.Name,
-                    Tags = video.Tags,
-                    ForumVideoId = video.Id
-                });
-            }
-
-            return Ok(result);
-        }
     }
 }

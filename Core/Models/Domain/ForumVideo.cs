@@ -21,6 +21,6 @@ namespace Domain.Models.Domain
         public DateTime Created { get; set; }
 
         [NotMapped]
-        public List<string> Tags => TagsString?.Split(' ').ToList() ?? new List<string>();
+        public List<string> Tags => TagsString?.Split(',').ToList() ?? new List<string>();
     }
 }

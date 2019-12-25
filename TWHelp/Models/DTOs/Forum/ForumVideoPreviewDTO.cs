@@ -12,7 +12,8 @@ namespace TWHelp.Models.DTOs.Forum
         public string Name { get; set; }
         public string Description { get; set; }
         public List<string> Tags { get; set; }
-        public DateTime Created { get; set; }
-        public User User { get; set; }
+        public string CreatedDateString { get; set; }
+        public string CreatedTimeString { get; set; }
+        public string UserName { get; set; }
     }
 }
