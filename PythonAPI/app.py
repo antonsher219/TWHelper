@@ -25,6 +25,7 @@ def on_post():
     twitter_plots = TwitterPlots()
     happiness_rate = twitter_plots.make_plots(twitter_data, twitter_nick)
 
+    # Не знаю зачем это
     return happiness_rate[0].to_json()
 
 @app.route('/test', methods=['GET'])

@@ -1,5 +1,5 @@
 from tweet import Tweetpy
-from twitter_classifier import TwitterClassifier
+from twitter_classifier import TwitterClassifier, SentimentClassifier
 from response_dto import ResponseDTO
 
 import re
@@ -8,40 +8,55 @@ import json
 
 class TwitterPrediction:
     async def get_predictions(self, text_tweets, websocket):
-        classifier = TwitterClassifier()
+        binary_classifier = TwitterClassifier()
+        sentiment_classifier = SentimentClassifier()
         await websocket.send(ResponseDTO("status", "message", "data parsed").to_json())
-        
-        text_tweets['tokenized'] = classifier.preprocess(text_tweets.Text.values)
-        text_tweets['prediction'] = classifier.predict(text_tweets.tokenized.values, preprocess=False)
+        np.random.seed(42)
+        text_tweets = pd.read_csv(tweets_path, delimiter='\t')
+        text_tweets['tokenized'] = binary_classifier.preprocess(text_tweets.Text.values)
+        text_tweets['prediction'] = binary_classifier.predict(text_tweets.tokenized.values, preprocess=False)
         text_tweets['class'] = text_tweets.prediction.apply(lambda x: 'Positive' if x > 0.5 else 'Negative')
-            
-        text_tweets_sorted = text_tweets.sort_values('prediction')
+        text_tweets['sentiment'] = sentiment_classifier.predict(text_tweets.Text)
+        # text_tweets.to_csv(f'{output_path}/predictions.csv', sep='\t', index=False)
+
+        examples = text_tweets.sort_values('prediction').iloc[[0, -1]]
+        sentiments = ['love', 'sadness', 'anger', 'happiness', 'neutral']
+        for sentiment in sentiments:
+            example = text_tweets.loc[text_tweets.sentiment == sentiment]
+            if example.shape[0] > 0:
+                examples = examples.append(example.iloc[0])
+
+        examples.drop_duplicates('Text', inplace=True)
+        # examples.to_csv(f'{output_path}/examples.csv', sep='\t', index=False)
+
         worst_tweet = {
-            'text': text_tweets_sorted['Text'][0],
-            'date': str(text_tweets_sorted['Date'][0]),
-            'prediction': str(text_tweets_sorted['prediction'][0])
-        };
+            'text': examples['Text'].iloc[0],
+            'date': str(examples['Date'].iloc[0]),
+            'prediction': str(examples['prediction'].iloc[0]),
+            'class': str(examples['class'].iloc[0]),
+            'sentiment': str(examples['sentiment'].iloc[0]),
+        }
         
         best_tweet = {
-            'text': text_tweets_sorted['Text'].iloc[-1], 
-            'date': str(text_tweets_sorted['Date'].iloc[-1]), 
-            'prediction': str(text_tweets_sorted['prediction'].iloc[-1])
+            'text': text_tweets_sorted['Text'].iloc[1], 
+            'date': str(text_tweets_sorted['Date'].iloc[1]), 
+            'prediction': str(text_tweets_sorted['prediction'].iloc[1]),
+            'class': str(examples['class'].iloc[1]),
+            'sentiment': str(examples['sentiment'].iloc[1]),
         }
 
         await websocket.send(ResponseDTO("data", "top_negative_tweet", json.dumps(worst_tweet)).to_json())
         await websocket.send(ResponseDTO("data", "top_positive_tweet", json.dumps(best_tweet)).to_json())
-    
-        print(text_tweets)
 
-        words = classifier.preprocess([' '.join(text_tweets.Text.values)]).flatten()
-        score = classifier.predict(words).flatten()
+        words = binary_classifier.preprocess([' '.join(text_tweets.Text.values)]).flatten()
+        score = binary_classifier.predict(words).flatten()
         res = list(zip(words, score))
 
-        negative = list(filter(lambda x: x[1] <= 0.25, res))
+        negative = list(filter(lambda x: x[1] <= 0.25, res))   
         positive = list(filter(lambda x: x[1] > 0.75, res))
-        top_neg = sorted(Counter(negative).items(), key=lambda item: -item[1])[:10]
-        top_pos = sorted(Counter(positive).items(), key=lambda item: -item[1])[:10]
-
+        top_neg = sorted(Counter(negative).items(), key=lambda item: -item[1])
+        top_pos = sorted(Counter(positive).items(), key=lambda item: -item[1])
+       
         top_pos_json = []
         for item in top_pos:
             top_pos_json.append({'term': item[0][0], 'rate': str(item[0][1]), 'count': item[1]})
