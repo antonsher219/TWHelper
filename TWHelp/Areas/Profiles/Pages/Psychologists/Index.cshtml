@@ -1,51 +1,95 @@
 ﻿@page
 @model TWHelp.Areas.Profiles.Pages.Psychologists.IndexModel
 
+<style>
+    .page-background-image {
+        background-image: url('../images/psychologist-background.svg');
+        background-repeat: no-repeat;
+        background-size: 50% 100%;
+        background-position: bottom right;
+        background-attachment: fixed;
+    }
+</style>
+
 <div class="container-fluid">
-    <div class="row d-flex flex-column">
-        <div class="mx-auto">
-            <h2 class="text-center">Psychologists page</h2>
-        </div>
+    <div class="row page-background-image ">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 mx-auto">
+            <div class="my-5 py-5">
+                <div>
+                    <div class="text-center">
+                        <h2>Psychologists page</h2>
+                    </div>
+                    <div>
+                        <form class="d-flex justify-content-between" onsubmit="searchForPsycoProfiles(event)" id="search-form">
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="search-text" placeholder="John Johnson" list="psychoResults" oninput="autocompleteForPsychoProfiles()">
+                                @*content for autocomplete*@
+                                <datalist id="psychoResults">
+                                </datalist>
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary mb-2">Search</button>
+                            </div>
+                        </form>
+                    </div>
 
-        <div class="col-12 col-sm-11 col-md-10 mx-auto my-3">
-            <div class="mx-3">
-                <label for="search">Psychologist name and surname</label>
-            </div>
-            <form class="d-flex justify-content-between" onsubmit="searchForPsycoProfiles(event)" id="search-form">
-                <div class="col-9">
-                    <input type="text" class="form-control" id="search-text" placeholder="John Johnson" list="psychoResults" oninput="autocompleteForPsychoProfiles()">
-                    @*content for autocomplete*@
-                    <datalist id="psychoResults">
-                    </datalist>
                 </div>
-                <div class="col-3">
-                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+
+                <div class="my-3 p-2">
+                    <p class="font-weight-bold text-center">List of psychologists</p>
+                    <div class="d-flex flex-column p-1 my-3" id="psycho-container" style="background-color: #f2f2f2">
+                        @* add here content from js *@
+
+
+                        <div id="psycho-div" class="m-2 p-2" style="background-color: white">
+                            <div class="m-2 d-flex justify-content-between">
+                                <h5>tets@gmail.com</h5>
+                                <span class="badge badge-success p-2">Confirmed status</span>
+                            </div>
+
+                            <div class="d-flex">
+                                <div>
+                                    <img id="psycho-image" class="rounded-circle m-2" src="~/images//profile-preview/psychologist-profile-10.svg" width="150" height="150">
+                                </div>
+                                <div>
+                                    <p class="m-0">Degree: <span id="psycho-degree"></span></p>
+                                    <p class="m-0">Area of experetise: <span id="psycho-expertise-area"></span></p>
+                                    <p class="m-0">Psycho work experience: <span id="psycho-experience"></span></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p>Is <span>26</span> years old</p>
+                            </div>
+
+                            <div>
+                                <p class="mb-0">
+                                    <i id="psycho-like-like" class="far fa-heart" style="color: red; font-size: 26px;"></i> <span id="psycho-likes">29</span> likes
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('previous')">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('1')">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('2')">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('3')">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('next')">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </form>
-        </div>
 
-        <div class="col-12 col-sm-11 col-md-10 mx-auto">
-            <p class="font-weight-bold text-center">List of psychologists</p>
-            <div class="d-flex flex-column" id="psycho-container">
-                @* add here content from js *@
-            </div>
-
-            <div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('previous')">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('1')">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('2')">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('3')">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="changeCurrentPsychoPage('next')">Next</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
+
 </div>
 
-<template id="template">
+<template id="template__">
     <div id="psycho-div" class="m-2 p-2" style="background-color: #fafafa">
         <div class="d-flex flex-column flex-md-row ">
             <div>
@@ -87,19 +131,52 @@
     </div>
 </template>
 
+<template id="template">
+    <div id="psycho-div" class="m-2 p-2" style="background-color: white">
+        <div class="m-2 d-flex justify-content-between">
+            <h5 id="psycho-name">tets@gmail.com</h5>
+
+            <div id="psycho-status">
+                <span class="badge badge-success p-2">Confirmed status</span>
+            </div>
+        </div>
+
+        <div class="d-flex">
+            <div>
+                <img id="psycho-image" class="rounded-circle m-2" src="~/images//profile-preview/psychologist-profile-10.svg" width="150" height="150">
+            </div>
+            <div>
+                <p class="m-0">Degree: <span id="psycho-degree"></span></p>
+                <p class="m-0">Area of experetise: <span id="psycho-expertise-area"></span></p>
+                <p class="m-0">Psycho work experience: <span id="psycho-experience"></span></p>
+            </div>
+        </div>
+
+        <div>
+            <p>Is <span id="psycho-age">26</span> years old</p>
+        </div>
+
+        <div>
+            <p class="mb-0">
+                <i id="psycho-like-like" class="far fa-heart" style="color: red; font-size: 26px;"></i> <span id="psycho-likes">29</span> likes
+            </p>
+        </div>
+    </div>
+</template>
+
 <style>
     #psycho-like-like {
-        transition: all 0.2s ease-in-out; 
+        transition: all 0.2s ease-in-out;
     }
 
-    #psycho-like-like:hover {
-        transform: scale(1.5, 1.5);
-        color: orange;
-    }
+        #psycho-like-like:hover {
+            transform: scale(1.5, 1.5);
+            color: orange;
+        }
 </style>
 
 <script>
-    const webRoot = 'http://' + '@Model.WebRoot';
+    const webRoot = '@Model.WebRoot';
     const isPsycho = '@Model.IsUserPsycho';
 
     window.onload = function () {
@@ -239,6 +316,11 @@
         })
     }
 
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max)) + 1;
+    }
+
+
     function _displayItems(data) {
         const container = document.getElementById('psycho-container');
         container.innerHTML = '';
@@ -247,7 +329,8 @@
             let newDiv = document.importNode(template.content, true);
 
             newDiv.getElementById('psycho-name').textContent = item.nickName;
-            newDiv.getElementById('psycho-image').src = item.avatarImage == null ? "/images/user-profile.png" : "data:image/png;base64," + item.avatarImage;
+            newDiv.getElementById('psycho-image').src = '../images/profile-preview/psychologist-profile-' + getRandomInt(9) + ".svg";
+            //newDiv.getElementById('psycho-image').src = item.avatarImage == null ?  '../images/profile-preview/profile-preview-' + getRandomInt(9) + ".svg" : "data:image/png;base64," + item.avatarImage;
             newDiv.getElementById('psycho-age').textContent = item.age;
             newDiv.getElementById('psycho-degree').textContent = item.education;
             newDiv.getElementById('psycho-expertise-area').textContent = item.areaOfExpertise;
@@ -255,10 +338,10 @@
             newDiv.getElementById('psycho-likes').textContent = item.likes;
 
             if (item.isAccountActivated == 'true') {
-                newDiv.getElementById('psycho-confirm').textContent = 'yes';
+                newDiv.getElementById('psycho-status').innerHTML = '<span class="badge badge-success p-2">Confirmed status</span>';
             }
             else {
-                newDiv.getElementById('psycho-confirm').textContent = 'no';
+                newDiv.getElementById('psycho-status').innerHTML = '<span class="badge badge-warning p-2">Status not confirmed</span>';
             }
 
             if (item.isCurrentUserSetLike) {

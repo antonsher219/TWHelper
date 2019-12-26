@@ -10,77 +10,82 @@
     }
 </style>*@
 
-<h1>Register</h1>
+<div class="container">
 
-<div class="row">
-    <div class="col-md-4 p-3">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-check">
-                <input asp-for="Input.IsPsychologist" type="checkbox" class="form-check-input" onchange="ChangePsychologistsFormVisibility();">
-                <label asp-for="Input.IsPsychologist" class="form-check-label">I am a psychologist</label>
-                <p class="small">As a psychologist you will have to provide additional information about your degree and prove your knowledges</p>
-            </div>
-
-            @*form for psychologists*@
-            <div class="d-none" id="psycho_form">
-                <div class="form-group">
-                    <label asp-for="Input.Education"></label>
-                    <input asp-for="Input.Education" class="form-control" />
-                    <span asp-validation-for="Input.Education" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.AreaOfExpertise"></label>
-                    <input asp-for="Input.AreaOfExpertise" class="form-control" />
-                    <span asp-validation-for="Input.AreaOfExpertise" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.WorkExperience"></label>
-                    <input asp-for="Input.WorkExperience" class="form-control" />
-                    <span asp-validation-for="Input.WorkExperience" class="text-danger"></span>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary box">Register</button>
-        </form>
+    <div class="my-3 pt-4">
+        <h1>Register</h1>
     </div>
+    <div class="row">
+        <div class="col-md-4 p-3">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-check">
+                    <input asp-for="Input.IsPsychologist" type="checkbox" class="form-check-input" onchange="ChangePsychologistsFormVisibility();">
+                    <label asp-for="Input.IsPsychologist" class="form-check-label">I am a psychologist</label>
+                    <p class="small">As a psychologist you will have to provide additional information about your degree and prove your knowledges</p>
+                </div>
 
-    @*<div class="col-md-6 mx-auto my-sm-4 my-md-0 p-3">
-        <div class="w-100 h-100">
-            <h3>Psycho-Help</h3>
+                @*form for psychologists*@
+                <div class="d-none" id="psycho_form">
+                    <div class="form-group">
+                        <label asp-for="Input.Education"></label>
+                        <input asp-for="Input.Education" class="form-control" />
+                        <span asp-validation-for="Input.Education" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.AreaOfExpertise"></label>
+                        <input asp-for="Input.AreaOfExpertise" class="form-control" />
+                        <span asp-validation-for="Input.AreaOfExpertise" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.WorkExperience"></label>
+                        <input asp-for="Input.WorkExperience" class="form-control" />
+                        <span asp-validation-for="Input.WorkExperience" class="text-danger"></span>
+                    </div>
+                </div>
 
-            <div>
-                <p>This is a website that gives psychological assistance.</p>
-
-                <h5>Main features:</h5>
-
-                <ul>
-                    <li>Testing system</li>
-                    <li>Social media analysis</li>
-                    <li>Personal recommendations from a specialist</li>
-                    <li>Question and answer platform</li>
-                </ul>
-            </div>
+                <button type="submit" class="btn btn-primary box">Register</button>
+            </form>
         </div>
-    </div>*@
+
+        @*<div class="col-md-6 mx-auto my-sm-4 my-md-0 p-3">
+            <div class="w-100 h-100">
+                <h3>Psycho-Help</h3>
+
+                <div>
+                    <p>This is a website that gives psychological assistance.</p>
+
+                    <h5>Main features:</h5>
+
+                    <ul>
+                        <li>Testing system</li>
+                        <li>Social media analysis</li>
+                        <li>Personal recommendations from a specialist</li>
+                        <li>Question and answer platform</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+    </div>
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

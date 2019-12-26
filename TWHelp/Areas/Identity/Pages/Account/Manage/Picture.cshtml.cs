@@ -34,7 +34,7 @@ namespace TWHelp.Areas.Identity.Pages.Account.Manage
             }
 
             //if avatar pic is null then use dafault pic
-            ConvertedPhoto = user.AvatarImage == null ? "/img/user-profile.png" : $"data:image/gif;base64,{Convert.ToBase64String(user.AvatarImage)}";
+            ConvertedPhoto = user.AvatarImage == null ? "/images/user-profile.png" : $"data:image/gif;base64,{Convert.ToBase64String(user.AvatarImage)}";
 
             ViewData["IsPsychologist"] = user.IsPsychologist.ToString();
             ViewData["IsAccountActivated"] = user.IsAccountActivated.ToString();

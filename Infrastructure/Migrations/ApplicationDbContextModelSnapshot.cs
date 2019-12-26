@@ -19,49 +19,32 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Domain.Models.Domain.Answer", b =>
+            modelBuilder.Entity("Domain.Models.Domain.ForumVideo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content");
+                    b.Property<DateTime>("Created");
 
-                    b.Property<int>("Note");
+                    b.Property<string>("Description");
 
-                    b.Property<int?>("QuestionId");
+                    b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.Property<string>("TagsString");
 
-                    b.HasIndex("QuestionId");
+                    b.Property<long>("UploaderId");
 
-                    b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("Domain.Models.Domain.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content");
-
-                    b.Property<DateTime>("CreateTime");
-
-                    b.Property<long?>("CreatorId");
-
-                    b.Property<int?>("TopId");
+                    b.Property<string>("VideoFilePath");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                    b.HasIndex("UploaderId");
 
-                    b.HasIndex("TopId");
-
-                    b.ToTable("Comments");
+                    b.ToTable("ForumVideos");
                 });
 
-            modelBuilder.Entity("Domain.Models.Domain.Like", b =>
+            modelBuilder.Entity("Domain.Models.Domain.ProfileLike", b =>
                 {
                     b.Property<long>("UserId");
 
@@ -71,24 +54,55 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("PsychologistId");
 
-                    b.ToTable("Likes");
+                    b.ToTable("ProfileLikes");
                 });
 
-            modelBuilder.Entity("Domain.Models.Domain.Question", b =>
+            modelBuilder.Entity("Domain.Models.Domain.PsychoApproveRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content");
+                    b.Property<DateTime>("Created");
 
-                    b.Property<int?>("TestId");
+                    b.Property<string>("DegreeDiplomaFilePath");
+
+                    b.Property<string>("FacebookLink");
+
+                    b.Property<string>("LinkedInLink");
+
+                    b.Property<string>("PhDDiplomaFilePath");
+
+                    b.Property<long>("PsychoId");
+
+                    b.Property<string>("ResearchDiplomaFilePath");
+
+                    b.Property<string>("TwitterLink");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TestId");
+                    b.HasIndex("PsychoId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("PsychoApproveRequests");
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountKey");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("SurveyJson");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Surveys");
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.Test", b =>
@@ -97,14 +111,14 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("CreatorId");
+                    b.Property<long>("CreatorId");
 
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<string>("TestUrl");
+                    b.Property<string>("KeyWords");
 
-                    b.Property<string>("Theme")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150);
 
@@ -115,29 +129,63 @@ namespace Infrastructure.Migrations
                     b.ToTable("Tests");
                 });
 
-            modelBuilder.Entity("Domain.Models.Domain.Topic", b =>
+            modelBuilder.Entity("Domain.Models.Domain.TestQuestion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(2000);
+                    b.Property<int>("OrderNumber");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<string>("Question");
 
-                    b.Property<long?>("CreatorId");
-
-                    b.Property<string>("Header")
-                        .IsRequired()
-                        .HasMaxLength(150);
+                    b.Property<int>("TestId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                    b.HasIndex("TestId");
 
-                    b.ToTable("Topics");
+                    b.ToTable("TestQuestions");
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.TestQuestionOption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsAnswer");
+
+                    b.Property<string>("Option");
+
+                    b.Property<int>("TestQuestionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestQuestionId");
+
+                    b.ToTable("TestQuestionOptions");
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.TestResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content");
+
+                    b.Property<int>("TestId");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TestResults");
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.TopicAnswer", b =>
@@ -151,6 +199,10 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("Created");
+
+                    b.Property<bool>("IsRigthAnswer");
+
+                    b.Property<byte[]>("Picture");
 
                     b.Property<int>("TopicId");
 
@@ -174,6 +226,31 @@ namespace Infrastructure.Migrations
                     b.HasIndex("TopicId");
 
                     b.ToTable("TopicLikes");
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.TopicQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(2000);
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<long>("CreatorId");
+
+                    b.Property<string>("Header")
+                        .IsRequired()
+                        .HasMaxLength(150);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("TopicQuestions");
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.TwitterUserStatistic", b =>
@@ -387,25 +464,15 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Domain.Models.Domain.Answer", b =>
+            modelBuilder.Entity("Domain.Models.Domain.ForumVideo", b =>
                 {
-                    b.HasOne("Domain.Models.Domain.Question", "Question")
+                    b.HasOne("Domain.Models.Identity.User", "Uploader")
                         .WithMany()
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("UploaderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Domain.Models.Domain.Comment", b =>
-                {
-                    b.HasOne("Domain.Models.Identity.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
-
-                    b.HasOne("Domain.Models.Domain.Topic", "Top")
-                        .WithMany()
-                        .HasForeignKey("TopId");
-                });
-
-            modelBuilder.Entity("Domain.Models.Domain.Like", b =>
+            modelBuilder.Entity("Domain.Models.Domain.ProfileLike", b =>
                 {
                     b.HasOne("Domain.Models.Identity.User", "Psychologist")
                         .WithMany()
@@ -418,25 +485,49 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Domain.Models.Domain.Question", b =>
+            modelBuilder.Entity("Domain.Models.Domain.PsychoApproveRequest", b =>
                 {
-                    b.HasOne("Domain.Models.Domain.Test", "Test")
+                    b.HasOne("Domain.Models.Identity.User", "Psycho")
                         .WithMany()
-                        .HasForeignKey("TestId");
+                        .HasForeignKey("PsychoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.Test", b =>
                 {
                     b.HasOne("Domain.Models.Identity.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorId");
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Domain.Models.Domain.Topic", b =>
+            modelBuilder.Entity("Domain.Models.Domain.TestQuestion", b =>
                 {
-                    b.HasOne("Domain.Models.Identity.User", "Creator")
+                    b.HasOne("Domain.Models.Domain.Test", "Test")
                         .WithMany()
-                        .HasForeignKey("CreatorId");
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.TestQuestionOption", b =>
+                {
+                    b.HasOne("Domain.Models.Domain.TestQuestion", "TestQuestion")
+                        .WithMany()
+                        .HasForeignKey("TestQuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.TestResult", b =>
+                {
+                    b.HasOne("Domain.Models.Domain.Test", "Test")
+                        .WithMany()
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Domain.Models.Identity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Domain.Models.Domain.TopicAnswer", b =>
@@ -444,9 +535,9 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.Identity.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Domain.Models.Domain.Topic", "Topic")
+                    b.HasOne("Domain.Models.Domain.TopicQuestion", "Topic")
                         .WithMany()
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -454,7 +545,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Domain.TopicLike", b =>
                 {
-                    b.HasOne("Domain.Models.Domain.Topic", "Topic")
+                    b.HasOne("Domain.Models.Domain.TopicQuestion", "Topic")
                         .WithMany()
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -463,6 +554,14 @@ namespace Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Domain.Models.Domain.TopicQuestion", b =>
+                {
+                    b.HasOne("Domain.Models.Identity.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>

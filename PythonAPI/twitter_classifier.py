@@ -13,6 +13,10 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,LSTM,Dropout
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from sklearn.preprocessing import LabelEncoder
+import re
+from collections import Counter
+from sklearn.metrics import confusion_matrix,accuracy_score,classification_report
+from simpletransformers.classification import ClassificationModel
 
 
 class TwitterClassifier:
@@ -56,10 +60,13 @@ class TwitterClassifier:
     def preprocess(self, text_array):
         result = []
         for text in text_array:
-            tweet = re.sub('@\S+|https?:\S+|http?:\S|[^A-Za-z0-9]+', ' ', text)
-            tweet = tweet.lower()
-            tweet = tweet.split()
-            result.append([word for word in tweet if not word in self.stop_words])
+            try:
+                tweet = re.sub('@\S+|https?:\S+|http?:\S|[^A-Za-z0-9]+', ' ', text)
+                tweet = tweet.lower()
+                tweet = tweet.split()
+                result.append([word for word in tweet if not word in self.stop_words])
+            except:
+                result.append([''])
 
         return np.array(result)
 
@@ -73,5 +80,40 @@ class TwitterClassifier:
         return self.model.predict(self.to_vector(text_array))
 
 
+class SentimentClassifier:
+
+    def __init__(
+        self, model_path='data/albert_4',
+        label_encoder_path='data/label_encoder.pkl'
+    ):
+        self.label_encoder = joblib.load(label_encoder_path)
+        self.prepare_model(model_path)
+
+    def prepare_model(self, model_path='roberta-base'):
+        self.model = ClassificationModel(
+            'roberta', 
+            model_path,
+            num_labels=5,
+            use_cuda=False,
+            args={
+                "save_steps": 500,
+                'overwrite_output_dir': True,
+                'reprocess_input_data': True,
+                'num_train_epochs': 3
+            }
+        )
+    
+    def preprocess(self, text_series):
+        text_series.fillna("", inplace=True)
+        return text_series.astype(str).str.replace('@\S+|https?:\S+|http?:\S|[^A-Za-z0-9]+', ' ').str.lower()
+
+    def predict(self, text_series):
+        input_ = self.preprocess(text_series)
+        predictions, raw_output = self.model.predict(input_)
+
+        return self.label_encoder.inverse_transform(predictions)
+
+
 if __name__ == '__main__':
-    classifier = TwitterClassifier()
+    binary_classifier = TwitterClassifier()
+    sentiment_classifier = SentimentClassifier()

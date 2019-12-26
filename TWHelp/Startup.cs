@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using TWHelp.Models.Infrastructure;
 using System.Net.WebSockets;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace TWHelp
 {
@@ -42,6 +43,7 @@ namespace TWHelp
 
             services.AddDbContext<ApplicationDbContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                //options.UseNpgsql(Configuration["ConnectionStrings:Docker:PostgreSQL"]));
 
             services
                 .AddIdentity<User, IdentityRole<long>>(options =>
@@ -56,7 +58,11 @@ namespace TWHelp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<FormOptions>(x =>
+            {
+                x.ValueLengthLimit = int.MaxValue;
+                x.MultipartBodyLengthLimit = int.MaxValue;
+            });
 
             //note: it's not a default AuthenticationSchemes
             services
@@ -89,10 +95,8 @@ namespace TWHelp
                     facebookOptions.AppId = Configuration["Security:Tokens:FacebookLocal:AppId"];
                 });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            
+            services.AddTransient<IEmailSender, EmailSender>();
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options => 
@@ -112,10 +116,10 @@ namespace TWHelp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                //app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -124,6 +128,10 @@ namespace TWHelp
             app.UseMvc();
 
             //seed database
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (var context = scope.ServiceProvider.GetService<ApplicationDbContext>())
+                context.Database.EnsureCreated();
+
             ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }

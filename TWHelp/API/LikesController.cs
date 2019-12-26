@@ -36,11 +36,11 @@ namespace TWHelp.API
             if (user != null)
             {
                 List<long> likedProfilesIDs = _context
-                    .Likes
+                    .ProfileLikes
                     .Where(like => like.UserId == user.Id)
                     .Select(like => like.PsychologistId)
                     .Union(_context
-                            .Likes
+                            .ProfileLikes
                             .Where(like => like.PsychologistId == user.Id)
                             .Select(like => like.UserId))
                     .ToList();
@@ -79,13 +79,13 @@ namespace TWHelp.API
                     return BadRequest("only user can add likes to only psychologists");
                 }
 
-                Like like = new Like
+                ProfileLike like = new ProfileLike
                 {
                     UserId = user.Id,
                     PsychologistId = likedProfile.Id
                 };
 
-                await _context.Likes.AddAsync(like);
+                await _context.ProfileLikes.AddAsync(like);
                 await _context.SaveChangesAsync();
 
                 return Ok();
@@ -113,8 +113,8 @@ namespace TWHelp.API
                     return BadRequest("user not found");
                 }
 
-                Like like = _context
-                    .Likes
+                ProfileLike like = _context
+                    .ProfileLikes
                     .Where(l => l.UserId == user.Id && l.PsychologistId == likedProfile.Id)
                     .FirstOrDefault();
 
@@ -123,7 +123,7 @@ namespace TWHelp.API
                     return BadRequest("this user did not add like for this id user");
                 }
 
-                _context.Likes.Remove(like);
+                _context.ProfileLikes.Remove(like);
                 await _context.SaveChangesAsync();
 
                 return Ok();

@@ -1,0 +1,113 @@
+﻿@page
+@model TWHelp.Areas.Forum.Pages.PsychoTestsModel
+@{
+}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <div class="my-5 py-5">
+                <div style="background-color: lightcyan" id="surveys-area">
+                </div>
+
+                <div class="d-flex justify-content-between p-2">
+                    <button class="btn btn-primary m-1" onclick="pageBack()">Previous</button>
+                    <button class="btn btn-primary m-1" onclick="pageNext()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="template">
+    <div id="survey-container" class="m-3 p-3" style="background-color: #fafafa; background-color: white;">
+        <div class="p-2">
+            <h4 style=" font-weight: bold;" id="survey-name">Cool name with a lot of text and red color</h4>
+        </div>
+        <div class="d-flex flex-column flex-md-row ">
+            <div>
+                <div>
+                    <img id="survey-image" src="~/images/video-preview/video-preview-2.svg" alt="profile-image" class="" width="200" height="200">
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-wrap flex-lg-nowrap p-2">
+                <div>
+                    <p id="survey-description">
+                        A lot of text about this fancy video and how it can help you.
+                        And also some description of it contents and anythin else.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+                <div>
+                    <a class="btn btn-outline-success" id="survey-link" href="#">Take it now</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            findVideos();
+        }
+
+        const webRoot = '@Model.WebRoot';
+
+        let from = 0;
+        let to = 10;
+
+        async function findVideos() {
+            await fetch(webRoot + '/api/forum/surveys/last?from=' + from + '&to=' + to, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => _displaySurveys(data))
+                .catch(error => console.error('Unable to get items.', error));
+        }
+
+        function pageBack() {
+            if (from >= 10) {
+                from -= 10;
+                to -= 10;
+
+                findVideos();
+            }
+        }
+
+        function pageNext() {
+            from += 10;
+            to += 10;
+
+            findVideos();
+        }
+
+        function getRandomInt(max) {
+          return Math.floor(Math.random() * Math.floor(max)) + 1;
+        }
+
+        function _displaySurveys(data) {
+            let container = document.getElementById('surveys-area');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                let newDiv = document.importNode(template.content, true);
+
+                newDiv.getElementById('survey-name').textContent = item.name;
+                newDiv.getElementById('survey-description').textContent = item.description;
+                newDiv.getElementById('survey-link').href = "/Forum/TakeTest?surveyId=" + item.id;
+                newDiv.getElementById('survey-image').src = '../images/survey-preview/survey-preview-' + getRandomInt(9) + ".svg";
+
+                container.append(newDiv);
+            })
+        }
+
+        
+
+    </script>
+}

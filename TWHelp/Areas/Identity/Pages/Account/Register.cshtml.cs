@@ -98,7 +98,7 @@ namespace TWHelp.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     Nickname = Input.Email,
                     Age = 18,
-                    AvatarImage = System.IO.File.ReadAllBytes("wwwroot/img/user-profile.png"),
+                    AvatarImage = System.IO.File.ReadAllBytes("wwwroot/images/user-profile.png"),
                     
                     IsPsychologist = Input.IsPsychologist,
                     Education = Input.Education,

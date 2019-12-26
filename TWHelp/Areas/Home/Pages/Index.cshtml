@@ -4,10 +4,40 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div style="height:calc(100vh - 119px); background: #f2f2f2; z-index:-1;" class="mx-auto">
-    <div style="text-align:center; margin-bottom: 0%; background: #f2f2f2;">
-        <h1 class="display-4">Welcome</h1>
+@section Header {
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+}
 
-        <p>Check your mental condition <a href="https://docs.microsoft.com/aspnet/core">here</a>.</p>
+<style>
+    h1, h2, h3, h4, h5, h6, p {
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .page-background-image {
+        background-image: url('../images/index-background.svg'); 
+        background-repeat: no-repeat; 
+        background-size: 50% 100%; 
+        background-position: right;
+        background-attachment: fixed;
+    }
+</style>
+
+<div class="container-fluid p-0" style="min-height: 670px;">
+    <div class="row page-background-image mh-100 p-0" style="min-height: 670px;  background-color: lightcoral">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <div class="my-5 py-5">
+                <div>
+                    <h2>TWHelp</h2>
+                    <h2>Psychological help is closer than you think.</h2>
+                </div>
+            </div>
+
+            <div class="my-5 py-5">
+                <div>
+                    <a class="btn btn-warning" asp-area="Analytics" asp-page="/Index">Get started</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

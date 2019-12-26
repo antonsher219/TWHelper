@@ -305,6 +305,10 @@
               "target": "Package",
               "version": "[2.2.4, )"
             },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Sendgrid": {
               "target": "Package",
               "version": "[9.12.0, )"

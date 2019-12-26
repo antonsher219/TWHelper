@@ -25,12 +25,17 @@ def on_post():
     twitter_plots = TwitterPlots()
     happiness_rate = twitter_plots.make_plots(twitter_data, twitter_nick)
 
+    # Не знаю зачем это
     return happiness_rate[0].to_json()
+
+@app.route('/test', methods=['GET'])
+def on_post_test():
+    return "test"
 
 #waitress-serve --port=5000 Falcon:app
 
 from waitress import serve
-serve(app, host='127.0.0.1', port=5000, channel_timeout=10000)
+serve(app, host='0.0.0.0', port=5000, channel_timeout=10000)
 
 if __name__ == "__main__":
     print('sd')

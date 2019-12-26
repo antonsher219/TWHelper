@@ -1,0 +1,74 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity;
+@model TWHelp.Areas.Profiles.Pages.Admin.RolesModel
+@{
+}
+
+<style>
+    .size {
+        white-space: nowrap; /* Отменяем перенос текста */
+        overflow: hidden; /* Обрезаем содержимое */
+        text-overflow: ellipsis; /* Многоточие */
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <div class="my-5">
+                <h3>Roles</h3>
+                <div>
+                    <table class="col-12">
+                        <thead class="col-12">
+                            <tr class="row">
+                                <td class="col-2">Role name</td>
+                                <td class="col-2">Number of users with this role</td>
+                            </tr>
+                            @foreach (var roleCount in Model.RolesDict)
+                            {
+                                <tr class="row">
+                                    <td class="col-2 size">
+                                        @roleCount.Key
+                                    </td>
+                                    <td class="col-2">
+                                        @roleCount.Value
+                                    </td>
+
+                                    <td class="col-2">
+                                        <form method="post">
+                                            <a class="btn btn-success" asp-area="Profiles" asp-page="/Admin/UserList" asp-route-roleName="@roleCount.Key.Name">View users</a>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="post">
+                                            <button type="submit" asp-page-handler="delete" asp-route-roleId="@roleCount.Key.Id" class="btn btn-danger">Delete role</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                            <tr class="row">
+                                <td class="col-2">
+                                    <form method="post">
+                                        <a class="btn btn-success" asp-area="Profiles" asp-page="/Admin/Create">New role</a>
+                                    </form>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody id="container"></tbody>
+                    </table>
+                </div>
+                <template id="role-template">
+                    <table>
+                        <tr>
+                            <td style="display: block"><input name="role-id" value="" /></td>
+                            <td><p id="role-name"></p></td>
+                            <td><p id="role-count"></p></td>
+                            <td><button>Delete this role</button></td>
+                            <td><button>Edit this role</button></td>
+                        </tr>
+                    </table>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>

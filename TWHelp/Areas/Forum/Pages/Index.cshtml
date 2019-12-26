@@ -11,245 +11,69 @@
 @*https://stackoverflow.com/questions/24177572/add-slides-to-bootstrap-3-carousel-dynamically-using-jquery*@
 
 
-<div class="container-fluid" style="background-color: lightblue;">
-    <div class="m-3 p-3">
-        <div class="container" style="background-color: lightcoral;">
-            @*photos*@
-            @if (Model.IsHotNews)
-            {
-                <div class="" style="background-color: lightgoldenrodyellow;">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
+<div class="container-fluid">
 
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-
-                            @for (int i = 1; i < Model.HotNews.Count(); i++)
-                            {
-                                <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
-                            }
-                        </ol>
-                        <div class="carousel-inner" style="background-color: lightgreen">
-
-                            @foreach (var hotNewsList in Model.HotNews)
-                            {
-                                <div class="carousel-item active">
-                                    <div style="background-color: lightgray;">
-                                        <div class="d-flex flex-row justify-content-around">
-                                            @foreach (var hotNews in hotNewsList)
-                                            {
-                                                //TODO: add tags that using hotnews 
-                                                <div>
-                                                    <div>
-                                                        <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="background-color: aqua;">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="background-color: aqua; width: 20px;">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div style="background-color: lightgreen">
+    <div class="m-3 mt-5 p-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-11 mx-auto">
                     <div class="d-flex">
-                        <div class="m-3 p-3">
-                            <p>Unfortunately there's no &#x1F525 news</p>
-                        </div>
-                    </div>
-                </div>
-            }
-
-            <div class="" style="background-color: lightgoldenrodyellow;">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    </ol>
-                    <div class="carousel-inner" style="background-color: lightgreen">
-                        <div class="carousel-item active">
-                            <div style="background-color: lightgray;">
-                                <div class="d-flex flex-row justify-content-around">
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div style="background-color: lightgray;">
-                                <div class="d-flex flex-row justify-content-around">
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <div>
-                                            <img src="https://picsum.photos/250/350" alt="Alternate Text" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="background-color: aqua;">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="background-color: aqua; width: 20px;">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-    <div class="m-3 p-3">
-        <div class="container" style="background-color: lightgreen;">
-            <div class="d-flex">
-                <div class="col-12 col-sm-9" style="background-color: lightskyblue">
-                    <div>
-                        <div class="d-flex justify-content-between p-3" style="background-color: lightgray">
+                        <div class="col-12 col-sm-9 p-0" style="background-color: #f0f0f0">
                             <div>
-                                <h5>as;ldasd asd sa;dsa</h5>
-                                <p>ds;kfmmdsmf</p>
+                                <div class="d-flex justify-content-between m-2 p-2" style="background-color: white">
+                                    <div>
+                                        <h3>Discussions & questions</h3>
+                                        <p style="color: #828282;">View all <span id="topics-count">556</span> topics</p>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <a asp-area="Forum" asp-page="/CreateTopic" class="btn btn-primary m-0" style="color: white; text-decoration: none; border-radius: 50px; background-color: #4600bf !important;">Create new topic</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column" id="topics-content">
+
+                                    <div class="d-flex flex-column">
+                                        <div class="text-center">
+                                            <h5>Oops, unfortunately somethind went wrong</h5>
+                                        </div>
+                                        <div class="mx-auto">
+                                            <img src="~/images/svg/not-found.svg" alt="Alternate Text" width="600" height="400" />
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
-                            <div>
-                                <button class="btn btn-danger">butt</button>
+                            <div class="d-flex justify-content-between p-2">
+                                <button class="btn btn-outline-primary m-1" onclick="pageBack()" style="background-color: #4600bf !important; color: white;">Previous</button>
+                                <button class="btn btn-outline-primary m-1" onclick="pageNext()" style="background-color: #4600bf !important; color: white;">Next</button>
                             </div>
                         </div>
-
-                        <div class="d-flex flex-column">
-                            <div class="m-2 p-2" style="background-color: lightseagreen">
-                                <div class="d-flex justify-content-around">
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                    <div>
-                                        <h4>dksadml;askd;lsa</h4>
-                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
-                                    </div>
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                    <div>
-                                        <a asp-page="Topic" asp-route-id="1">Go to post -></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="m-2 p-2" style="background-color: lightseagreen">
-                                <div class="d-flex justify-content-around">
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                    <div>
-                                        <h4>dksadml;askd;lsa</h4>
-                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
-                                    </div>
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="m-2 p-2" style="background-color: lightseagreen">
-                                <div class="d-flex justify-content-around">
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                    <div>
-                                        <h4>dksadml;askd;lsa</h4>
-                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
-                                    </div>
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="m-2 p-2" style="background-color: lightseagreen">
-                                <div class="d-flex justify-content-around">
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                    <div>
-                                        <h4>dksadml;askd;lsa</h4>
-                                        <p>s;do;samd asdsadasdksa;kdsa dsad;askdsaokdopaskdm sadapsodkpoaskda sdsa;dkaskpodkasd dsad;opksa</p>
-                                    </div>
-                                    <div>
-                                        <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 d-none d-sm-block" style="background-color: lightslategray">
-                    <div>
-                        <div class="d-flex flex-column">
+                        <div class="col-3 d-none d-sm-block p-0 text-right" style="background-color: white">
                             <div>
-                                <h4>s;ladoaskdopas</h4>
-                                <p>;aslmdasmdas dsa;dksaodkoasd sadasodokasod saodk</p>
-                            </div>
-                            <div>
-                                as;d,sad
+                                <div class="d-flex justify-content-between m-2 p-2">
+                                    <div>
+                                        <h4>Top writers</h4>
+                                        <p class="m-0" style="color: #707070">People who posts the most topics today</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column m-2 p-2" id="authors-content">
+                                    <div class="p-1 my-1">
+                                        <div class="d-flex align-items-center flex-wrap">
+                                            <div class="mx-1">
+                                                <img src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" />
+                                            </div>
+                                            <div class="mx-2">
+                                                <p class="my-0">Denys Vyskrebets</p>
+                                            </div>
+                                            <div class="mx-1">
+                                                <p class="m-0">115 topics</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,3 +82,138 @@
         </div>
     </div>
 </div>
+
+@*topic template*@
+<template id="topictemplate">
+    <div class="mx-2 my-1 p-2" style="background-color: white">
+        <div class="d-flex flex-wrap">
+            <div class="d-flex align-items-center mr-4">
+                <div>
+                    <img id="topic-author-image" src="https://picsum.photos/60/60" alt="Alternate Text" style="border-radius: 50%;" width="50" height="50" />
+                </div>
+            </div>
+            <div class="flex-grow-1">
+                <div class="d-flex flex-column flex-wrap px-1">
+                    <div class="mx-1 px-1">
+                        <h4 id="topic-title" class="m-0">dksadml;askd;lsa</h4>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap" style="color: #707070;">
+                        <div class="mx-1 px-1">
+                            <p id="topic-author">Test@gmail.com</p>
+                        </div>
+                        <div class="mx-3 px-1">
+                            <p id="topic-created">15 hours ago</p>
+                        </div>
+                        <div class="mx-1 px-1">
+                            <p id="topic-replies">15 replies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <a asp-page="Topic" asp-route-id="1" id="topic-link" class="btn btn-outline-success" style="width: 150px;">Go to post -></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+@*author template*@
+<template id="authorstemplate">
+    <div class="p-1 my-1">
+        <div class="d-flex align-items-center flex-wrap">
+            <div class="mx-1">
+                <img id="person-image" src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" width="50" height="50" />
+            </div>
+            <div class="mx-2">
+                <p id="person-name" class="my-0">Denys Vyskrebets</p>
+            </div>
+            <div class="mx-1">
+                <p class="m-0"><span id="person-count">110</span> topics</p>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            findTopics();
+            findAuthors();
+        }
+
+        const webRoot = '@Model.WebRoot';
+
+        let from = 0;
+        let to = 15;
+
+        function pageBack() {
+            if (from >= 15) {
+                    from -= 15;
+                    to -= 15;
+
+                    findTopics();
+            }
+        }
+
+        function pageNext() {
+                from += 15;
+                to += 15;
+
+                findTopics();
+        }
+
+        async function findTopics() {
+            await fetch(webRoot + '/api/forum/topics/last?from=' + from + '&to=' + to, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => _displayTopics(data))
+                .catch(error => console.error('Unable to get items.', error));
+        }
+
+        async function findAuthors() {
+            await fetch(webRoot + '/api/forum/authors/last?count=15', {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => _displayAuthors(data))
+                .catch(error => console.error('Unable to get items.', error));
+        }
+
+        function _displayTopics(data) {
+            let container = document.getElementById('topics-content');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                let newDiv = document.importNode(topictemplate.content, true);
+
+                newDiv.getElementById('topic-title').textContent = item.header;
+                newDiv.getElementById('topic-author').textContent = item.author;
+                newDiv.getElementById('topic-created').href = item.created;
+                newDiv.getElementById('topic-replies').href = item.numberOfReplies;
+                newDiv.getElementById('topic-link').href = "/Forum/ViewTopic?topicId=" + item.topicId;
+                newDiv.getElementById('topic-author-image').src = item.authorImageString;
+
+                container.append(newDiv);
+            });
+        }
+
+        function _displayAuthors(data) {
+            let container = document.getElementById('authors-content');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                let newDiv = document.importNode(authorstemplate.content, true);
+
+                newDiv.getElementById('person-name').textContent = item.authorName;
+                newDiv.getElementById('person-count').textContent = item.activityCount;
+                newDiv.getElementById('person-image').src = item.profileImageString;
+
+                container.append(newDiv);
+            });
+        }
+    </script>
+}

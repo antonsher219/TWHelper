@@ -1,5 +1,10 @@
 *.config
 *.png
+*.jpg
+*.pdf
+*.doc
+*.avi
+*.mp4
 
 TWHelp/bin/Debug/netcoreapp2.2/appsettings.json
 

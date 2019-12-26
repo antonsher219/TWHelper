@@ -1,0 +1,92 @@
+﻿@page
+@model TWHelp.Areas.Forum.Pages.UploadVideoModel
+@{
+}
+
+@section Styles {
+    <link href="~/lib/dropzone/dropzone.css" rel="stylesheet" />
+}
+
+<style>
+    .page-background-image {
+        background-image: url('../images/video-background.svg'); 
+        background-repeat: no-repeat; 
+        background-size: 50% 100%; 
+        background-position: right;
+        background-attachment: fixed;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row page-background-image">
+        <div class="col-11 col-sm-10 col-md-9 col-lg-7 mx-auto">
+            <div class="my-5" style="">
+                <div class="text-center">
+                    <h3>Upload new video</h3>
+                </div>
+                <div class="">
+                </div>
+                <div class="my-2 my-sm-4 my-md-5 custom-file">
+
+                    <div class="form-group">
+                        <label asp-for="InputModel.Name">Video name</label>
+                        <input asp-for="InputModel.Name" type="text" class="form-control" id="name" placeholder="How to fight loneliness">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InputModel.Description" for="exampleInputEmail2">Video description</label>
+                        <input asp-for="InputModel.Description" type="text" class="form-control" id="description" placeholder="Long and very detailed video">
+                        <small id="emailHelp" class="form-text text-muted">Description can be empty.</small>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InputModel.Tags" for="exampleInputEmail3">Video tags</label>
+                        <input asp-for="InputModel.Tags" type="text" class="form-control" id="tags" placeholder="Psychology, good quality, education">
+                        <small id="emailHelp" class="form-text text-muted">Enter tags separating them with a comma.</small>
+                    </div>
+
+                    <form asp-page-handler="FileUpload" class="dropzone py-2 py-sm-4 py-md-5" id="my-awesome-dropzone" enctype="multipart/form-data">
+                    </form>
+
+                    <div class="text-center d-flex flex-column">
+                        <small class="m-1" style="color: #ff5252;">You can upload only .avi or .mp4 video format</small>
+                        <small class="m-1" style="color: #ff5252;">Video max size is <span style="font-weight: bold">700mb</span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @*https://www.dropzonejs.com/*@
+    <script src="~/lib/dropzone/dropzone.js"></script>
+    <script>
+        data = {
+            name: '',
+            description: '',
+            tags: ''
+        };
+
+        Dropzone.options.myAwesomeDropzone = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 700, // MB
+            acceptedFiles: "video/*",
+            params: data,
+            accept: function (file, done) {
+                if (true || file.name.endsWith(".avi") || file.name.endsWith(".mp4")) {
+                    data.name = $('#name').val();
+                    data.description = $('#description').val();
+                    data.tags = $('#tags').val();;
+
+                    done();
+
+                    $('#name').val('');
+                    $('#description').val('');
+                    $('#tags').val('');
+                }
+                else {
+                    done("Oops, wrong video format");
+                }
+            }
+        };
+    </script>
+}

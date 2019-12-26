@@ -14,6 +14,6 @@ namespace Domain.Models.Domain
 
         [Column(Order = 2)]
         public int TopicId { get; set; }
-        public Topic Topic { get; set; }
+        public TopicQuestion Topic { get; set; }
     }
 }

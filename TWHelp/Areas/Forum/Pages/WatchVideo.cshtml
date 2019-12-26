@@ -1,0 +1,47 @@
+﻿@page
+@model TWHelp.Areas.Forum.Pages.WatchVideoModel
+@{
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="mx-auto">
+            <div class="my-5 mx-2 p-3">
+                <div style="background-color: #f2f2f2">
+                    @if (Model.Input == null)
+                    {
+                        <div class="d-flex flex-column">
+                            <div class="text-center">
+                                <h5>Oops, unfortunately somethind went wrong</h5>
+                            </div>
+                            <div class="mx-auto">
+                                <img src="~/images/svg/not-found.svg" alt="Alternate Text" width="600" height="400" />
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center p-2">
+                            <h3>@Model.Input.Name</h3>
+                        </div>
+                        <div>
+                            <video controls="controls" width="1200" height="550">
+                                <source src="@Model.Input.Path" type="video/mp4" />
+                            </video>
+                        </div>
+                        <div class="d-flex justify-content-between m-2 p-1">
+                            <div>
+                                <p>Author: @Model.Input.Author</p>
+                            </div>
+                            <div>
+                                <p>Date: @Model.Input.Date</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
