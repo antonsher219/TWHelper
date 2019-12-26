@@ -1,8 +1,18 @@
 ﻿@page
 @model TWHelp.Areas.Profiles.Pages.Psychologists.IndexModel
 
+<style>
+    .page-background-image {
+        background-image: url('../images/psychologist-background.svg');
+        background-repeat: no-repeat;
+        background-size: 50% 100%;
+        background-position: bottom right;
+        background-attachment: fixed;
+    }
+</style>
+
 <div class="container-fluid">
-    <div class="row">
+    <div class="row page-background-image ">
         <div class="col-12 col-sm-11 col-md-10 col-lg-8 mx-auto">
             <div class="my-5 py-5">
                 <div>
@@ -10,7 +20,7 @@
                         <h2>Psychologists page</h2>
                     </div>
                     <div>
-                        <form class="d-flex justify-content-between"  onsubmit="searchForPsycoProfiles(event)" id="search-form">
+                        <form class="d-flex justify-content-between" onsubmit="searchForPsycoProfiles(event)" id="search-form">
                             <div class="col-9">
                                 <input type="text" class="form-control" id="search-text" placeholder="John Johnson" list="psychoResults" oninput="autocompleteForPsychoProfiles()">
                                 @*content for autocomplete*@
@@ -22,7 +32,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
 
                 <div class="my-3 p-2">
@@ -125,8 +135,8 @@
     <div id="psycho-div" class="m-2 p-2" style="background-color: white">
         <div class="m-2 d-flex justify-content-between">
             <h5 id="psycho-name">tets@gmail.com</h5>
-            
-           <div id="psycho-status">
+
+            <div id="psycho-status">
                 <span class="badge badge-success p-2">Confirmed status</span>
             </div>
         </div>
@@ -156,13 +166,13 @@
 
 <style>
     #psycho-like-like {
-        transition: all 0.2s ease-in-out; 
+        transition: all 0.2s ease-in-out;
     }
 
-    #psycho-like-like:hover {
-        transform: scale(1.5, 1.5);
-        color: orange;
-    }
+        #psycho-like-like:hover {
+            transform: scale(1.5, 1.5);
+            color: orange;
+        }
 </style>
 
 <script>

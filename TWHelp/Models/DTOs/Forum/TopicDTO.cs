@@ -10,8 +10,8 @@ namespace TWHelp.Models.DTOs.Forum
         public string Title { get; set; }
         public string Question { get; set; }
         public string Author { get; set; }
-        public string AuthorProfileImagePath { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string AuthorProfileImage { get; set; }
+        public string Created { get; set; }
         public int NumberOfLikes { get; set; }
     }
 }

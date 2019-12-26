@@ -9,5 +9,6 @@ namespace TWHelp.Models.DTOs.Forum.Preview
     {
         public string AuthorName { get; set; }
         public int ActivityCount { get; set; }
+        public string ProfileImageString { get; set; }
     }
 }

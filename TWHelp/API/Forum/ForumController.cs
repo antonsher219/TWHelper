@@ -100,6 +100,7 @@ namespace TWHelp.API.Forum
                     TopicId = topic.Id,
                     Header = topic.Header,
                     Author = topic.Creator.UserName,
+                    AuthorImageString = $"data:image/png;base64,{Convert.ToBase64String(topic.Creator.AvatarImage)}",
                     NumberOfReplies = replies
                 };
 
@@ -127,9 +128,9 @@ namespace TWHelp.API.Forum
                 return BadRequest();
             }
 
-            var activeAuthors = _context.TopicAnswers
+            var activeAuthors = _context.TopicQuestions
                 .GroupBy(
-                    t => t.AuthorId,
+                    t => t.CreatorId,
                     (key, aggr) => new { AuthorId = key, Count = aggr.Count() })
                 .OrderByDescending(t => t.Count)
                 .Take(count)
@@ -144,7 +145,8 @@ namespace TWHelp.API.Forum
                 result.Add(new AuthorPreviewDTO() 
                 { 
                     AuthorName = user.UserName,
-                    ActivityCount = author.Count
+                    ActivityCount = author.Count,
+                    ProfileImageString = $"data:image/png;base64,{Convert.ToBase64String(user.AvatarImage)}",
                 });
             }
 
@@ -165,6 +167,44 @@ namespace TWHelp.API.Forum
                 .Skip(from)
                 .Take(to - from)
                 .ToList();
+
+            return Ok(result);
+        }
+
+        //GET: api/forum/answers?topicId=
+        [HttpGet("answers")]
+        public ActionResult<List<TopicAnswerDTO>> GetAnswers(int topicId)
+        {
+            var answers = _context.TopicAnswers
+                .Where(a => a.TopicId == topicId)
+                .ToList();
+
+            var result = new List<TopicAnswerDTO>();
+
+            foreach(var answer in answers)
+            {
+                var author = _context.Users
+                    .FirstOrDefault(u => u.Id == answer.AuthorId);
+
+                var resultAnswer = new TopicAnswerDTO()
+                {
+                    AuthorName = author?.UserName,
+                    Content = answer.Content,
+                    AuthorProfileImage = $"data:image/png;base64,{Convert.ToBase64String(author?.AvatarImage ?? new byte[] { 0 })}",
+                    IsRigthAnswer = answer.IsRigthAnswer,
+                };
+
+                if((DateTime.Now - answer.Created).Days == 0)
+                {
+                    resultAnswer.Created = $"{(DateTime.Now - answer.Created).Hours} hours ago";
+                }
+                else
+                {
+                    resultAnswer.Created = $"{(DateTime.Now - answer.Created).Days} hours ago";
+                }
+
+                result.Add(resultAnswer);
+            }
 
             return Ok(result);
         }

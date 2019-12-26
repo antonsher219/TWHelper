@@ -44,9 +44,9 @@
     }
 
     .feed-background-image {
-        background-image: url('../images/topic-answer.svg'); 
-        background-repeat: no-repeat; 
-        background-size: 50% 100%; 
+        background-image: url('../images/topic-answer.svg');
+        background-repeat: no-repeat;
+        background-size: 50% 100%;
         background-position: right;
         background-attachment: fixed;
     }
@@ -61,43 +61,58 @@
         <div class="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 mx-auto">
             <div class="m-2 p-2 my-5 py-2" style="background-color: rgba(255, 245, 200, 0);">
                 <div class="col-sm-12 col-md-11 col-lg-10 mx-auto" style="background-color: rgba(255, 255, 255, 0.8);">
-                    <div class="py-2">
-                        <div class="my-2">
-                            <h3 style="font-weight: 600;">Best way to export data in xml format and csv format</h3>
+                    @if (Model.Topic == null)
+                    {
+                        <div class="d-flex flex-column">
+                            <div class="text-center">
+                                <h5>Oops, unfortunately somethind went wrong</h5>
+                            </div>
+                            <div class="mx-auto">
+                                <img src="~/images/svg/not-found.svg" alt="Alternate Text" width="600" height="400" />
+                            </div>
                         </div>
-                        <div class="my-4">
-                            <div class="d-flex">
-                                <div class="m-2">
-                                    <img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />
-                                </div>
-                                <div class="m-2 mx-4">
-                                    <div class="d-flex flex-column flex-wrap">
-                                        <p class="font-weight-bold m-0">Denys Vyskrebets</p>
-                                        <p class="m-0">4 days ago</p>
+                    }
+                    else
+                    {
+                        <div class="py-2">
+                            <div class="my-2">
+                                <h3 style="font-weight: 600;">@Model.Topic.Title</h3>
+                            </div>
+                            <div class="my-4">
+                                <div class="d-flex">
+                                    <div class="m-2">
+                                        @*<img src="https://picsum.photos/50/50" alt="Alternate Text" style="border-radius: 50%;" />*@
+                                        <img src="@Model.Topic.AuthorProfileImage" alt="Alternate Text" style="border-radius: 50%;" width="50" height="50" />
+                                    </div>
+                                    <div class="m-2 mx-4">
+                                        <div class="d-flex flex-column flex-wrap">
+                                            <p class="font-weight-bold m-0">@Model.Topic.Author</p>
+                                            <p class="m-0">@Model.Topic.Created</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="my-2">
+                                <p>@Model.Topic.Question</p>
+                            </div>
+                            <div class="mt-4 mx-2">
+                                <button class="btn" style="width: 50px; height: 50px; border-radius: 60px; background-color: #4a2aeb;">
+                                    <i class="far fa-heart" style="font-size: 24px; margin: 0px; padding: 0px; color: white;"></i>
+                                </button>
+                                <span class="mx-4" style="font-weight: bold;"><span>@Model.Topic.NumberOfLikes</span> likes</span>
+                            </div>
                         </div>
-                        <div class="my-2">
-                            <p>Im looking for the best way to let users export and download data in xml format</p>
-                        </div>
-                        <div class="mt-4 mx-2">
-                            <button class="btn" style="width: 50px; height: 50px; border-radius: 60px; background-color: #4a2aeb;">
-                                <i class="far fa-heart" style="font-size: 24px; margin: 0px; padding: 0px; color: white;"></i>
-                            </button>
-                            <span class="mx-4" style="font-weight: bold;">4 likes</span>
-                        </div>
-                    </div>
+                    }
                 </div>
 
                 <div class="col-sm-12 col-md-11 col-lg-10 mx-auto" style="background-color: rgba(255, 255, 255, 0.8);">
                     <div class="py-2 mt-5 mb-3">
-                        <h4>12 Answers</h4>
+                        <h4><span id="answers-count">12</span> Answers</h4>
                     </div>
                     <hr />
                 </div>
 
-                <div class="col-sm-12 col-md-11 col-lg-10 p-0 mx-auto feed-comments">
+                <div class="col-sm-12 col-md-11 col-lg-10 p-0 mx-auto feed-comments" id="answers-area">
                     <div class="p-2 my-2">
                         <div class="my-2">
                             <div class="d-flex">
@@ -136,46 +151,19 @@
                             </p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="p-2 my-2">
-                        <div class="my-2">
-                            <div class="d-flex">
-                                <div class="m-2">
-                                    <img src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" />
-                                </div>
-                                <div class="m-2 mx-4">
-                                    <div class="d-flex flex-column flex-wrap">
-                                        <p class="font-weight-bold m-0">Denys Vyskrebets</p>
-                                        <p class="m-0">4 days ago</p>
-                                    </div>
-                                </div>
-                                <div class="m-2 ">
-                                    <span class="badge badge-pill badge-success p-2">Best answer</span>
-                                </div>
+                <div class="col-sm-12 col-md-11 col-lg-10 mx-auto my-5" style="background-color: rgba(255, 255, 255, 0.9);">
+                    <div class="py-2 my-2">
+                        <form method="post">
+                            <input asp-for="Input.TopicId" type="hidden" value="@Model.TopicId" />
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Your answer</label>
+                                <input asp-for="Input.Answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="I think I can help you. ....">
                             </div>
-                        </div>
-                        <div class="my-2">
-                            <p>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
-                                mollit anim id est laborum."
-                            </p>
-                        </div>
-                        <div class="my-2">
-                            <p>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
-                                mollit anim id est laborum."
-                            </p>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -183,36 +171,26 @@
 </div>
 
 
-<template id="answer-template">
+<template id="template">
     <div class="p-2 my-2">
         <div class="my-2">
             <div class="d-flex">
                 <div class="m-2">
-                    <img src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" />
+                    <img id="answer-image" src="https://picsum.photos/40/40" alt="Alternate Text" style="border-radius: 50%;" width="50" height="50" />
                 </div>
                 <div class="m-2 mx-4">
                     <div class="d-flex flex-column flex-wrap">
-                        <p class="font-weight-bold m-0">Denys Vyskrebets</p>
-                        <p class="m-0">4 days ago</p>
+                        <p class="font-weight-bold m-0" id="answer-author">Denys Vyskrebets</p>
+                        <p class="m-0" id="answer-date">4 days ago</p>
                     </div>
                 </div>
-                <div class="m-2 ">
+                <div class="m-2" id="answer-badge">
                     <span class="badge badge-pill badge-success p-2">Best answer</span>
                 </div>
             </div>
         </div>
         <div class="my-2">
-            <p>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. sunt in culpa qui officia deserunt
-                mollit anim id est laborum."
-            </p>
-        </div>
-        <div class="my-2">
-            <p>
+            <p id="answer-content">
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 e velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
@@ -223,3 +201,44 @@
         </div>
     </div>
 </template>
+
+<script>
+        window.onload = function () {
+            findAnswers();
+        }
+
+    const webRoot = '@Model.WebRoot';
+    const topicId = '@Model.TopicId';
+
+
+        async function findAnswers() {
+            await fetch(webRoot + '/api/forum/answers?topicId=' + topicId, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => _displayVideos(data))
+                .catch(error => console.error('Unable to get items.', error));
+        }
+
+        function _displayVideos(data) {
+            const container = document.getElementById('answers-area');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                let newDiv = document.importNode(template.content, true);
+
+                newDiv.getElementById('answer-author').textContent = item.authorName;
+                newDiv.getElementById('answer-date').textContent = item.created;
+                newDiv.getElementById('answer-content').textContent = item.content;
+                newDiv.getElementById('answer-image').src = item.authorProfileImage;
+
+                if (item.isRightAnswer == "True") {
+                    newDiv.getElementById('answer-badge').innerHTML = '<span class="badge badge-pill badge-success p-2">Right answer</span>';
+                }
+
+                container.append(newDiv);
+            })
+
+            document.getElementById('answers-count').textContent = data.length;
+        }
+</script>

@@ -10,6 +10,7 @@ namespace TWHelp.Models.DTOs.Forum.Preview
         public int TopicId { get; set; }
         public string Header { get; set; }
         public string Author { get; set; }
+        public string AuthorImageString { get; set; }
         public string Created { get; set; }
         public int NumberOfReplies { get; set; }
     }
